@@ -1,0 +1,104 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8" lang="fr_FR" />
+	<meta name="viewport" content="width=device-width" />
+    <script src="../assets/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+	<title>Mode d'emploi de Raos</title>
+    <link rel="stylesheet" href="mde.css"></link>
+</head>
+<body class="sub">
+
+<div id="retour"><a href="mde_tuto.html">Retour</a></div>
+
+    <h2 id="tuto-substitution">Résolution par substitution (2 inconnues)</h2>
+
+    <p>Résolution du système <span class="input">4a-3b=-1; 2a-b=3</span> 
+        \[1.\quad\left\{\begin{array}{rcl|l}
+        4a-3b & = & -1 &\ell_1\\
+        2a-b & = & 3 &\ell_2\\
+        \end{array}\right.\]</p>
+
+    <p><b>Stratégie</b> : isoler \(b\) dans le membre de gauche de la ligne \(\ell_2\) puis effectuer la substitution dans \(\ell_1\).</p>
+
+    <ol class="l1">
+        <li> Soustraire \(2a\) à la ligne \(\ell_2\)&nbsp;: 
+            <ul>
+                <li> <button>Opération</button> </li>
+                <li> Ligne à modifier : \(\ell_2\) </li>
+                <li> Opération à effectuer : <span class="op">&minus;</span></li>
+                <li> Quantité à utiliser : <span class="input">2a</span></li>
+                <li> <button>Effectuer</button>
+            </ul>
+            \[2.\quad \left\{\begin{array}{rcl|l}
+            4a-3b & = & -1 & \ell_{1}\\
+            -b & = & -2a+3 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>Multiplier la ligne \(\ell_2\) par \(-1\) pour en changer les signes&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_2\)</li>
+                <li>Opération à effectuer : <span class="op">&times;</span></li>
+                <li>Quantité à utiliser : <span class="input">-1</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[3.\quad
+            \left\{\begin{array}{rcl|l}
+            4a-3b & = & -1 & \ell_{1}\\
+            b & = & 2a-3 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>
+            L'inconnue \(b\) est maintenant isolée dans le membre de gauche de la ligne \(\ell_2\), nous pouvons effectuer la substitution dans la ligne \(\ell_1\)&nbsp;:
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_2\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[4.\quad\left\{\begin{array}{rcl|l}
+            -2a+9 & = & -1 & \ell_{1}\\
+            b & = & 2a-3 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+
+        <li>Dans la ligne \(\ell_1\) ne figure plus que l'inconnue \(a\). Résolvons&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_1\)</li>
+                <li>Opération à effectuer : <span class="op">&minus;</span></li>
+                <li>Quantité à utiliser : <span class="input">9</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            Puis
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_1\)</li>
+                <li>Opération à effectuer : <span class="op">&divide;</span></li>
+                <li>Quantité à utiliser : <span class="input">-2</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[6.\quad \left\{\begin{array}{rcl|l}
+            a & = & 5 & \ell_{1}\\
+            b & = & 2a-3 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+
+        <li>Nous avons établi que \(a=5\). Substituons cette valeur à \(a\) dans la ligne \(\ell_2\)&nbsp;:
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_1\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[7.\quad\left\{\begin{array}{rcl|l}
+            a & = & 5 & \ell_{1}\\
+            b & = & 7 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+
+    </ol>
+
+    Nous pouvons conclure que le système possède une unique solution : \(\mathscr S=\{(5;7)\}\).
+    
+</body>
+<script src="mde.js"></script>
+</html>

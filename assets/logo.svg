@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="logo.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="94.808095"
+     inkscape:cy="810.9573"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1024"
+     inkscape:window-height="547"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:snap-bbox="false"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-others="false"
+     inkscape:object-nodes="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3336" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3371">
+      <rect
+         style="fill:#ff7f2a"
+         ry="9.9999914"
+         rx="9.9999914"
+         y="292.36221"
+         x="40"
+         height="40"
+         width="40"
+         id="rect3338" />
+      <path
+         id="path3340"
+         d="M 50 292.36133 C 44.460005 292.36133 40 296.82133 40 302.36133 L 40 322.36133 C 40 327.90132 44.460005 332.36133 50 332.36133 L 66.574219 332.36133 A 35 35 0 0 0 70 317.36133 A 35 35 0 0 0 59.447266 292.36133 L 50 292.36133 z "
+         style="fill:#ff6600" />
+      <flowRoot
+         style="fill:#ffffff;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:'Ubuntu Mono';font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:'Ubuntu Mono';font-stretch:normal;font-variant:normal;"
+         id="flowRoot3359"
+         xml:space="preserve"><flowRegion
+           id="flowRegion3361"><rect
+             style="-inkscape-font-specification:'Ubuntu Mono';font-family:'Ubuntu Mono';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;fill:#ffffff;"
+             y="332.36221"
+             x="-110"
+             height="90"
+             width="110"
+             id="rect3363" /></flowRegion><flowPara
+           id="flowPara3365" /></flowRoot>      <text
+         sodipodi:linespacing="125%"
+         id="text3367"
+         y="321.37234"
+         x="49.494926"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:35px;line-height:125%;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="321.37234"
+           x="49.494926"
+           id="tspan3369"
+           sodipodi:role="line">{</tspan></text>
+    </g>
+    <rect
+       style="fill:#ffffff"
+       id="rect3420"
+       width="30"
+       height="50"
+       x="30"
+       y="197.3622"
+       rx="9.9999905"
+       ry="9.9999905" />
+    <rect
+       style="fill:#ffffff;stroke:#000000"
+       id="rect3428"
+       width="50"
+       height="90"
+       x="15"
+       y="192.3622"
+       rx="4.7061801"
+       ry="4.7800899" />
+    <rect
+       style="fill:#00ff00;stroke:#000000"
+       id="rect3430"
+       width="40"
+       height="70"
+       x="20"
+       y="197.3622" />
+    <rect
+       style="fill:#00ff00;stroke:#000000"
+       id="rect3432"
+       width="10"
+       height="5"
+       x="20"
+       y="272.36221" />
+    <rect
+       style="fill:#00ff00;stroke:#000000"
+       id="rect3434"
+       width="10"
+       height="5"
+       x="35"
+       y="272.36221" />
+    <rect
+       style="fill:#00ff00;stroke:#000000"
+       id="rect3436"
+       width="10"
+       height="5"
+       x="50"
+       y="272.36221" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 75,272.3622 15,-20 0,-40 55,0 0,40 15,20 z"
+       id="path3534"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#00ff00;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 95,217.3622 0,30 45,0 0,-30 z"
+       id="path3536"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 95,252.3622 45,0"
+       id="path3538"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

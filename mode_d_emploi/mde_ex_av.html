@@ -1,0 +1,111 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8" lang="fr_FR" />
+	<meta name="viewport" content="width=device-width" />
+    <script src="../assets/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+	<title>Mode d'emploi de Raos</title>
+    <link rel="stylesheet" href="mde.css"></link>
+</head>
+<body class="sub">
+
+<div id="retour"><a href="mode_d_emploi.html">Retour</a></div>
+
+<h1 id="avance">Exemples avancés</h1>
+
+<ul>
+            <li><a href="#tuto-plan-plan">Détermination de la droite d'intersection de deux plans (Tle S)</a></li>
+            <li><a href="#tuto-plan-droite">Détermination du point d'intersection d'un plan et d'une droite paramétrée (Tle S)</a></li>
+            </ul>
+
+
+    <h2 id="tuto-plan-plan">Détermination de la droite d'intersection de deux plans (Tle S)</h2>
+
+    <p>On considère les plans \(P\) et \(P'\) d'équations respectives
+        \[P:x+y-2z-1=0\]\[P':3x+5y-4z-7=0.\]
+    On se propose de déterminer une paramétrisation de la droite d'intersection de \(P\) et \(P'\), si elle existe.</p>
+
+    <ul>
+        <li>Créer le système
+            \[\left\{\begin{array}{rcl|l}
+            x+y-2z-1 & = & 0 & \ell_{1}\\
+            3x+5y-4z-7 & = & 0 & \ell_{2}\\
+            \end{array}\right.\]
+            en saisissant
+        <span class="input">x+y-2z-1=0; 3x+5y-4z-7=0</span></li>
+
+        <li>On supprime \(x\) de la ligne \(\ell_2\) par la combinaison linéaire \(\ell_2\leftarrow\ell_2-3\ell_1\).
+            \[\left\{\begin{array}{rcl|l}
+            x+y-2z-1 & = & 0 & \ell_{1}\leftarrow\ell_{1}\\
+            2y+2z-4 & = & 0 & \ell_{2}\leftarrow\ell_{2}-3\ell_{1}\\
+            \end{array}\right.\]</li>
+        <li>On peut maintenant exprimer \(y\) en fonction de \(z\) dans la ligne \(\ell_2\) en appliquant successivement à \(\ell_2\)
+            <ul>
+                <li> la soustraction de \(2z-4\),</li>
+                <li> une division par \(2\).</li>
+            </ul>
+            \[\left\{\begin{array}{rcl|l}
+            x+y-2z-1 & = & 0 & \ell_{1}\\
+            y & = & -z+2 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>De même, dans la ligne \(\ell_1\), effectuer la soustraction de \(y-2z-1\) permet d'isoler \(x\) dans le membre de gauche&nbsp;:
+            \[\left\{\begin{array}{rcl|l}
+            x & = & -y+2z+1 & \ell_{1}\\
+            y & = & -z+2 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>Finalement, il reste à substituer à \(y\) l'expression obtenue dans la ligne \(\ell_2\)&nbsp;:
+            \[\left\{\begin{array}{rcl|l}
+            x & = & 3z-1 & \ell_{1}\\
+            y & = & -z+2 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>On établit ainsi que \(P\) et \(P'\) sont bien sécants, et qu'une paramétrisation de leur droite d'intersection est
+            \[\left\{\begin{array}{rcl|l}
+            x & = & 3t-1 \\
+            y & = & -t+2 \\
+            z & = & t
+\end{array}\right.\qquad t\in\mathbb{R}.\]</li>
+</ul>
+
+</ul></li></ol>
+
+
+    <h2 id="tuto-plan-droite">Détermination du point d'intersection d'un plan et d'une droite paramétrée (Tle S)</h2>
+
+    <p>On considère la droite \(d\) et le plan \(P\) définis par
+    \[d:\left\{\begin{array}{rcl|l} x & = & -t+5 \\ y & = & 2t-3 \\ z & = & t+4 \end{array}\right.\]\[P : 5x+2y-z+1=0. \]</p>
+
+    <p>On se propose de déterminer les éventuels points d'intersection de \(d\) et \(P\).</p>
+
+    <p>Cela revient à résoudre le système \[\left\{\begin{array}{rcl|l}
+    x & = & -t+5 & \ell_{1}\\
+    y & = & 2t-3 & \ell_{2}\\
+    z & = & t+4 & \ell_{3}\\
+    5x+2y-z+1 & = & 0 & \ell_{4}\\
+    \end{array}\right.\]</p>
+
+
+
+    <ul>
+        <li>Créer le système ci-dessus en saisissant 
+    <p><span class="input">x=5-t; y=-3+2t; z=4+t; 5x+2y-z+1=0</span></p></li>
+    <li>Effectuer les substitutions de \(x\), \(y\) et \(z\) (lignes \(\ell_1\), \(\ell_2\) et \(\ell_3\)), on aboutit au système
+    \[\left\{\begin{array}{rcl|l}
+    x & = & -t+5 & \ell_{1}\\
+    y & = & 2t-3 & \ell_{2}\\
+    z & = & t+4 & \ell_{3}\\
+    -2t+16 & = & 0 & \ell_{4}\\
+    \end{array}\right.\]
+    </li>
+    <li>Résoudre l'équation en \(t\) de la ligne \(\ell_4\) en appliquant à la suite
+        <ul><li>une soustraction de \(16\)</li>
+            <li>une division par \(-2\)</li>
+        </ul>
+        à cette ligne.
+    </li>
+    <li>On obtient la valeur \(t=-8\). Substituer cette valeur à \(t\) grâce à la ligne \(\ell_4\) pour obtenir un unique point d'intersection&nbsp; \(M(-3;13;12)\).
+
+</body>
+<script src="mde.js"></script>
+</html>

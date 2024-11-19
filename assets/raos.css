@@ -1,0 +1,436 @@
+/* Raos.css v2
+    feuille de style pour le logiciel raos */
+
+/* ==================
+    A1. Style général
+===================== */
+
+/* Réglages généraux de l'appli */
+* {
+    font-size: inherit;
+}
+
+body {
+    background: #A1A1AF;
+    font-family: Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    height: auto;
+}
+
+kbd {
+    border: 1px solid currentColor;
+    padding: 0.2ex .5ex;
+    border-radius: 1ex;
+}
+
+select {
+    font-size: 100%;
+}
+
+button {
+    font-size: 100%;
+    font-family: Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    /*height: auto;*/
+}
+
+button:disabled {
+    color: #BBB;
+}
+@media screen {
+/* ===========================================
+    A2. Éléments structurants de l'application
+============================================== */
+
+#screen-filler { /* Élémént principal assurant le plein écran */
+    /* position absolue à 0 de chacun des bords */
+    box-sizing: border-box;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    /* sans bordure, marges ni capitonnage */
+    border:0;
+    margin:0;
+    padding:0;
+    /* pour cette application, on utilise le modèle flex */
+    display: flex;
+    flex-direction: column;
+}
+
+#main-div { /* Réglages du cadre principal */
+    display: flex;
+    flex-direction: row;
+    min-height: 1%; /* semble nécessaire pour obtenir des ascenseurs propres à l'intérieur */
+    align-items: stretch;
+    height:100%;
+    padding: .5ex;
+}
+
+#main-div > * {
+    margin: .5ex;
+    height:100%;
+}
+
+#menu-div { /* menu principal */
+    /* flex-wrap: nowrap; */
+    flex: 0 0 20ex;
+    /* min-height:0; */
+    /* align-items: stretch; */ 
+    /*overflow:auto;*/
+    /*height: auto;*/
+}
+
+#title-div { /* Barre titre (reçoit aussi lien vers manuel et un sélecteur) */
+    background: black;
+    color: white;
+    padding: 1ex;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+#title-div > div + div {
+    margin-left: 2ex;
+}
+
+.stretcher { /* élément extensible pour remplir les flex */
+    flex-grow: 1;
+}
+
+#solve-div {
+    /*display: none;*/
+    box-sizing: border-box;
+    background: lavender;
+    overflow: auto;
+    flex: 1 0 40%;
+    padding: 1ex;
+    /*height:auto;*/
+}
+
+#manual-div {
+    box-sizing: border-box;
+    flex: 1 0 35% ;
+    border: 1pt solid black;
+/*    height: 100%;
+    display:none; */
+}
+
+#manual-iframe {
+    overflow: hidden;
+    box-sizing: border-box;
+    flex:2;
+    width:100%;
+    height:auto;
+}
+
+#manual-switch {
+    cursor: pointer;
+    padding: 1ex;
+    border-radius: 1ex;
+}
+
+#manual-switch:hover {
+    background: darkorange;
+}
+
+.main-button {
+    margin-bottom: 1ex;
+}
+
+.action-button {
+    margin-top: 1ex;
+}
+
+/* ACTIONS DE RÉSOLUTION */
+
+
+.initial * {
+    border-top: none;
+}
+
+#action-box {
+    background: #003;
+    width: 100%;
+    padding: .2ex;
+    padding-top: 0;
+    margin-top: 1ex;
+}
+
+.action-settings {
+    box-sizing: border-box;
+    background: white;
+    margin: 0ex 0ex;
+    padding: 1ex;
+    border: 2px solid #003;
+    border-top: 0px;
+}
+
+.action-choice {
+    background: #003;
+    color: white;
+    padding: .6ex 1ex;
+    margin: 0 0;
+    margin-top: 1ex;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.action-container {
+    display: none;
+}
+
+.op-choice {
+    display: inline-block;
+    width:2em;
+    text-align: center;
+    font-size:110%;
+    font-weight:bold;
+    border: 1px solid lavender;
+    border-radius: 1ex;
+    cursor: pointer;
+}
+
+.op-choice[data-selected="true"] {
+    background: lavender;
+    color: black;
+    border-color: black;
+}
+
+.op-choice[data-selected="false"] {
+    background: black;
+    color:white;
+    border-color: lavender;
+}
+
+.comb-entry-line[data-target="true"] {
+    color:gray;
+}
+
+.comb-entry-line[data-target="true"] .comb-end {
+    display: none;
+}
+
+.comb-entry-line[data-target="false"] {
+    color:black;
+}
+
+.mode-selector {
+    cursor: pointer;
+    height: auto;
+    padding: 1ex;
+    border-radius: 1ex;
+    background:red;
+}
+
+.mode-selector[data-state="0"] {
+    background: black;
+}
+
+
+.mode-selector[data-state="1"] {
+    background: orange;
+}
+
+.comb-entry-button, #op-entry-button, .math-entry {
+    background: white;
+    border: 1px solid black;
+    padding: 0 1ex;
+    border-radius: 1ex;
+    min-width: 5ex;
+    min-height: 3ex;
+    vertical-align: middle;
+    size:6;
+}
+
+/* ==============================================
+    A3. Conteneurs génériques (flex et ordinaire)
+================================================= */
+
+.h-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-middle;
+}
+
+.h-flex > * {
+}
+
+.v-container {
+}
+
+.v-container > * {
+    width: 100%;
+}
+
+.v-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.v-flex > * {
+    width: 100%;
+}
+
+
+
+/* ==============================
+    A4. Éléments de l'application
+================================= */
+
+.action-submit {
+    width = 100%;
+}
+
+.comment { /* commentaires du formulaire de saisie */
+    color: #444;
+    font-style: italic;
+}
+
+.error { /* messages d'erreurs de saisie */
+    background: red;
+    color: white;
+    padding: 1ex;
+}
+
+.error-container {
+    margin-top = 0 !important;
+    padding: 0;
+    display: none;
+}
+
+.form-section > h1 { /* titre des sections du formulaire de saisie */
+    padding: .3ex .7ex;
+    background: black;
+    color: white;
+    font-size: 100%;
+    font-weight: bold;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+#full-screen-message {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1ex 2ex;
+    font-weight: bold;
+    animation: vanish 8s linear forwards;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+#line-entry { /* zone de saisie des lignes */
+    flex:1;
+}
+
+.font-size-button {
+    color: white;
+    font-weight: bold;
+    padding: 1ex;
+    border-radius: 1ex;
+    cursor: pointer;
+}
+
+.font-size-button:hover {
+    background: darkorange;
+}
+
+#increase-size {
+    font-size: 125%;
+}
+
+#decrease-button {
+    font-size: 75%;
+}
+
+table#resolution-steps {
+    border-collapse:separate;
+    border-spacing:0 0;
+    background: white;
+}
+
+td.step-id {
+    text-align: right;
+    padding-left: 1ex;
+    padding-right: 1ex;
+    color: white;
+    background: darkorange;
+    cursor: s-resize;
+}
+
+td.step-sys {
+    padding: 1ex;
+}
+
+td.step-comment {
+    font-style: italic;
+    text-align: left;
+    padding-left: 1ex;
+    width: 100%;
+}
+
+tr.step-row:not(:first-of-type)>td {
+    border-top: 1px dotted darkorange;
+}
+
+tr.step-row {
+    font-size: inherit;
+    padding-right: 2ex;
+    width: 100%;
+    background: white;
+}
+
+
+#title { /* titre de l'application */
+    font-weight: bold;
+    text-align: left;
+    font-size: 200%;
+}
+
+.old-transit { /* transition pour les messages d'erreur */
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: max-height .5s ease;
+    max-height: 0px;
+    margin: 0;
+    padding: 0;
+    /*padding-top: 1ex;*/
+}
+
+#unknown-list-display { /* affichage des inconnues pour saisie des lignes */
+    text-align: center;
+    background: white;
+    padding: .2ex;
+}
+
+#unknowns-entry { /* zone de saisie des inconnues */
+    flex: 1;
+}
+
+/* ===============
+    A4. Animations
+================== */
+
+@keyframes vanish {
+    0% {opacity:1; background: red; color: white}
+    40% {opacity:1; background: red; color: white}
+    60% {opacity:1; background: black; color: white}
+    100% {opacity:0; background: black; color: white}
+}
+}
+
+@media print {
+    #manual-switch, 
+    #manual-div, 
+    .font-size-button, 
+    .mode-selector,
+    #action-box,
+    .action-settings {
+        display: none !important;
+    }
+
+    #menu-div, #form-div, #full-screen-message {
+        display: none !important; 
+    }
+}

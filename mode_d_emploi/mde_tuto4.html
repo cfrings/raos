@@ -1,0 +1,153 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8" lang="fr_FR" />
+	<meta name="viewport" content="width=device-width" />
+    <script src="../assets/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+	<title>Mode d'emploi de Raos</title>
+    <link rel="stylesheet" href="mde.css"></link>
+</head>
+<body class="sub">
+
+<div id="retour"><a href="mde_tuto.html">Retour</a></div>
+
+
+    <h2 id="tuto-combinaison">Résolution par combinaison linéaire</h2>
+
+   <p>Résolution du système <span class="input">4x+y-z=0; -2x+3y+3z=2; x-3y-2z=1</span> 
+        \[1.\quad\left\{\begin{array}{rcl|l}
+        4x+y-z & = & 0 & \ell_{1}\\
+        -2x+3y+3z & = & 2 & \ell_{2}\\
+        x-3y-2z & = & 1 & \ell_{3}\\
+        \end{array}\right.\]</p>
+
+    <ol class="l1">
+        <li> Choisissons l'inconnue \(z\) de la ligne \(\ell_1\) pour éliminer \(z\) dans les autres lignes par combinaison linéaire&nbsp;:<br> 
+            <ul>
+                <li> <button>Combinaison</button> </li>
+                <li> Ligne à utiliser pour la combinaison : \(\ell_1\) </li>
+                <li> Coefficients : <br>
+                \(\ell_2\leftarrow\ell_2+\)<span class="input">3</span>\(\times\ell_1\)<br>
+                \(\ell_3\leftarrow\ell_3+\)<span class="input">-2</span>\(\times\ell_1\)<br>
+                <li> <button>Effectuer</button>
+            </ul>
+            \[2.\quad\left\{\begin{array}{rcl|l}
+            4x+y-z & = & 0 & \ell_{1}\leftarrow\ell_{1}\\
+            10x+6y & = & 2 & \ell_{2}\leftarrow\ell_{2}+3\ell_{1}\\
+            -7x-5y & = & 1 & \ell_{3}\leftarrow\ell_{3}-2\ell_{1}\\
+            \end{array}\right.\]
+        </li>
+        <li>Les lignes \(\ell_2\) et \(\ell_3\) ne contiennent plus que les inconnues \(x\) et \(y\). Pour pouvoir éliminer \(x\) par combinaison linéaire, commençons par diviser la ligne \(\ell_2\) par <span class="input">10</span>&nbsp;:
+            <ul>
+                    <li><button>Opération</button></li>
+                    <li>Ligne à modifier : \(\ell_2\)</li>
+                    <li>Opération à effectuer : <span class="op">&divide;</span></li>
+                    <li>Quantité à utiliser : <span class="input">10</span></li>
+                    <li><button>Effectuer</button></li>
+            </ul>  
+            \[3.\quad \left\{\begin{array}{rcl|l}
+            4x+y-z & = & 0 & \ell_{1}\\
+            x+\frac{3}{5}y & = & \frac{1}{5} & \ell_{2}\\
+            -7x-5y & = & 1 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+        <li>Combinons maintenant la ligne \(\ell_2\) à la ligne \(\ell_3\)&nbsp;:
+        <ul>
+                <li> <button>Combinaison</button> </li>
+                <li> Ligne à utiliser pour la combinaison : \(\ell_2\) </li>
+                <li> Coefficients : <br>
+                \(\ell_1\leftarrow\ell_1+\)<span class="input">0</span>\(\times\ell_2\)<br>
+                \(\ell_2\leftarrow\ell_2\)<br>
+                \(\ell_3\leftarrow\ell_3+\)<span class="input">7</span>\(\times\ell_1\)</li>
+                <li> <button>Effectuer</button></li>
+            </ul>
+            \[4.\quad\left\{\begin{array}{rcl|l}
+            4x+y-z & = & 0 & \ell_{1}\leftarrow\ell_{1}\\
+            x+\frac{3}{5}y & = & \frac{1}{5} & \ell_{2}\leftarrow\ell_{2}\\
+            -\frac{4}{5}y & = & \frac{12}{5} & \ell_{3}\leftarrow\ell_{3}+7\ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>La ligne \(\ell_3\) donne maintenant la valeur de \(y\)&nbsp;:
+            <ul>
+                    <li><button>Opération</button></li>
+                    <li>Ligne à modifier : \(\ell_3\)</li>
+                    <li>Opération à effectuer : <span class="op">&divide;</span></li>
+                    <li>Quantité à utiliser : <span class="input">-4/5</span></li>
+                    <li><button>Effectuer</button></li>
+            </ul>
+            \[5.\quad\left\{\begin{array}{rcl|l}
+            4x+y-z & = & 0 & \ell_{1}\\
+            x+\frac{3}{5}y & = & \frac{1}{5} & \ell_{2}\\
+            y & = & -3 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+        <li>On substitue cette valeur à \(y\) dans les autres lignes&nbsp;:
+
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_3\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[6.\quad\left\{\begin{array}{rcl|l}
+            4x-z-3 & = & 0 & \ell_{1}\\
+            x-\frac{9}{5} & = & \frac{1}{5} & \ell_{2}\\
+            y & = & -3 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+        <li>Finalement, par quelques opérations et substitutions, on détermine les valeurs de \(x\) et \(z\)&nbsp;:
+            <ul>
+                    <li><button>Opération</button></li>
+                    <li>Ligne à modifier : \(\ell_2\)</li>
+                    <li>Opération à effectuer : <span class="op">&plus;</span></li>
+                    <li>Quantité à utiliser : <span class="input">9/5</span></li>
+                    <li><button>Effectuer</button></li>
+            </ul>
+            \[7.\quad \left\{\begin{array}{rcl|l}
+            4x-z-3 & = & 0 & \ell_{1}\\
+            x & = & 2 & \ell_{2}\\
+            y & = & -3 & \ell_{3}\\
+            \end{array}\right.\]
+            suivi de
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_2\)</li>
+                <li><button>Effectuer</button></li>
+            </ul> 
+            \[8.\quad \left\{\begin{array}{rcl|l}
+            -z+5 & = & 0 & \ell_{1}\\
+            x & = & 2 & \ell_{2}\\
+            y & = & -3 & \ell_{3}\\
+            \end{array}\right.\]
+            puis de
+            <ul>
+                    <li><button>Opération</button></li>
+                    <li>Ligne à modifier : \(\ell_2\)</li>
+                    <li>Opération à effectuer : <span class="op">&minus;</span></li>
+                    <li>Quantité à utiliser : <span class="input">5</span></li>
+                    <li><button>Effectuer</button></li>
+            </ul>
+            et finalement
+            \[9.\quad \left\{\begin{array}{rcl|l}
+            -z & = & -5 & \ell_{1}\\
+            x & = & 2 & \ell_{2}\\
+            y & = & -3 & \ell_{3}\\
+            \end{array}\right.\]
+            <ul>
+                    <li><button>Opération</button></li>
+                    <li>Ligne à modifier : \(\ell_2\)</li>
+                    <li>Opération à effectuer : <span class="op">&times;</span></li>
+                    <li>Quantité à utiliser : <span class="input">-1</span></li>
+                    <li><button>Effectuer</button></li>
+            </ul> 
+            \[10.\quad \left\{\begin{array}{rcl|l}
+            z & = & 5 & \ell_{1}\\
+            x & = & 2 & \ell_{2}\\
+            y & = & -3 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+    </ol>
+
+    Le système possède donc une unique solution&nbsp;: \(\mathscr S=\{(2; -3; 5)\}\).
+
+</body>
+<script src="mde.js"></script>
+</html>

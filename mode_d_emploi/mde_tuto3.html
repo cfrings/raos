@@ -1,0 +1,128 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8" lang="fr_FR" />
+	<meta name="viewport" content="width=device-width" />
+    <script src="../assets/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+	<title>Mode d'emploi de Raos</title>
+    <link rel="stylesheet" href="mde.css"></link>
+</head>
+<body class="sub">
+
+<div id="retour"><a href="mde_tuto.html">Retour</a></div>
+
+
+    <h2 id="tuto-combinaison">Résolution par substitution</h2>
+
+   <p>Résolution du système <span class="input">4x+y-z=0; -2x+3y+3z=2; x-3y-2z=1</span> 
+        \[1.\quad\left\{\begin{array}{rcl|l}
+        4x+y-z & = & 0 & \ell_{1}\\
+        -2x+3y+3z & = & 2 & \ell_{2}\\
+        x-3y-2z & = & 1 & \ell_{3}\\
+        \end{array}\right.\]</p>
+
+    <ol class="l1">
+        <li> Du fait de son coefficient simple, \(x\) se prête à être isolé dans la ligne \(\ell_3\).<br>
+            Additionner \(3y+2z\) à la ligne \(\ell_3\)&nbsp;: 
+            <ul>
+                <li> <button>Opération</button> </li>
+                <li> Ligne à modifier : \(\ell_3\) </li>
+                <li> Opération à effectuer : <span class="op">&plus;</span></li>
+                <li> Quantité à utiliser : <span class="input">3y+2z</span></li>
+                <li> <button>Effectuer</button>
+            </ul>
+            \[2.\quad \left\{\begin{array}{rcl|l}
+            4x+y-z & = & 0 & \ell_{1}\\
+            -2x+3y+3z & = & 2 & \ell_{2}\\
+            x & = & 3y+2z+1 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+        <li>Nous pouvons maintenant remplacer \(x\) par l'expression obtenue&nbsp;:
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_3\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[3.\quad\left\{\begin{array}{rcl|l}
+            13y+7z+4 & = & 0 & \ell_{1}\\
+            -3y-z-2 & = & 2 & \ell_{2}\\
+            x & = & 3y+2z+1 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+
+        <li>Dans la ligne \(\ell_2\), l'inconnue \(z\) possède un coefficient simple (\(-1\)). Nous allons l'isoler à son tour en deux étapes.<br>
+            Ajouter <span class="input">3y+2</span>&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_2\)</li>
+                <li>Opération à effectuer : <span class="op">&plus;</span></li>
+                <li>Quantité à utiliser : <span class="input">3y+2</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            Puis multiplier par \(-1\)&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_2\)</li>
+                <li>Opération à effectuer : <span class="op">&times;</span></li>
+                <li>Quantité à utiliser : <span class="input">-1</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[5.\quad \left\{\begin{array}{rcl|l}
+            13y+7z+4 & = & 0 & \ell_{1}\\
+            z & = & -3y-4 & \ell_{2}\\
+            x & = & 3y+2z+1 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+
+        <li>Substituons maintenant à \(z\) l'expression obtenue dans cette ligne \(\ell_2\)&nbsp;:
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_2\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[6.\quad\left\{\begin{array}{rcl|l}
+            -8y-24 & = & 0 & \ell_{1}\\
+            z & = & -3y-4 & \ell_{2}\\
+            x & = & -3y-7 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+        <li>La ligne \(\ell_1\) permet de déterminer la valeur de l'inconnue \(y\) en deux étapes. Commançons par additionner \(24\)&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_1\)</li>
+                <li>Opération à effectuer : <span class="op">&plus;</span></li>
+                <li>Quantité à utiliser : <span class="input">24</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+        Puis divisons par \(-8\)&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_1\)</li>
+                <li>Opération à effectuer : <span class="op">&divide;</span></li>
+                <li>Quantité à utiliser : <span class="input">-8</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[8.\quad \left\{\begin{array}{rcl|l}
+            y & = & -3 & \ell_{1}\\
+            z & = & -3y-4 & \ell_{2}\\
+            x & = & -3y-7 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+        <li>Finalement, substituons à \(y\) la valeur \(-3\) obtenue dans la ligne \(\ell_1\)&nbsp;:
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_1\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[9.\quad\left\{\begin{array}{rcl|l}
+            y & = & -3 & \ell_{1}\\
+            z & = & 5 & \ell_{2}\\
+            x & = & 2 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+    </ol>
+
+    Le système possède donc une unique solution&nbsp;: \(\mathscr S=\{(2; -3; 5)\}\).
+
+</body>
+<script src="mde.js"></script>
+</html>

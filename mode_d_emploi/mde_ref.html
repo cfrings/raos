@@ -1,0 +1,117 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8" lang="fr_FR" />
+	<meta name="viewport" content="width=device-width" />
+    <script src="../assets/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+	<title>Mode d'emploi de Raos</title>
+    <link rel="stylesheet" href="mde.css"></link>
+</head>
+<body class="sub">
+
+<div id="retour"><a href="mode_d_emploi.html">Retour</a></div>
+
+    <h1 id="reference">Référence</h1>
+
+<ol>
+    <li><a href="#creer">Créer un système</a></li>
+    <li><a href="#actions">Actions sur les systèmes</a>
+        <ul>
+            <li><a href="#operations">Opérations</a></li>
+            <li><a href="#substitution">Substitution</a></li>
+            <li><a href="#combinaison">Combinaison linéaire</a></li>
+            <li><a href="#echange">Échange des membres</a></li>
+        </ul>
+    </li>
+    <li><a href="#suppression">Suppression d'étapes</a></li>
+</ol>
+
+    <h2 id="creer">Créer un système</h2>
+
+    <dl class="commands">
+        <dt><button>Nouveau système</button></dt>
+        <dd><p>Ouvre une fenêtre de saisie surgissante.</p>
+        <p>Dans le champ de saisie de cette fenêtre, inscrire les lignes du système, <b>séparées par des points-virgules.</b></p>
+
+        <p><b>Exemple.</b> Saisir <span class="input">3x+y=1; 2x-3y=7</span> crée le système initial \[\left\lbrace\begin{array}{rcl}3x+y&=&1 \\ 2x-3y&=&7\end{array}\right.\]</p>
+        </dd>
+    </dl>
+
+    <h2 id="actions">Actions sur les sytèmes</h2>
+    <dl class="commands">
+        <dt id="operations"><button>Opération</button></dt>
+        <dd><p>Effectuer, sur une seule ligne, l'opération spécifiée.</p>
+            <p>Les quatre opérations arithmétiques classiques sont disponibles : addition, soustraction, multiplication, division.</p>
+            <p><b>Paramètres</b>:
+                <dl class="parameters">
+                    <dt>Ligne à utiliser : </dt>
+                    <dd>la ligne à laquelle l'opération sera appliquée.</dd>
+                    <dt>Opération à effectuer</dt><dd>sélectionner l'un des boutons <span class="op">&plus;</span>, <span class="op">&minus;</span>, <span class="op">&times;</span> ou <span class="op">&divide;</span>.</dd>
+                    <dt>Quantité à utiliser</dt><dd>
+                        <ul>
+                            <li>pour multiplication et division : expression numérique uniquement ;</li>
+                            <li>pour addition et soustraction : expression algébrique utilisant uniquement les inconnues du système.</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </p>
+        </dd>
+        <dt id="substitution"><button>Substitution</button></dt>
+        <dd>
+            <p>Utiliser une ligne pour substituer une expression à une inconnue dans toutes les autres lignes. <b>Note :</b> <i>la substitution est effectuée complètement, les étapes intermédiaires (développement, simplification) ne sont pas montrées.</i></p>
+            
+            <p><b>Paramètres</b>
+                <dl class="parameters">
+                    <dt>Ligne à utiliser pour la substitution</dt>
+                    <dd>Choisir une ligne de la forme <i>inconnue = expression</i>. L'action est impossible si le membre de gauche de la ligne choisie n'est pas une inconnue.
+                    </dd>
+                </dl>
+            </p>
+
+            <p>
+                <b>Exemples.</b>
+                <ul>
+                    <li>
+                        <span class="data">a=3b-c+2</span> permet la substitution de <span class="data">3b-c+2</span> à <span class="data">a</span>,
+                    </li>
+                    <li>
+                        <span class="data">-4a=3b-c+2</span> <b>ne permet pas</b> de substitution et provoque une erreur.
+                    </li>
+                </ul>
+            </p>
+        </dd>
+
+        <dt id="combinaison"><button>Combinaison</button></dt>
+        <dd>
+            <p>
+                Combine une ligne du système à toutes les autres lignes du système. <b>Note :</b> <i>la combinaison linéaire est effectuée immédiatement, les étapes intermédiaires ne sont pas montrées.</i>
+            </p> 
+            <p>
+                <dl class="parameters">
+                    <dt>Ligne à utiliser pour la combinaison :</dt>
+                    <dd>La ligne choisie sera combinée à toute autre ligne du système.
+                    </dd>
+                    <dt>Coefficients pour la combinaison linéaire</dt>
+                    <dd>
+                        Pour chaque ligne autre que celle sélectionnée, spécifier le coefficent à utiliser pour la combinaison linéaire. La combinaison linéaire n'est pas effectuée lorsque le coefficient n'est pas précisé ou est nul.
+                    </dd>
+                </dl>
+            </p>
+        </dd>
+
+        <dt id="echange"><button>Échange de membres</button></dt>
+        <dd><p>Échange les deux membres de la ligne sélectionnée.</p>
+            <dl class="parameters">
+                <dt>Ligne à modifier</dt>
+                <dd>La ligne dont on veut échanger les membres.</dd>
+            </dl>
+            <p><b>Exemple.</b> Pour le système \[\left\lbrace\begin{array}{rcl|l}2x&=&3y-1&\ell_1\\x&=&2y+4&\ell_1\end{array}\right.\]
+            échanger les membres de la ligne \(\ell_1\) le transforme en le système \[\left\lbrace\begin{array}{rcl|l}3y-1&=&2x&\ell_1\\x&=&2y+4&\ell_1\end{array}\right.\]</p>
+        </dd>
+    </dl>
+
+    <h2 id="suppression">Suppression d'étapes de la résolution</h2>
+    <p>En cliquant <b>sur le numéro</b> d'une étape, toutes les étapes <b>après</b> celle cliquée sont supprimées (après validation).</p>
+
+</body>
+<script src="mde.js"></script>
+</html>
