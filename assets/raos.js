@@ -3,7 +3,7 @@
 // Raos v.0.1 deuxième jet
 // Code javascript du logiciel raos
 
-const version = "0.1 α";
+const version = "0.2.241120.001 α";
 
 // Annonce
 console.log("Démarrage de Raos v." + version);
