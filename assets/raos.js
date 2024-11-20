@@ -9,6 +9,62 @@ document.title = 'Raos ' + version;
 // Annonce
 console.log("Démarrage de Raos v." + version);
 
+
+//
+// Add a replacement for MathJax.Callback command
+//
+MathJax.Callback = function (args) {
+  if (Array.isArray(args)) {
+    if (args.length === 1 && typeof(args[0]) === 'function') {
+      return args[0];
+    } else if (typeof(args[0]) === 'string' && args[1] instanceof Object &&
+              typeof(args[1][args[0]]) === 'function') {
+      return Function.bind.apply(args[1][args[0]], args.slice(1));
+    } else if (typeof(args[0]) === 'function') {
+      return Function.bind.apply(args[0], [window].concat(args.slice(1)));
+    } else if (typeof(args[1]) === 'function') {
+      return Function.bind.apply(args[1], [args[0]].concat(args.slice(2)));
+    }
+  } else if (typeof(args) === 'function') {
+    return args;
+  }
+  throw Error("Can't make callback from given data");
+};
+//
+// Add a replacement for MathJax.Hub commands
+//
+MathJax.Hub = {
+  Queue: function () {
+    for (var i = 0, m = arguments.length; i < m; i++) {
+       var fn = MathJax.Callback(arguments[i]);
+       MathJax.startup.promise = MathJax.startup.promise.then(fn);
+    }
+    return MathJax.startup.promise;
+  },
+  Typeset: function (elements, callback) {
+     var promise = MathJax.typesetPromise(elements);
+     if (callback) {
+       promise = promise.then(callback);
+     }
+     return promise;
+  },
+  Register: {
+     MessageHook: function () {console.log('MessageHooks are not supported in version 3')},
+     StartupHook: function () {console.log('StartupHooks are not supported in version 3')},
+     LoadHook: function () {console.log('LoadHooks are not supported in version 3')}
+  },
+  Config: function () {console.log('MathJax configurations should be converted for version 3')}
+};
+//
+//  Warn about x-mathjax-config scripts
+//
+if (document.querySelector('script[type="text/x-mathjax-config"]')) {
+  throw Error('x-mathjax-config scripts should be converted to MathJax global variable');
+}
+
+
+
+
 // Utilitaires (helper functions)
 
 
