@@ -4,6 +4,7 @@
 // Code javascript du logiciel raos
 
 const version = "0.2.241120.001 α";
+document.title = 'Raos ' + version;
 
 // Annonce
 console.log("Démarrage de Raos v." + version);
