@@ -15,7 +15,19 @@
           </script>
           <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
           <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/MathJax.js?config=TeX-AMS-MML_SVG"></script>
-        
+        <script>
+  MathJax = {
+    tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]},
+    svg: {fontCache: 'global'},
+    startup: {
+      ready: function () {
+        MathJax.startup.defaultReady();
+        document.getElementById('render').disabled = false;
+      }
+    }
+  }
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
 
 
         
