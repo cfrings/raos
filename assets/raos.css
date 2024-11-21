@@ -107,7 +107,7 @@ button:disabled {
 
 #manual-div {
     box-sizing: border-box;
-    flex: 1 0 minmax(30em, 35%) ;
+    flex: 1 0 minmax(40vw, 35%) ;
     border: 1pt solid black;
 /*    height: 100%;
     display:none; */
