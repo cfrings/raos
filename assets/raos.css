@@ -70,7 +70,7 @@ button:disabled {
 
 #menu-div { /* menu principal */
     /* flex-wrap: nowrap; */
-    flex: 0 0 20ex;
+    flex: 0 0 10ex;
     /* min-height:0; */
     /* align-items: stretch; */ 
     /*overflow:auto;*/
