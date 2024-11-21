@@ -61,6 +61,7 @@ button:disabled {
     align-items: stretch;
     height:100%;
     padding: .5ex;
+    flex-wrap: wrap;
 }
 
 #main-div > * {
@@ -83,7 +84,7 @@ button:disabled {
     padding: 1ex;
     display: flex;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 #title-div > div + div {
