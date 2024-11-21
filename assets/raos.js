@@ -170,7 +170,8 @@ const unknownListDisplay = document.getElementById("unknown-list-display");
 // Initialisation des éléments de la page
 
 //  - affichage du numéro de version dans le titre
-title.innerHTML += " v." + version
+// MAUVAISE IDEE
+// title.innerHTML += " v." + version
 
 //  - au démarrage, cacher charger le mode d'emploi et le cacher
 manualDiv.innerHTML = '<iframe id="manual-iframe" src="mode_d_emploi/mode_d_emploi.html" width="100%" height="100%" />'
