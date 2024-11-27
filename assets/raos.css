@@ -56,7 +56,7 @@ button:disabled {
 
 #main-div { /* Réglages du cadre principal */
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
     min-height: 1%; /* semble nécessaire pour obtenir des ascenseurs propres à l'intérieur */
     align-items: stretch;
     height:100%;
@@ -270,6 +270,8 @@ button:disabled {
 }
 
 
+    
+
 
 /* ==============================
     A4. Éléments de l'application
@@ -434,4 +436,24 @@ tr.step-row {
     #menu-div, #form-div, #full-screen-message {
         display: none !important; 
     }
+}
+
+
+@media (max-aspect-ratio: 3/4) {
+
+    #menu-div {
+        flex-flow: column nowrap;
+    }
+    
+    #main-div {
+        flex-flow: column nowrap;
+    }
+    
+    #solve-div {
+        width: 100%;
+    }
+    
+    #manual-div {
+        width: 100%;
+    }	
 }
