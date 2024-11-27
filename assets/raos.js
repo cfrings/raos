@@ -282,7 +282,9 @@ function setActionButtonDisabled(value) {
 /* fonction(callback): switchManual(evenement)
 Bascule l'affichage du mode d'emploi */
 function switchManual(e) {
-    manualShow = true ^ manualShow;
+	window.open(/mode_d_emploi/index.html, '_blank').focus();
+    /*
+	manualShow = true ^ manualShow;
     if (manualShow) {
         manualSwitch.innerHTML = "Cacher le mode d'emploi";
         manualDiv.style.display = "flex"; // pourquoi 'block' ne marche-t-il pas ?
@@ -290,6 +292,7 @@ function switchManual(e) {
         manualSwitch.innerHTML = "Montrer le mode d'emploi";
         manualDiv.style.display = "none";
     }
+    */
 }
 
 /* fonction(callback): validateKeyUnknownsEntry(evenement)
