@@ -442,7 +442,7 @@ tr.step-row {
 @media (max-aspect-ratio: 3/4) {
 
     #menu-div {
-        flex-flow: row nowrap;
+        flex-flow: row wrap;
     }
     
     #main-div {
