@@ -27,10 +27,9 @@ select {
 }
 
 button {
-    font-size: 100%;
+    font-size: 200%;
     font-family: Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     /*height: auto;*/
-    background: yellow;
 }
 
 button:disabled {
