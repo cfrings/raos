@@ -456,4 +456,8 @@ tr.step-row {
     #manual-div {
         width: 100%;
     }	
+    
+    #title-div { /* Barre titre (reçoit aussi lien vers manuel et un sélecteur) */
+        background: magenta;
+    }
 }
