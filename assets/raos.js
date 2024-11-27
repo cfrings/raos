@@ -178,7 +178,7 @@ manualDiv.innerHTML = '<iframe id="manual-iframe" src="mode_d_emploi/mode_d_empl
 manualDiv.style.display = "none";
 
 //  - initialisation de la bascule du mode d'emploi
-manualSwitch.innerHTML = "Montrer le mode d'emploi";
+manualSwitch.innerHTML = "Mode d'emploi";
 let manualShow = false;
 
 
