@@ -70,6 +70,8 @@ button:disabled {
 }
 
 #menu-div { /* menu principal */
+    display: flex;
+    flex-flow: column nowrap;
     /* flex-wrap: nowrap; */
     flex: 0 0 10ex;
     /* min-height:0; */
