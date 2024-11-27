@@ -282,7 +282,7 @@ function setActionButtonDisabled(value) {
 /* fonction(callback): switchManual(evenement)
 Bascule l'affichage du mode d'emploi */
 function switchManual(e) {
-	window.open("mode_d_emploi/index.html", '_blank').focus();
+	window.open("./mode_d_emploi/index.html", '_blank').focus();
     /*
 	manualShow = true ^ manualShow;
     if (manualShow) {
