@@ -30,7 +30,7 @@ button {
     font-size: 100%;
     font-family: Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     /*height: auto;*/
-    background-color: yellow;
+    background: yellow;
 }
 
 button:disabled {
