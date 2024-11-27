@@ -137,6 +137,7 @@ button:disabled {
 
 .action-button {
     margin-top: 1ex;
+    text-overflow: ellipsis;
 }
 
 /* ACTIONS DE RÉSOLUTION */
