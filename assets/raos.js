@@ -1169,11 +1169,11 @@ function fastInput(e) {
 
 	let opKbdRows = [];
 	
-	for (j=0; j<4; j++) {
+	for (let j=0; j<4; j++) {
 		opKbdRows.push(document.getElementById("op-kbd-row-" + j));
 	}
 	
-	for (j=0; j<_unknowns.length; j++) {
+	for (let j=0; j<_unknowns.length; j++) {
 		let name = _unknows[j];
 		let button = document.createElement("button");
 		button.innerHTML = name;
