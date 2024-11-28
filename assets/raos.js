@@ -640,7 +640,7 @@ function switchOpButton(op) {
     opButtons.active = op;
 }
 
-const opKbdButtonLabels = "0123456789+-*/"
+const opKbdButtonLabels = "0123456789+-*/";
 
 const opKbdButtons = {
 	for (let i=0; i<14; i++) {
