@@ -127,7 +127,8 @@ const manualSwitch = document.getElementById("manual-switch");
 const modeTouch = document.getElementById("mode-touch");
 
 const decreaseSize = document.getElementById("decrease-size");
-const increaseSize= document.getElementById("increase-size");
+const increaseSize = document.getElementById("increase-size");
+const swapFullscreen = document.getElementById("fullscreen");
 
 const fastInputButton = document.getElementById("fast-input");
 
@@ -189,6 +190,7 @@ modeTouch.addEventListener("click", setEntryMode);
 
 decreaseSize.addEventListener("click", decreaseFontSize);
 increaseSize.addEventListener("click", increaseFontSize);
+swapFullscreen.addEventListener("click", swapFullscreenMode);
 
 fastInputButton.addEventListener("click", fastInput);
 
@@ -242,6 +244,21 @@ function increaseFontSize(e) {
     _fontScale *= 1.25;
     document.body.style["font-size"] = (_fontScale | 0) + "%";
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, solveDiv]);
+}
+
+function swapFullscreenMode(e) {
+	
+  let elem = document.querySelector("video");
+
+  if (!document.fullscreenElement) {
+    elem.requestFullscreen().catch((err) => {
+      alert(
+        `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`,
+      );
+    });
+  } else {
+    document.exitFullscreen();
+  }
 }
 
 /* fonction: newSystem(e)
