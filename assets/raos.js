@@ -1172,9 +1172,12 @@ function fastInput(e) {
 	for (let j=0; j<4; j++) {
 		opKbdRows.push(document.getElementById("op-kbd-row-" + j));
 	}
+
+	console.log(_unknowns);
 	
 	for (let j=0; j<_unknowns.length; j++) {
 		let name = _unknowns[j];
+		console.log("creating key for unknown '" + name + "'.");
 		let button = document.createElement("button");
 		button.id = "unknown-" + name;
 		button.innerHTML = name;
