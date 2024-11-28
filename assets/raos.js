@@ -1174,7 +1174,7 @@ function fastInput(e) {
 	}
 	
 	for (let j=0; j<_unknowns.length; j++) {
-		let name = _unknows[j];
+		let name = _unknowns[j];
 		let button = document.createElement("button");
 		button.innerHTML = name;
 		let item = document.createElement("td");
