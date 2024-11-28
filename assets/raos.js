@@ -3,21 +3,21 @@
 // Raos v.0.1 deuxième jet
 // Code javascript du logiciel raos
 
-const version = "0.2.241121.002";
+const version = "0.2.241128.001";
 document.title = 'Raos ' + version;
 
 // Annonce
 console.log("Démarrage de Raos v." + version);
 
 
-
-
-
 // Utilitaires (helper functions)
 
+/*  fonction: 	clear(node)
+    Détruit le nœud et tous ses enfants. 
 
-/*  fonction: clear(node)
-    Détruit le nœud et tous ses enfants. */
+ 	Utilisé pour effacer des étapes de résolution, et
+  	pour tout réinitialiser pour un nouveau système.
+ */
 function clear(node) {
     while (node.hasChildNodes()) {
         clear(node.firstChild);
@@ -25,7 +25,7 @@ function clear(node) {
     node.parentNode.removeChild(node);
 }
 
-/*  fonction: clearChildren(node)
+/*  fonction: 	clearChildren(node)
     Détruit tous les enfants du nœud. */
 function clearChildren(node) {
     while (node.hasChildNodes()) {
@@ -33,7 +33,7 @@ function clearChildren(node) {
     }
 }
 
-/*  fonction: setAttributes(element, object)
+/*  fonction: 	setAttributes(element, object)
     Définit de multiples attributs pour l'élément, définis par les attributs de l'objet fourni. */
 function setAttributes(el, attrs) {
     for(let key in attrs) el.setAttribute(key, attrs[key]);
@@ -76,6 +76,7 @@ function TeXify(variable) {
     S'assure que le nom d'inconnue saisi est valide
         ^       marque de début
         $       marque de fin
+	TODO : rappeler les noms admissibles
 */
 
 function validateUnknown(text) {
@@ -171,10 +172,11 @@ const unknownListDisplay = document.getElementById("unknown-list-display");
 // Initialisation des éléments de la page
 
 //  - affichage du numéro de version dans le titre
-// MAUVAISE IDEE
 // title.innerHTML += " v." + version
 
-//  - au démarrage, cacher charger le mode d'emploi et le cacher
+//  - au démarrage, charger le mode d'emploi et le cacher
+// TODO : supprimer ? ouvrir dans unnouvel onglet ? le fait de l'avoir
+// dans la même fenêtre permet de suivre le tuto.
 manualDiv.innerHTML = '<iframe id="manual-iframe" src="mode_d_emploi/mode_d_emploi.html" width="100%" height="100%" />'
 manualDiv.style.display = "none";
 
@@ -219,7 +221,9 @@ opEntryButton.addEventListener("click", getOpEntryValue);
 combLine.addEventListener("change", updateCombLabels);
 
 /*
+TODO : s'en débarrasser
 window.addEventListener("resize", function(e) {
+		
         alert(window.getComputedStyle(document.getElementById("main-div")).height); 
         document.body.style["height"]="101%"; 
         console.log(window.getComputedStyle(document.getElementById("main-div")))})
@@ -273,6 +277,7 @@ function newSystem(e) {
 }
 
 function executeNewSystem() {
+	/* On efface tout. */
     _unknowns = [];
     _problem = null;
     _lineId = 0;
@@ -1160,6 +1165,21 @@ function fastInput(e) {
 
 	_problem = new Problem(system);
 
+	let opKbdRows = [];
+	
+	for (j=0; j<4; j++) {
+		opKbdRows.push(document.getElementById("op-kbd-row-" + j));
+	}
+	
+	for (j=0; j<_unknowns.length; j++) {
+		let name = _unknows[j];
+		let button = document.createElement("button");
+		button.innerHTML = name;
+		let item = document.createElement("td");
+		item.appendChild(button);
+		opKbdRows[j%4].appendChild(item);
+	}
+	
 	setupResolutionEnvironment();
     setEntryModeRoutine(_entryMode);
 	_problem.showLastStep();
