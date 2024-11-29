@@ -1188,7 +1188,7 @@ function fastInput(e) {
 			let item = document.createElement("td");
 			item.appendChild(button);
 			opKbdRows[i%4].appendChild(item);
-			MathJax.Hub.Queue(["Typeset", MathJax.Hub, ""unknown-" + name"]);
+			MathJax.Hub.Queue(["Typeset", MathJax.Hub, "unknown-" + name]);
 			i++;
 		}
 	}
