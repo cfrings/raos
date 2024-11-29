@@ -203,6 +203,26 @@ button:disabled {
     border-color: lavender;
 }
 
+.op-kbd {
+    width: 3em;
+    border-radius: 1em;
+    background-color: white;
+}
+    
+.op-kbd-num {
+    background-color: black;
+    color: white;
+}
+    
+.op-kbd-special {
+    background-color: gray;
+}
+    
+.op-kbd-var {
+    background-color: red;
+    color: white;
+}
+    
 .comb-entry-line[data-target="true"] {
     color:gray;
 }
