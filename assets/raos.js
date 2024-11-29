@@ -1174,16 +1174,22 @@ function fastInput(e) {
 	}
 
 	console.log(_unknowns);
-	
+
+	let i=0;
 	for (let j=0; j<_unknowns.length; j++) {
 		let name = _unknowns[j];
-		console.log("creating key for unknown '" + name + "'.");
-		let button = document.createElement("button");
-		button.id = "unknown-" + name;
-		button.innerHTML = name;
-		let item = document.createElement("td");
-		item.appendChild(button);
-		opKbdRows[j%4].appendChild(item);
+		if (name != "") {
+			console.log("creating key for unknown '" + name + "'.");
+			let button = document.createElement("button");
+			button.classList.add("op-kbd");
+			button.classList.add("op-kbd-var");
+			button.id = "unknown-" + name;
+			button.innerHTML = name;
+			let item = document.createElement("td");
+			item.appendChild(button);
+			opKbdRows[i%4].appendChild(item);
+			i++;
+		}
 	}
 	
 	setupResolutionEnvironment();
