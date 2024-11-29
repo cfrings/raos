@@ -1184,10 +1184,11 @@ function fastInput(e) {
 			button.classList.add("op-kbd");
 			button.classList.add("op-kbd-var");
 			button.id = "unknown-" + name;
-			button.innerHTML = name;
+			button.innerHTML = "\("+name+"\)";
 			let item = document.createElement("td");
 			item.appendChild(button);
 			opKbdRows[i%4].appendChild(item);
+			MathJax.Hub.Queue(["Typeset", MathJax.Hub, ""unknown-" + name"]);
 			i++;
 		}
 	}
