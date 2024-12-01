@@ -211,7 +211,8 @@ unknownsSubmit.addEventListener("click", validateUnknownsEntry);
 lineEntry.addEventListener("keyup", validateKeyLineEntry);
 lineSubmit.addEventListener("click", validateLineEntry);
 
-validateButton.addEventListener("click", validateSystem);
+validateButton.addEventListener("click", validateSystem); 
+
 */
 
 swapSubmit.addEventListener("click", executeSwap);
