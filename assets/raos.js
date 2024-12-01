@@ -162,7 +162,7 @@ const combSubmit = document.getElementById("comb-submit");
 
 const opEntry = document.getElementById("op-entry");
 const opEntryButton = document.getElementById("op-entry-button");
-const opKbdButtons = document.querySelector('.op-kbd');
+const opKbdButtons = document.querySelectorAll('.op-kbd');
 
 const combCoefTable = document.getElementById("comb-coef-table");
 
@@ -219,7 +219,7 @@ combSubmit.addEventListener("click", executeComb);
 
 opEntryButton.addEventListener("click", getOpEntryValue);
 for (let i=0; i<opKbdButtons.length; i++) {
-	opKbdButtons[i].addEventListener("click", (e) => {console.log(e);});
+	opKbdButtons[i].addEventListener("click", (e) => {console.log("Button "+e.target.id);});
 }
 
 combLine.addEventListener("change", updateCombLabels);
@@ -644,16 +644,6 @@ function switchOpButton(op) {
     opButtons.active = op;
 }
 
-const opKbdButtonLabels = "0123456789+-*/";
-
-/*
-const opKbdButtons = {
-	for (let i=0; i<14; i++) {
-		let c = opKbdButtonLabels[i];
-		
-	}
-}
-*/
 
 function opKbdPress(e) {
 }
