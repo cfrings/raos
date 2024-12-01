@@ -161,6 +161,7 @@ const substSubmit = document.getElementById("subst-submit");
 const combSubmit = document.getElementById("comb-submit");
 
 const opEntry = document.getElementById("op-entry");
+const eraseOpEntry = document.getElementById("erase-op-entry");
 const opEntryButton = document.getElementById("op-entry-button");
 const opKbdButtons = document.querySelectorAll('.op-kbd');
 
@@ -203,6 +204,7 @@ substButton.addEventListener("click", showSubstConfig);
 combButton.addEventListener("click", showCombConfig);
 
 /*
+TODO : penser à supprimer si ça ne sert pas
 unknownsEntry.addEventListener("keyup", validateKeyUnknownsEntry);
 unknownsSubmit.addEventListener("click", validateUnknownsEntry);
 
@@ -217,9 +219,19 @@ opSubmit.addEventListener("click", executeOp);
 substSubmit.addEventListener("click", executeSubst);
 combSubmit.addEventListener("click", executeComb);
 
+eraseOpEntry.addEventListener("click", (e) => {
+    opEntry.value = "";
+})
 opEntryButton.addEventListener("click", getOpEntryValue);
 for (let i=0; i<opKbdButtons.length; i++) {
-	opKbdButtons[i].addEventListener("click", (e) => {console.log("Button "+e.target.id);});
+	opKbdButtons[i].addEventListener("click", (e) => {
+        console.log("Button "+e.target.id);
+        if (e.target.dataset.value=="D") {
+            opEntry.value = opEntry.value.slice(0, -1);
+        } else {
+            opEntry.value = opEntry.value + e.target.dataset.value;
+        }
+    });
 }
 
 combLine.addEventListener("change", updateCombLabels);
@@ -330,7 +342,8 @@ function validateKeyUnknownsEntry(e) {
 }
 
 /* fonction(callback): validateUnknownsEntry(evenement)
-Bouton 'Valider' de la saisie des inconnues */
+Bouton 'Valider' de la saisie des inconnues 
+TODO voir si ça sert encore*/
 function validateUnknownsEntry(e) {
     // TODO déplacer le cadre d'erreur au bon endroit
     moveErrorDivTo(unknownsErrorContainer);
@@ -1179,6 +1192,11 @@ function fastInput(e) {
 			button.classList.add("op-kbd-var");
 			button.id = "unknown-" + name;
 			button.innerHTML = "\\("+name+"\\)";
+            button.dataset.value = name;
+            button.addEventListener("click", (e) => {
+                console.log(e);
+                opEntry.value = opEntry.value + e.currentTarget.dataset.value; 
+            })
 			let item = document.createElement("td");
 			item.appendChild(button);
 			opKbdRows[i%4].appendChild(item);

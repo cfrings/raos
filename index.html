@@ -61,7 +61,7 @@
                                     </tr>
                                     <tr>
                                         <td>Quantité à utiliser :</td>
-                                        <td><input type="text" id="op-entry" class="math-entry" size="10"/><button id="op-entry-button"></button><button>Effacer</button></td>
+                                        <td><input type="text" id="op-entry" class="math-entry" size="10"/><button id="op-entry-button"></button><button id="erase-op-entry">Effacer</button></td>
                                     </tr>
                                     
                                     <tr>
@@ -69,32 +69,32 @@
                                             <div id="op-kbd">
                                                 <table>
                                                     <tr id="op-kbd-row-0">
-                                                        <td><button id="op-key-7" class="op-kbd op-kbd-num">7</button></td>
-                                                        <td><button id="op-key-8"  class="op-kbd op-kbd-num">8</button></td>
-                                                        <td><button id="op-key-9"  class="op-kbd op-kbd-num">9</button></td>
+                                                        <td><button id="op-key-7"  class="op-kbd op-kbd-num" data-value="7">7</button></td>
+                                                        <td><button id="op-key-8"  class="op-kbd op-kbd-num" data-value="8">8</button></td>
+                                                        <td><button id="op-key-9"  class="op-kbd op-kbd-num" data-value="9">9</button></td>
                                                         
-                                                        <td><button id="op-key-a"  class="op-kbd op-kbd-op">+</button></td>
+                                                        <td><button id="op-key-a"  class="op-kbd op-kbd-op" data-value="+">+</button></td>
                                                     </tr>
                                                     <tr id="op-kbd-row-1">
-                                                        <td><button id="op-key-4"  class="op-kbd op-kbd-num">4</button></td>
-                                                        <td><button id="op-key-5"  class="op-kbd op-kbd-num">5</button></td>
-                                                        <td><button id="op-key-6"  class="op-kbd op-kbd-num">6</button></td>
+                                                        <td><button id="op-key-4"  class="op-kbd op-kbd-num" data-value="4">4</button></td>
+                                                        <td><button id="op-key-5"  class="op-kbd op-kbd-num" data-value="5">5</button></td>
+                                                        <td><button id="op-key-6"  class="op-kbd op-kbd-num" data-value="6">6</button></td>
                                                         
-                                                        <td><button id="op-key-s"  class="op-kbd op-kbd-op">−</button></td>
+                                                        <td><button id="op-key-s"  class="op-kbd op-kbd-op" data-value="-">−</button></td>
                                                     </tr>
                                                     <tr id="op-kbd-row-2">
-                                                        <td><button id="op-key-1"  class="op-kbd op-kbd-num">1</button></td>
-                                                        <td><button id="op-key-2"  class="op-kbd op-kbd-num">2</button></td>
-                                                        <td><button id="op-key-3"  class="op-kbd op-kbd-num">3</button></td>
+                                                        <td><button id="op-key-1"  class="op-kbd op-kbd-num" data-value="1">1</button></td>
+                                                        <td><button id="op-key-2"  class="op-kbd op-kbd-num" data-value="2">2</button></td>
+                                                        <td><button id="op-key-3"  class="op-kbd op-kbd-num" data-value="3">3</button></td>
                                                         
-                                                        <td><button id="op-key-m"  class="op-kbd op-kbd-op">×</button></td>
+                                                        <td><button id="op-key-m"  class="op-kbd op-kbd-op" data-value="*">×</button></td>
                                                     </tr>
                                                     <tr id="op-kbd-row-3">
-                                                        <td><button id="op-key-D"  class="op-kbd op-kbd-special">␡</button></td>
-                                                        <td><button id="op-key-0"  class="op-kbd op-kbd-num">0</button></td>
-                                                        <td><button id="op-key-c"  class="op-kbd op-kbd-special">,</button></td>
+                                                        <td><button id="op-key-D"  class="op-kbd op-kbd-special" data-value="D">␡</button></td>
+                                                        <td><button id="op-key-0"  class="op-kbd op-kbd-num" data-value="0">0</button></td>
+                                                        <td><button id="op-key-c"  class="op-kbd op-kbd-special" data-value=",">,</button></td>
                                                         
-                                                        <td><button id="op-key-d"  class="op-kbd op-kbd-op">÷</button></td>
+                                                        <td><button id="op-key-d"  class="op-kbd op-kbd-op" data-value="/">÷</button></td>
                                                     </tr>
                                                 </table>
                                             </div>
