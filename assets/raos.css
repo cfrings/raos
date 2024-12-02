@@ -475,8 +475,8 @@ tr.step-row {
 
 @media (max-aspect-ratio: 3/4) {
 
-    body {
-        font-size: 50%;
+    html {
+        font-size: 60%;
     }
     
     #tool-button-div {
