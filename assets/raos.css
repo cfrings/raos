@@ -133,11 +133,7 @@ button:disabled {
     padding: 1ex;
     border-radius: 1ex;
 }
-
-#manual-switch:hover {
-    background: darkorange;
-}
-
+    
 .main-button {
     margin-bottom: 1ex;
 }
@@ -363,9 +359,6 @@ button:disabled {
     cursor: pointer;
 }
 
-.font-size-button:hover {
-    background: darkorange;
-}
 
 #increase-size {
     font-size: 125%;
@@ -466,6 +459,18 @@ tr.step-row {
     }
 }
 
+@media (hover) {
+    
+    .font-size-button:hover {
+        background: darkorange;
+    }
+        
+    
+    #manual-switch:hover {
+        background: darkorange;
+    }
+
+}
 
 @media (max-aspect-ratio: 3/4) {
 
