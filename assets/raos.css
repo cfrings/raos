@@ -482,6 +482,10 @@ tr.step-row {
     #tool-button-div {
         flex-flow: row nowrap;
     }
+
+    #tool-button-div > * {
+        flex-grow: 1;
+    }
     
     #main-div {
         flex-flow: column nowrap;
