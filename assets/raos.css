@@ -80,6 +80,11 @@ button:disabled {
     /*height: auto;*/
 }
 
+#tool-button-div {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
 #title-div { /* Barre titre (reçoit aussi lien vers manuel et un sélecteur) */
     background: black;
     color: white;
@@ -468,8 +473,8 @@ tr.step-row {
         font-size: 50%;
     }
     
-    #menu-div {
-        flex-flow: row wrap;
+    #tool-button-div {
+        flex-flow: row nowrap;
     }
     
     #main-div {
