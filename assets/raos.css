@@ -481,12 +481,12 @@ tr.step-row {
     
     #tool-button-div {
         flex-flow: row nowrap;
-        background-color: yellow;
     }
 
     #tool-button-div > * {
         flex-grow: 1;
-        background-color: red;
+        flex-shrink: 1;
+        background-color: pink;
     }
     
     #main-div {
