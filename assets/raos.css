@@ -484,8 +484,7 @@ tr.step-row {
     }
 
     #tool-button-div > * {
-        flex-grow: 1;
-        flex-shrink: 1;
+        flex: 1;
         background-color: pink;
     }
     
