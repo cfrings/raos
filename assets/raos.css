@@ -144,6 +144,10 @@ button:disabled {
     text-overflow: ellipsis;
 }
 
+.action-logo {
+    display: hidden;
+}
+    
 /* ACTIONS DE RÉSOLUTION */
 
 
@@ -486,6 +490,10 @@ tr.step-row {
     #tool-button-div > * {
         flex: 1;
         background-color: pink;
+    }
+
+    .action-logo {
+        display: block;
     }
     
     #main-div {
