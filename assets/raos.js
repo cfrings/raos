@@ -126,6 +126,8 @@ const lineEntry = document.getElementById("line-entry");
 const manualSwitch = document.getElementById("manual-switch");
 
 const modeTouch = document.getElementById("mode-touch");
+const fullscreenOnLogo = document.getElementById("fullscreen-on");
+const fullscreenOffLogo = document.getElementById("fullscreen-off");
 
 const decreaseSize = document.getElementById("decrease-size");
 const increaseSize = document.getElementById("increase-size");
@@ -149,6 +151,7 @@ const swapContainer = document.getElementById("swap-container");
 const opContainer = document.getElementById("op-container");
 const combContainer = document.getElementById("comb-container");
 const substContainer = document.getElementById("subst-container");
+const opKeyboard = document.getElementById("op-kbd");
 
 const swapLine = document.getElementById("swap-line");
 const opLine = document.getElementById("op-line");
@@ -254,7 +257,7 @@ document.body.addEventListener("resize", function(e) {alert("resize"); document.
 
 
 function decreaseFontSize(e) {
-    _fontScale *= .8;
+    _fontScale /= 1.1;
     document.body.style["font-size"] = (_fontScale | 0) + "%";
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, solveDiv]);
     // document.querySelector(".step-sys").forEach(function(e) {MathJax.Hub.Queue(["Typeset", MathJax.Hub, e);})
@@ -262,24 +265,41 @@ function decreaseFontSize(e) {
 
 
 function increaseFontSize(e) {
-    _fontScale *= 1.25;
+    _fontScale *= 1.1;
     document.body.style["font-size"] = (_fontScale | 0) + "%";
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, solveDiv]);
 }
 
-function swapFullscreenMode(e) {
-	
-  let elem = document.querySelector("video");
+var fullscreenMode = false;
 
-  if (!document.fullscreenElement) {
-    elem.requestFullscreen().catch((err) => {
-      alert(
-        `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`,
-      );
-    });
-  } else {
-    document.exitFullscreen();
-  }
+/* D'après https://www.w3schools.com/howto/howto_js_fullscreen.asp */
+function swapFullscreenMode(e) {
+	console.log("Requesting full screen.");
+    let elem = document.documentElement;
+
+    if (!document.fullscreenElement) {
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+        }
+        console.log("Switching to fullscreen mode.");
+        fullscreenOnLogo.style.display = "none";
+        fullscreenOffLogo.style.display = "block";
+    } else {  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+        }
+        console.log("Switching out of fullscreen mode.");
+        fullscreenOnLogo.style.display = "block";
+        fullscreenOffLogo.style.display = "none";
+    }
 }
 
 /* fonction: newSystem(e)
@@ -500,10 +520,19 @@ function setCombEntry(i, target) {
     subscript.innerHTML = 1*target+1;
 }
 
+var mobileMode=false;
+
 function setEntryMode(e) {
-    console.log("before", modeTouch["data-state"], modeTouch);
-    setEntryModeRoutine(modeTouch.getAttribute("data-state") == "0");
-    console.log("after", modeTouch["data-state"], modeTouch);
+    if (mobileMode) {
+        console.log("Switching to computer mode.");
+        mobileMode = false;
+        opKeyboard.classList.remove("hide");
+    } else {
+        console.log("Switching to mobile mode.");
+        mobileMode = true;
+        opKeyboard.classList.remove("hide");
+    }
+    collapseConfigs(activeOperationMode);
 }
 
 function getCombEntryValue(e) {
@@ -850,11 +879,15 @@ function collapseOneConfig(div, show) {
 	}
 }
 
-function collapseConfigs(code) {
+var activeOperationMode = null;
+
+function collapseConfigs(code=-1) {
     collapseOneConfig(swapContainer, code==0);
     collapseOneConfig(opContainer, code==1);
+    collapseOneConfig(opKeyboard, ((code==1)||(code==3))&&mobileMode);
     collapseOneConfig(substContainer, code==2);
     collapseOneConfig(combContainer, code==3);
+    activeOperationMode = code;
 }
 
 function showSwapConfig() {
@@ -862,6 +895,8 @@ function showSwapConfig() {
 }
 
 function showOpConfig() {
+    console.log("Entering operation mode.");
+    enableKeyboardUnknowns(true);
     collapseConfigs(1);
 }
 
@@ -870,6 +905,8 @@ function showSubstConfig() {
 }
 
 function showCombConfig() {
+    console.log("Entering substitution mode.");
+    enableKeyboardUnknowns(false);
     collapseConfigs(3);
 }
 
@@ -1127,6 +1164,7 @@ function subScriptRoutine(n) {
 const newShort = "Saisissez le système ci-dessous, en séparant les lignes d'un point-virgule."
 
 function fastInput(e) {
+    collapseConfigs();
 	let input = prompt(newShort);
 	if (input===null) {
 		return;
@@ -1183,6 +1221,10 @@ function fastInput(e) {
 
 	console.log(_unknowns);
 
+    // suppression des boutons "inconnues" du clavier virtuel
+    document.querySelectorAll(".op-kbd-var").forEach( n => n.remove() );
+
+    // creation des boutons "inconnues" du clavier virtuel
 	let i=0;
 	for (let j=0; j<_unknowns.length; j++) {
 		let name = _unknowns[j];
@@ -1211,7 +1253,12 @@ function fastInput(e) {
 	_problem.showLastStep();
 }
 
-
+function enableKeyboardUnknowns(mode) {
+    console.log("Enabling unknowns buttons : ", mode);
+    let display = mode ? "block" : "none";
+    console.log(display);
+    document.querySelectorAll(".op-kbd-var").forEach( n => n.style.display=display );
+}
 
 setActionButtonDisabled(true);
 setEntryModeRoutine(false);

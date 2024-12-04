@@ -35,10 +35,13 @@ button {
 button:disabled {
     color: #DDD;
 }
+
+
 @media screen {
 /* ===========================================
     A2. Éléments structurants de l'application
 ============================================== */
+
 
 #screen-filler { /* Élémént principal assurant le plein écran */
     /* position absolue à 0 de chacun des bords */
@@ -69,9 +72,14 @@ button:disabled {
     height:100%;
 }
 
+.hide {
+    display: none;
+}
+
 #menu-div { /* menu principal */
     display: flex;
     flex-flow: column nowrap;
+    align-items: stretch;
     /* flex-wrap: nowrap; */
     flex: 0 0 10ex;
     /* min-height:0; */
@@ -80,23 +88,76 @@ button:disabled {
     /*height: auto;*/
 }
 
-#tool-button-div {
-    display: flex;
-    align-items: stretch;
-    flex-flow: column nowrap;
-}
 
 #title-div { /* Barre titre (reçoit aussi lien vers manuel et un sélecteur) */
     background: black;
     color: white;
     padding: 1ex;
     display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
 }
 
-#title-div > div + div {
-    margin-left: 2ex;
+#title-left {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#title-right {
+    flex-shrink: 1;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: stretch;
+}
+
+#title-right > div + div {
+    margin-left: 1ex;
+}
+
+#title-left > div + div {
+    margin-left: 1ex;
+}
+
+#title { /* titre de l'application */
+    font-weight: bold;
+    text-align: left;
+    font-size: 250%;
+}
+
+
+#title-logo{
+    display: inline;
+    height: .9em; 
+    vertical-align: middle;
+}
+
+#title-text{
+    display: inline;
+    height:1em; 
+    vertical-align: middle;
+}
+
+
+.title-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: auto;
+    padding: 1ex;
+    border-radius: 1ex;
+}
+
+.title-button-image {
+    height: 2em;
+}
+
+#fullscreen{
+    color: white;
 }
 
 .stretcher { /* élément extensible pour remplir les flex */
@@ -133,6 +194,7 @@ button:disabled {
     cursor: pointer;
     padding: 1ex;
     border-radius: 1ex;
+    width: 5em;
 }
     
 .main-button {
@@ -145,7 +207,9 @@ button:disabled {
 }
 
 .action-logo {
-    display: hidden;
+    display: none;
+    font-weight: bolder;
+    font-size: 5vw;
 }
     
 /* ACTIONS DE RÉSOLUTION */
@@ -209,10 +273,18 @@ button:disabled {
     border-color: lavender;
 }
 
+#op-kbd-layout {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
 .op-kbd {
-    width: 3em;
-    border-radius: 1em;
+    border-radius: 2vw;
     background-color: white;
+    width: 8vw;
+    height: 6vw;
+    font-size: 4vw;
 }
     
 .op-kbd-num {
@@ -239,6 +311,11 @@ button:disabled {
 
 .comb-entry-line[data-target="false"] {
     color:black;
+}
+
+
+#fullscreen-off  {
+    display: none;
 }
 
 .mode-selector {
@@ -410,13 +487,6 @@ tr.step-row {
     background: white;
 }
 
-
-#title { /* titre de l'application */
-    font-weight: bold;
-    text-align: left;
-    font-size: 200%;
-}
-
 .old-transit { /* transition pour les messages d'erreur */
     box-sizing: border-box;
     overflow: hidden;
@@ -470,6 +540,9 @@ tr.step-row {
         background: darkorange;
     }
         
+    .title-button:hover {
+        background: darkorange;
+    }
     
     #manual-switch:hover {
         background: darkorange;
@@ -483,13 +556,12 @@ tr.step-row {
         font-size: 60%;
     }
     
-    #tool-button-div {
+    #menu-div {
         flex-flow: row nowrap;
     }
 
-    #tool-button-div > * {
-        flex: 1;
-        background-color: pink;
+    #menu-div > * {
+        flex: 1 1 0pt;
     }
 
     .action-logo {
@@ -508,7 +580,8 @@ tr.step-row {
         width: 100%;
     }	
     
-    #title-div { /* Barre titre (reçoit aussi lien vers manuel et un sélecteur) */
-        background: magenta;
+    .main-button, .action-button {
+        margin-bottom: 0pt;
+        margin-top: 0pt;
     }
 }

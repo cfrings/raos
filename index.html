@@ -15,27 +15,26 @@
     <body>
         <div id="screen-filler"> <!-- occupation de l'écran entier-->
             <div id="title-div"> <!-- barre titre avec doc et sélecteur -->
-                <div id="title"><img src="assets/logo.png" style="height:.8em"/>&nbsp;Raos</div>
-                <div id="manual-switch"></div>
-                <div class="stretcher"></div>
-                <div id="decrease-size" class="font-size-button">&minus;A</div>
-                <div id="increase-size" class="font-size-button">A&plus;</div>
-                <div id="mode-touch" class="mode-selector" data-state="0"><img src="assets/touch2.svg" height="25px"/></div>
-                <div id="fullscreen" class="mode-selector" data-state="0"><img src="assets/full-screen-43.svg" height="25px"/></div>
-                <!--<div id="mode-keyboard" class="mode-selector" data-state="1"><img src="assets/kbd2.svg" height="20px" /></div>-->
+                <div id="title-left">
+                    <div id="title">
+                        <img id="title-logo" src="assets/logo.png"/>&nbsp;<div id="title-text">Raos</div>
+                    </div>
+                    <div id="manual-switch"></div>
+                </div>
+                <div id="title-right">
+                    <div id="decrease-size" class="font-size-button title-button">&minus;A</div>
+                    <div id="increase-size" class="font-size-button title-button">A&plus;</div>
+                    <div id="mode-touch" class="title-button" data-state="0"><img src="assets/touch2.svg" class="title-button-image"/></div>
+                    <div id="fullscreen" class="title-button" data-state="0"><img id="fullscreen-on" src="assets/fullscreenOn.svg"  class="title-button-image"/><img id="fullscreen-off" src="assets/fullscreenOff.svg"  class="title-button-image"/></div>
+                </div>
             </div> <!-- /title-div -->
             <div id="main-div" class="h-flex"> <!-- cadre principal de l'application -->
                 <div id="menu-div"> <!-- barre de boutons latérale -->
-                    <div id="new-system-div">
                         <button id="fast-input" class="main-button">Nouveau système</button>
-                    </div>
-                    <div>Outils de résolution :</div>
-                    <div id="tool-button-div">
                         <button id="op-button" class="action-button"><div class="action-logo">OPR</div>Opération</button>
                         <button id="subst-button" class="action-button"><div class="action-logo">SUB</div>Substitution</button>
                         <button id="comb-button" class="action-button"><div class="action-logo">COM</div>Combinaison</button>
                         <button id="swap-button" class="action-button"><div class="action-logo">ECH</div>Échange de membres</button>
-                    </div>
                 </div> <!-- /menu-div -->
 
                     
@@ -135,36 +134,38 @@
     		                </div> <!-- /swap-settings -->
     		            </div> <!-- /swap-container -->
                         <div id="op-kbd" class="action-container">
-                            <table>
-                                <tr id="op-kbd-row-0">
-                                    <td><button id="op-key-7"  class="op-kbd op-kbd-num" data-value="7">7</button></td>
-                                    <td><button id="op-key-8"  class="op-kbd op-kbd-num" data-value="8">8</button></td>
-                                    <td><button id="op-key-9"  class="op-kbd op-kbd-num" data-value="9">9</button></td>
-                                    
-                                    <td><button id="op-key-a"  class="op-kbd op-kbd-op" data-value="+">+</button></td>
-                                </tr>
-                                <tr id="op-kbd-row-1">
-                                    <td><button id="op-key-4"  class="op-kbd op-kbd-num" data-value="4">4</button></td>
-                                    <td><button id="op-key-5"  class="op-kbd op-kbd-num" data-value="5">5</button></td>
-                                    <td><button id="op-key-6"  class="op-kbd op-kbd-num" data-value="6">6</button></td>
-                                    
-                                    <td><button id="op-key-s"  class="op-kbd op-kbd-op" data-value="-">−</button></td>
-                                </tr>
-                                <tr id="op-kbd-row-2">
-                                    <td><button id="op-key-1"  class="op-kbd op-kbd-num" data-value="1">1</button></td>
-                                    <td><button id="op-key-2"  class="op-kbd op-kbd-num" data-value="2">2</button></td>
-                                    <td><button id="op-key-3"  class="op-kbd op-kbd-num" data-value="3">3</button></td>
-                                    
-                                    <td><button id="op-key-m"  class="op-kbd op-kbd-op" data-value="*">×</button></td>
-                                </tr>
-                                <tr id="op-kbd-row-3">
-                                    <td><button id="op-key-D"  class="op-kbd op-kbd-special" data-value="D">␡</button></td>
-                                    <td><button id="op-key-0"  class="op-kbd op-kbd-num" data-value="0">0</button></td>
-                                    <td><button id="op-key-c"  class="op-kbd op-kbd-special" data-value=",">,</button></td>
-                                    
-                                    <td><button id="op-key-d"  class="op-kbd op-kbd-op" data-value="/">÷</button></td>
-                                </tr>
-                            </table>
+                            <div  id="op-kbd-layout" class="action-settings">
+                                <table>
+                                    <tr id="op-kbd-row-0">
+                                        <td><button id="op-key-7"  class="op-kbd op-kbd-num" data-value="7">7</button></td>
+                                        <td><button id="op-key-8"  class="op-kbd op-kbd-num" data-value="8">8</button></td>
+                                        <td><button id="op-key-9"  class="op-kbd op-kbd-num" data-value="9">9</button></td>
+                                        
+                                        <td><button id="op-key-a"  class="op-kbd op-kbd-op" data-value="+">+</button></td>
+                                    </tr>
+                                    <tr id="op-kbd-row-1">
+                                        <td><button id="op-key-4"  class="op-kbd op-kbd-num" data-value="4">4</button></td>
+                                        <td><button id="op-key-5"  class="op-kbd op-kbd-num" data-value="5">5</button></td>
+                                        <td><button id="op-key-6"  class="op-kbd op-kbd-num" data-value="6">6</button></td>
+                                        
+                                        <td><button id="op-key-s"  class="op-kbd op-kbd-op" data-value="-">−</button></td>
+                                    </tr>
+                                    <tr id="op-kbd-row-2">
+                                        <td><button id="op-key-1"  class="op-kbd op-kbd-num" data-value="1">1</button></td>
+                                        <td><button id="op-key-2"  class="op-kbd op-kbd-num" data-value="2">2</button></td>
+                                        <td><button id="op-key-3"  class="op-kbd op-kbd-num" data-value="3">3</button></td>
+                                        
+                                        <td><button id="op-key-m"  class="op-kbd op-kbd-op" data-value="*">×</button></td>
+                                    </tr>
+                                    <tr id="op-kbd-row-3">
+                                        <td><button id="op-key-D"  class="op-kbd op-kbd-special" data-value="D">␡⌫</button></td>
+                                        <td><button id="op-key-0"  class="op-kbd op-kbd-num" data-value="0">0</button></td>
+                                        <td><button id="op-key-c"  class="op-kbd op-kbd-special" data-value=",">,</button></td>
+                                        
+                                        <td><button id="op-key-d"  class="op-kbd op-kbd-op" data-value="/">÷</button></td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div> <!-- /solve-div -->
 
