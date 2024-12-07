@@ -19,12 +19,12 @@
                     <div id="title">
                         <img id="title-logo" src="assets/logo.png"/>&nbsp;<div id="title-text">Raos</div>
                     </div>
-                    <div id="manual-switch"></div>
+                    <div id="manual-switch">Mode d'emploi</div>
                 </div>
                 <div id="title-right">
                     <div id="decrease-size" class="font-size-button title-button">&minus;A</div>
                     <div id="increase-size" class="font-size-button title-button">A&plus;</div>
-                    <div id="mode-touch" class="title-button" data-state="0"><img src="assets/touch2.svg" class="title-button-image"/></div>
+                    <div id="mode-switch" class="title-button" data-state="0"><img src="assets/touch2.svg" class="title-button-image"/></div>
                     <div id="fullscreen" class="title-button" data-state="0"><img id="fullscreen-on" src="assets/fullscreenOn.svg"  class="title-button-image"/><img id="fullscreen-off" src="assets/fullscreenOff.svg"  class="title-button-image"/></div>
                 </div>
             </div> <!-- /title-div -->
@@ -62,15 +62,22 @@
                                     </tr>
                                     <tr>
                                         <td>Quantité à utiliser :</td>
-                                        <td><input type="text" id="op-entry" class="math-entry" size="10"/><button id="op-entry-button"></button><button id="erase-op-entry">Effacer</button></td>
+                                        <td>
+                                            <input type="text" id="op-entry" class="math-entry" data-selected="true"/>
+                                        </td>
+                                        <td>
+                                            <button id="erase-op-entry">Effacer</button></td>
+                                        </td>
                                     </tr>
                                     <tr>
+                                        <td></td>
                                         <td colspan=2><button id="op-submit" class="action-submit">Effectuer</button></td>
                                     </tr>
                                 </table>
                                 <div id="op-error-container" class="transit error-container">
                                     <div id="error-message" class="error"></div>
                                 </div>
+                                <div id="op-kbd" class="custom-kbd"></div>
                             </div> <!-- /op-settings -->
                         </div> <!-- /op-container -->
 
@@ -133,9 +140,10 @@
     		                    </table>
     		                </div> <!-- /swap-settings -->
     		            </div> <!-- /swap-container -->
-                        <div id="op-kbd" class="action-container">
-                            <div  id="op-kbd-layout" class="action-settings">
-                                <table>
+                        <div id="virtual-kbd-container">
+                        <div id="virtual-kbd" class="hide">
+                            <div  id="op-kbd-layout">
+                                <table id="virtual-kbd-table">
                                     <tr id="op-kbd-row-0">
                                         <td><button id="op-key-7"  class="op-kbd op-kbd-num" data-value="7">7</button></td>
                                         <td><button id="op-key-8"  class="op-kbd op-kbd-num" data-value="8">8</button></td>
@@ -158,7 +166,8 @@
                                         <td><button id="op-key-m"  class="op-kbd op-kbd-op" data-value="*">×</button></td>
                                     </tr>
                                     <tr id="op-kbd-row-3">
-                                        <td><button id="op-key-D"  class="op-kbd op-kbd-special" data-value="D">␡⌫</button></td>
+                                        <td><button id="op-key-D"  class="op-kbd op-kbd-special" data-value="D">⌫</button></td>
+                                        <!-- ␡ -->
                                         <td><button id="op-key-0"  class="op-kbd op-kbd-num" data-value="0">0</button></td>
                                         <td><button id="op-key-c"  class="op-kbd op-kbd-special" data-value=",">,</button></td>
                                         
@@ -166,7 +175,7 @@
                                     </tr>
                                 </table>
                             </div>
-                        </div>
+                        </div></div>
                     </div> <!-- /solve-div -->
 
                     <!-- TODO : pas moyen de charger le script après l'iframe.
@@ -179,9 +188,6 @@
             </div> <!-- /main-div -->
 
             <!-- Message d'accueil évanescent -->
-            <div id="full-screen-message">
-                <b>Info !</b> c'est mieux en plein écran : pressez <kbd>F11</kbd>
-            </div>
         </div> <!-- /screen-filler -->
 
     </body>

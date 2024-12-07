@@ -1,0 +1,204 @@
+<html>
+    <!-- Raos v.0.2 -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="fr_FR"/>
+
+        <meta name="viewport" content="width=device-width">
+        <script src="assets/MathJax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+     
+        
+        <link rel="stylesheet" href="assets/raos2.css" />
+        <link rel="icon" type="image/png" href="assets/logo.png">
+
+        <title>Raos</title>
+    </head>
+    <body>
+        <div id="screen-filler"> <!-- occupation de l'écran entier -->
+            <div id="title-div"> <!-- barre titre avec doc et sélecteur -->
+                <div id="title-left"> <!-- partie gauche du titre, logo, nom, bouton pour le manuel -->
+                    <div id="title">
+                        <img id="title-logo" src="assets/logo.png"/>&nbsp;<div id="title-text">Raos</div>
+                    </div>
+                    <div id="manual-switch"></div>
+                </div>
+                <div id="title-right">
+                    <div id="decrease-size-button" class="title-button">&minus;A</div>
+                    <div id="increase-size-button" class="title-button">A&plus;</div>
+                    <div id="mode-switch-button" class="title-button"><img src="assets/touch2.svg" class="title-button-image"/></div>
+                    <div id="fullscreen-button" class="title-button">
+                        <img id="fullscreen-on" src="assets/fullscreenOn.svg"  class="title-button-image"/>
+                        <img id="fullscreen-off" src="assets/fullscreenOff.svg"  class="title-button-image"/>
+                    </div>
+                </div>
+            </div> <!-- /title-div -->
+            <div id="main-div" class="h-flex"> <!-- cadre principal de l'application -->
+                <div id="menu-div"> <!-- barre de boutons d'action : saisie d'un système, actions sur le système -->
+                        <button id="new-system-button" class="main-button">Nouveau système</button>
+                        <button id="op-action-button" class="action-button"><div class="action-logo">OPR</div>Opération</button>
+                        <button id="subst-action-button" class="action-button"><div class="action-logo">SUB</div>Substitution</button>
+                        <button id="comb-action-button" class="action-button"><div class="action-logo">COM</div>Combinaison</button>
+                        <button id="swap-action-button" class="action-button"><div class="action-logo">ECH</div>Échange de membres</button>
+                </div> <!-- /menu-div -->
+
+                    
+                <div id="solve-div" class="v-container"> <!-- cadre recevant la résolution du système -->
+                    <table id ="resolution-steps"> <!-- affichage des étapes de résolution -->
+                    </table> <!-- /resolution-steps -->
+
+                    <!-- Opération -->
+                    <div id="op-container" class="action-container">
+                        <div id="op-action" class="action-choice">Opération</div>
+                        <div id="op-settings" class="action-settings">
+                            <table class="action-form">
+                                <tr>
+                                    <td>Ligne à modifier :</td>
+                                    <td><select id="op-line"></select></td>
+                                </tr>
+                                <tr>
+                                    <td class="etiquette">Opération à effectuer :</td>
+                                    <td>
+                                        <span id="op-add" class="op-choice">+</span>
+                                        <span id="op-sub" class="op-choice">&minus;</span>
+                                        <span id="op-mul" class="op-choice">&times;</span>
+                                        <span id="op-div" class="op-choice">&divide;</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="etiquette">Quantité à utiliser :</td>
+                                    <td>
+                                        <input type="text" id="op-entry" class="math-entry" size="10"/>
+                                        <button id="op-entry-button" class="math-entry"></button>
+                                    </td>
+                                    <td>
+                                        <button id="erase-op-entry">Effacer</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan=2><button id="op-submit" class="action-submit">Effectuer</button></td>
+                                </tr>
+                            </table>
+                            <div id="op-error-container" class="transit error-container">
+                                <!-- TODO voir si c'est necessaire/pertinent d'avoir la définition ci-dessous ici -->
+                                <div id="error-message" class="error"></div>
+                            </div>
+                        </div> <!-- /op-settings -->
+                    </div> <!-- /op-container -->
+
+
+                    <!-- Substitution -->
+                    <div id="subst-container" class="action-container">
+                        <div id="subst-action" class="action-choice">Substitution</div>
+                        <div id="subst-settings" class="action-settings">
+                            <table class="action-form">
+                                <tr>
+                                    <td>Ligne à utiliser pour la substitution :</td>
+                                    <td id=><select id="subst-line"></select></td>
+                                </tr>
+                                <tr>
+                                    <td colspan=2><button id="subst-submit" class="action-submit">Effectuer</button></td>
+                                </tr>
+                            </table>
+                            <div id="subst-error-container" class="transit error-container"></div>
+                        </div> <!-- /subst-settings -->
+                    </div> <!-- /subst-container -->
+
+
+                    <!-- Combinaison linéaire -->
+                    <div id="comb-container" class="action-container">
+                        <div id="comb-action" class="action-choice">Combinaison linéaire</div>
+                        <div id="comb-settings" class="action-settings">
+                            <table class="action-form">
+                                <tr>
+                                    <td>Ligne à utiliser pour la combinaison :</td>
+                                    <td><select id="comb-line"></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Coefficients pour la combinaison linéaire (0 par défaut) :</td>
+                                </tr>
+
+                                <tr><td colspan=2><table id="comb-coef-table"></table></td></tr>
+                                <tr>
+                                    <td colspan=2><button id="comb-submit" class="action-submit">Effectuer</button></td>
+                                </tr>
+                            </table>
+                            <div id="comb-error-container" class="transit error-container"></div>
+                            <div id="comb-kbd" class="custom-kbd">
+                            </div>
+                        </div> <!-- /comb-settings -->
+                    </div> <!-- /comb-container -->
+
+
+                    <!-- Échange -->
+                    <div id="swap-container" class="action-container">
+                        <div id="swap-action" class="action-choice">&Eacute;changer les membres d'une ligne</div>
+                        <div id="swap-settings" class="action-settings">
+                            <table class="action-form">
+                                <tr>
+                                    <td>Ligne à modifier :</td>
+                                    <td><select id="swap-line"></select></td>
+                                </tr>
+                                <tr>
+                                    <td colspan=2>
+                                        <button id="swap-submit" class="action-submit">Effectuer</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div> <!-- /swap-settings -->
+                    </div> <!-- /swap-container -->
+                    <div id="op-kbd" class="action-container">
+                        <div  id="op-kbd-layout" class="action-settings">
+                            <table>
+                                <tr id="op-kbd-row-0">
+                                    <td><button id="op-key-7"  class="op-kbd op-kbd-num" data-value="7">7</button></td>
+                                    <td><button id="op-key-8"  class="op-kbd op-kbd-num" data-value="8">8</button></td>
+                                    <td><button id="op-key-9"  class="op-kbd op-kbd-num" data-value="9">9</button></td>
+                                    
+                                    <td><button id="op-key-a"  class="op-kbd op-kbd-op" data-value="+">+</button></td>
+                                </tr>
+                                <tr id="op-kbd-row-1">
+                                    <td><button id="op-key-4"  class="op-kbd op-kbd-num" data-value="4">4</button></td>
+                                    <td><button id="op-key-5"  class="op-kbd op-kbd-num" data-value="5">5</button></td>
+                                    <td><button id="op-key-6"  class="op-kbd op-kbd-num" data-value="6">6</button></td>
+                                    
+                                    <td><button id="op-key-s"  class="op-kbd op-kbd-op" data-value="-">−</button></td>
+                                </tr>
+                                <tr id="op-kbd-row-2">
+                                    <td><button id="op-key-1"  class="op-kbd op-kbd-num" data-value="1">1</button></td>
+                                    <td><button id="op-key-2"  class="op-kbd op-kbd-num" data-value="2">2</button></td>
+                                    <td><button id="op-key-3"  class="op-kbd op-kbd-num" data-value="3">3</button></td>
+                                    
+                                    <td><button id="op-key-m"  class="op-kbd op-kbd-op" data-value="*">×</button></td>
+                                </tr>
+                                <tr id="op-kbd-row-3">
+                                    <td><button id="op-key-D"  class="op-kbd op-kbd-special" data-value="D">␡⌫</button></td>
+                                    <td><button id="op-key-0"  class="op-kbd op-kbd-num" data-value="0">0</button></td>
+                                    <td><button id="op-key-c"  class="op-kbd op-kbd-special" data-value=",">,</button></td>
+                                    
+                                    <td><button id="op-key-d"  class="op-kbd op-kbd-op" data-value="/">÷</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div> <!-- /solve-div -->
+
+                <!-- TODO : pas moyen de charger le script après l'iframe.
+                C'est emmerdant. Peut-être delayer le chargement de l'aide.
+                Pourquoi ça ne pose pas de problème pour l'autre version ? -->
+
+                <div id="manual-div">
+                    <!--iframe id="manual-iframe" src="mode_d_emploi/mode_d_emploi.html" width="100%" height="100%" />-->
+                </div> <!-- /manual-frame-div -->
+            </div> <!-- /main-div -->
+
+            <!-- Message d'accueil évanescent -->
+        </div> <!-- /screen-filler -->
+
+    </body>
+
+    <!-- chargement des scripts -->
+    <script src="assets/parser.js"></script></div>
+    <script src="assets/raos.js"></script>
+</html>
+
+<!-- ⛒⛝☒⛌❎🟊🞮🞬🞭🞫🞪🞩🞨🛇🚫🗲🃠 -->

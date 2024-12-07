@@ -38,485 +38,512 @@ button:disabled {
 
 
 @media screen {
-/* ===========================================
-    A2. Éléments structurants de l'application
-============================================== */
+    /* ===========================================
+        A2. Éléments structurants de l'application
+    ============================================== */
 
 
-#screen-filler { /* Élémént principal assurant le plein écran */
-    /* position absolue à 0 de chacun des bords */
-    box-sizing: border-box;
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    /* sans bordure, marges ni capitonnage */
-    border:0;
-    margin:0;
-    padding:0;
-    /* pour cette application, on utilise le modèle flex */
-    display: flex;
-    flex-direction: column;
-}
+    #screen-filler { /* Élémént principal assurant le plein écran */
+        /* position absolue à 0 de chacun des bords */
+        box-sizing: border-box;
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        /* sans bordure, marges ni capitonnage */
+        border:0;
+        margin:0;
+        padding:0;
+        /* pour cette application, on utilise le modèle flex */
+        display: flex;
+        flex-direction: column;
+    }
 
-#main-div { /* Réglages du cadre principal */
-    display: flex;
-    flex-flow: row nowrap;
-    min-height: 1%; /* semble nécessaire pour obtenir des ascenseurs propres à l'intérieur */
-    align-items: stretch;
-    height:100%;
-    padding: .5ex;
-    flex-wrap: wrap;
-}
+    #main-div { /* Réglages du cadre principal */
+        display: flex;
+        flex-flow: row nowrap;
+        min-height: 1%; /* semble nécessaire pour obtenir des ascenseurs propres à l'intérieur */
+        align-items: stretch;
+        height:100%;
+        padding: .5ex;
+        flex-wrap: wrap;
+    }
 
-#main-div > * {
-    margin: .5ex;
-    height:100%;
-}
+    #main-div > * {
+        margin: .5ex;
+        height:100%;
+    }
 
-.hide {
-    display: none;
-}
+    .hide {
+        display: none;
+    }
 
-#menu-div { /* menu principal */
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: stretch;
-    /* flex-wrap: nowrap; */
-    flex: 0 0 10ex;
-    /* min-height:0; */
-    /* align-items: stretch; */ 
-    /*overflow:auto;*/
-    /*height: auto;*/
-}
-
-
-#title-div { /* Barre titre (reçoit aussi lien vers manuel et un sélecteur) */
-    background: black;
-    color: white;
-    padding: 1ex;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#title-left {
-    flex-grow: 1;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-#title-right {
-    flex-shrink: 1;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-end;
-    align-items: stretch;
-}
-
-#title-right > div + div {
-    margin-left: 1ex;
-}
-
-#title-left > div + div {
-    margin-left: 1ex;
-}
-
-#title { /* titre de l'application */
-    font-weight: bold;
-    text-align: left;
-    font-size: 250%;
-}
+    #menu-div { /* menu principal */
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: stretch;
+        /* flex-wrap: nowrap; */
+        flex: 0 0 10ex;
+        /* min-height:0; */
+        /* align-items: stretch; */ 
+        /*overflow:auto;*/
+        /*height: auto;*/
+    }
 
 
-#title-logo{
-    display: inline;
-    height: .9em; 
-    vertical-align: middle;
-}
+    #title-div { /* Barre titre (reçoit aussi lien vers manuel et un sélecteur) */
+        background: black;
+        color: white;
+        padding: 1ex;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-#title-text{
-    display: inline;
-    height:1em; 
-    vertical-align: middle;
-}
+    #title-left {
+        flex-grow: 1;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    #title-right {
+        flex-shrink: 1;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-end;
+        align-items: stretch;
+    }
+
+    #title-right > div + div {
+        margin-left: 1ex;
+    }
+
+    #title-left > div + div {
+        margin-left: 1ex;
+    }
+
+    #title { /* titre de l'application */
+        font-weight: bold;
+        text-align: left;
+        font-size: 250%;
+    }
 
 
-.title-button {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    height: auto;
-    padding: 1ex;
-    border-radius: 1ex;
-}
+    #title-logo{
+        display: inline;
+        height: .9em; 
+        vertical-align: middle;
+    }
 
-.title-button-image {
-    height: 2em;
-}
+    #title-text{
+        display: inline;
+        height:1em; 
+        vertical-align: middle;
+    }
 
-#fullscreen{
-    color: white;
-}
 
-.stretcher { /* élément extensible pour remplir les flex */
-    flex-grow: 1;
-}
+    .title-button {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        height: auto;
+        padding: 1ex;
+        border-radius: 1ex;
+    }
 
-#solve-div {
-    /*display: none;*/
-    box-sizing: border-box;
-    background: lavender;
-    overflow: auto;
-    flex: 1 0 40%;
-    padding: 1ex;
-    /*height:auto;*/
-}
+    .title-button-image {
+        height: 2em;
+    }
 
-#manual-div {
-    box-sizing: border-box;
-    flex: 1 0 minmax(40vw, 35%) ;
-    border: 1pt solid black;
-/*    height: 100%;
-    display:none; */
-}
+    #fullscreen{
+        color: white;
+    }
 
-#manual-iframe {
-    overflow: hidden;
-    box-sizing: border-box;
-    flex:2;
-    width:100%;
-    height:auto;
-}
+    .stretcher { /* élément extensible pour remplir les flex */
+        flex-grow: 1;
+    }
 
-#manual-switch {
-    cursor: pointer;
-    padding: 1ex;
-    border-radius: 1ex;
-    width: 5em;
-}
+    #solve-div {
+        /*display: none;*/
+        box-sizing: border-box;
+        background: lavender;
+        overflow: auto;
+        flex: 1 0 40%;
+        padding: 1ex;
+        /*height:auto;*/
+    }
+
+    #manual-div {
+        box-sizing: border-box;
+        flex: 1 0 minmax(40vw, 35%) ;
+        border: 1pt solid black;
+    /*    height: 100%;
+        display:none; */
+    }
+
+    #manual-iframe {
+        overflow: hidden;
+        box-sizing: border-box;
+        flex:2;
+        width:100%;
+        height:auto;
+    }
+
+    #manual-switch {
+        cursor: pointer;
+        padding: 1ex;
+        border-radius: 1ex;
+        width: 5em;
+    }
+        
+    .main-button {
+        margin-bottom: 1ex;
+    }
+
+    #fast-input {
+        background-color: orange;
+        color: white;
+        font-weight: bolder;
+    }
+
+    .action-button {
+        margin-top: 1ex;
+        text-overflow: ellipsis;
+    }
+
+    .action-logo {
+        display: none;
+        font-weight: bolder;
+        font-size: 5vw;
+    }
+        
+    /* ACTIONS DE RÉSOLUTION */
+
+
+    .initial * {
+        border-top: none;
+    }
+
+    #action-box {
+        background: #003;
+        width: 100%;
+        padding: .2ex;
+        padding-top: 0;
+        margin-top: 1ex;
+    }
+
+    .action-settings {
+        box-sizing: border-box;
+        background: white;
+        margin: 0ex 0ex;
+        padding: 1ex;
+        border: 2px solid #003;
+        border-top: 0px;
+    }
+
+    .action-choice {
+        background: #003;
+        color: white;
+        padding: .6ex 1ex;
+        margin: 0 0;
+        margin-top: 1ex;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .action-container {
+        display: none;
+    }
+
+    .op-choice {
+        display: inline-block;
+        width:2em;
+        text-align: center;
+        font-size:110%;
+        font-weight:bold;
+        border: 1px solid lavender;
+        border-radius: 1ex;
+        cursor: pointer;
+    }
+
+    .op-choice[data-selected="true"] {
+        background: lavender;
+        color: black;
+        border-color: black;
+    }
+
+    .op-choice[data-selected="false"] {
+        background: black;
+        color:white;
+        border-color: lavender;
+    }
+
+    #virtual-kbd-container {
+        display: none;
+    }
+
+    #op-kbd-layout {
+        display: flex;
+        justify-content: center;
+    }
+
+    #virtual-kbd-table {
+        background-color: rgba(255, 192, 122, 1);
+        padding: 1em;
+        margin: 1em;
+        border-radius: 1em;
+    }
+
+    .op-kbd {
+        border-radius: 2vw;
+        background-color: white;
+        width: 8vw;
+        height: 6vw;
+        font-size: 4vw;
+    }
+        
+    .op-kbd-num {
+        background-color: black;
+        color: white;
+    }
+        
+    .op-kbd-special {
+        background-color: gray;
+    }
+        
+    .op-kbd-var {
+        background-color: DarkSalmon;
+        color: white;
+    }
+
+    .comb-entry-line[data-target="true"] {
+        color:gray;
+    }
+
+    .comb-entry-line[data-target="true"] .comb-end {
+        display: none;
+    }
+
+    .comb-entry-line[data-target="false"] {
+        color:black;
+    }
+
+
+    #fullscreen-off  {
+        display: none;
+    }
+
+    .mode-selector {
+        cursor: pointer;
+        height: auto;
+        padding: 1ex;
+        border-radius: 1ex;
+        background:red;
+    }
+
+    .mode-selector[data-state="0"] {
+        background: black;
+    }
+
+
+    .mode-selector[data-state="1"] {
+        background: orange;
+    }
+
+    .math-entry {
+        border: 1px solid black;
+    }
+
+    .math-entry[data-mobile=true][data-selected="1"] {
+        background: lightgoldenrodyellow;
+    }
     
-.main-button {
-    margin-bottom: 1ex;
-}
+    .math-entry[data-mobile=true][data-selected="0"] {
+        background: white;
+    }
 
-.action-button {
-    margin-top: 1ex;
-    text-overflow: ellipsis;
-}
-
-.action-logo {
-    display: none;
-    font-weight: bolder;
-    font-size: 5vw;
-}
-    
-/* ACTIONS DE RÉSOLUTION */
-
-
-.initial * {
-    border-top: none;
-}
-
-#action-box {
-    background: #003;
-    width: 100%;
-    padding: .2ex;
-    padding-top: 0;
-    margin-top: 1ex;
-}
-
-.action-settings {
-    box-sizing: border-box;
-    background: white;
-    margin: 0ex 0ex;
-    padding: 1ex;
-    border: 2px solid #003;
-    border-top: 0px;
-}
-
-.action-choice {
-    background: #003;
-    color: white;
-    padding: .6ex 1ex;
-    margin: 0 0;
-    margin-top: 1ex;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.action-container {
-    display: none;
-}
-
-.op-choice {
-    display: inline-block;
-    width:2em;
-    text-align: center;
-    font-size:110%;
-    font-weight:bold;
-    border: 1px solid lavender;
-    border-radius: 1ex;
-    cursor: pointer;
-}
-
-.op-choice[data-selected="true"] {
-    background: lavender;
-    color: black;
-    border-color: black;
-}
-
-.op-choice[data-selected="false"] {
-    background: black;
-    color:white;
-    border-color: lavender;
-}
-
-#op-kbd-layout {
-  width:100%;
-  display: flex;
-  justify-content: center;
-}
-
-.op-kbd {
-    border-radius: 2vw;
-    background-color: white;
-    width: 8vw;
-    height: 6vw;
-    font-size: 4vw;
-}
-    
-.op-kbd-num {
-    background-color: black;
-    color: white;
-}
-    
-.op-kbd-special {
-    background-color: gray;
-}
-    
-.op-kbd-var {
-    background-color: DarkSalmon;
-    color: white;
-}
-    
-.comb-entry-line[data-target="true"] {
-    color:gray;
-}
-
-.comb-entry-line[data-target="true"] .comb-end {
-    display: none;
-}
-
-.comb-entry-line[data-target="false"] {
-    color:black;
-}
-
-
-#fullscreen-off  {
-    display: none;
-}
-
-.mode-selector {
-    cursor: pointer;
-    height: auto;
-    padding: 1ex;
-    border-radius: 1ex;
-    background:red;
-}
-
-.mode-selector[data-state="0"] {
-    background: black;
-}
-
-
-.mode-selector[data-state="1"] {
-    background: orange;
-}
-
-.comb-entry-button, #op-entry-button, .math-entry {
-    background: white;
-    border: 1px solid black;
-    padding: 0 1ex;
-    border-radius: 1ex;
-    min-width: 5ex;
-    min-height: 3ex;
-    vertical-align: middle;
-    size:6;
-}
-
-/* ==============================================
-    A3. Conteneurs génériques (flex et ordinaire)
-================================================= */
-
-.h-flex {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-middle;
-}
-
-.h-flex > * {
-}
-
-.v-container {
-}
-
-.v-container > * {
-    width: 100%;
-}
-
-.v-flex {
-    display: flex;
-    flex-direction: column;
-}
-
-.v-flex > * {
-    width: 100%;
-}
-
+    .alt-entry {
+        display: inline-block;
+        width: 10em;
+        height: 100%;
+        vertical-align: middle;
+        padding: 0 1ex;
+        border: 1px solid black;
+        border-radius: 1ex;
+    }
 
     
+    .entry-unselected {
+        background-color: white;
+        color: black;
+    }
+
+    .entry-selected {
+        background-color: orangered;
+        color: white;
+        border-width: 1px solid white;
+    }
+        
 
 
-/* ==============================
-    A4. Éléments de l'application
-================================= */
+    /* ==============================================
+        A3. Conteneurs génériques (flex et ordinaire)
+    ================================================= */
 
-.action-submit {
-    width = 100%;
-}
+    .h-flex {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-middle;
+    }
 
-.comment { /* commentaires du formulaire de saisie */
-    color: #444;
-    font-style: italic;
-}
+    .h-flex > * {
+    }
 
-.error { /* messages d'erreurs de saisie */
-    background: red;
-    color: white;
-    padding: 1ex;
-}
+    .v-container {
+    }
 
-.error-container {
-    margin-top = 0 !important;
-    padding: 0;
-    display: none;
-}
+    .v-container > * {
+        width: 100%;
+    }
 
-.form-section > h1 { /* titre des sections du formulaire de saisie */
-    padding: .3ex .7ex;
-    background: black;
-    color: white;
-    font-size: 100%;
-    font-weight: bold;
-    box-sizing: border-box;
-    flex: 1;
-}
+    .v-flex {
+        display: flex;
+        flex-direction: column;
+    }
 
-#full-screen-message {
-    box-sizing: border-box;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1ex 2ex;
-    font-weight: bold;
-    animation: vanish 8s linear forwards;
-    text-align: center;
-    z-index: 10;
-    pointer-events: none;
-}
-
-#line-entry { /* zone de saisie des lignes */
-    flex:1;
-}
-
-.font-size-button {
-    color: white;
-    font-weight: bold;
-    padding: 1ex;
-    border-radius: 1ex;
-    cursor: pointer;
-}
+    .v-flex > * {
+        width: 100%;
+    }
 
 
-#increase-size {
-    font-size: 125%;
-}
+        
 
-#decrease-button {
-    font-size: 75%;
-}
 
-table#resolution-steps {
-    border-collapse:separate;
-    border-spacing:0 0;
-    background: white;
-}
+    /* ==============================
+        A4. Éléments de l'application
+    ================================= */
 
-td.step-id {
-    text-align: right;
-    padding-left: 1ex;
-    padding-right: 1ex;
-    color: white;
-    background: darkorange;
-    cursor: s-resize;
-}
+    .action-submit {
+        width: 100%;
+    }
 
-td.step-sys {
-    padding: 1ex;
-}
+    .comment { /* commentaires du formulaire de saisie */
+        color: #444;
+        font-style: italic;
+    }
 
-td.step-comment {
-    font-style: italic;
-    text-align: left;
-    padding-left: 1ex;
-    width: 100%;
-}
+    .error { /* messages d'erreurs de saisie */
+        background: red;
+        color: white;
+        padding: 1ex;
+    }
 
-tr.step-row:not(:first-of-type)>td {
-    border-top: 1px dotted darkorange;
-}
+    .error-container {
+        margin-top = 0 !important;
+        padding: 0;
+        display: none;
+    }
 
-tr.step-row {
-    font-size: inherit;
-    padding-right: 2ex;
-    width: 100%;
-    background: white;
-}
+    .form-section > h1 { /* titre des sections du formulaire de saisie */
+        padding: .3ex .7ex;
+        background: black;
+        color: white;
+        font-size: 100%;
+        font-weight: bold;
+        box-sizing: border-box;
+        flex: 1;
+    }
 
-.old-transit { /* transition pour les messages d'erreur */
-    box-sizing: border-box;
-    overflow: hidden;
-    transition: max-height .5s ease;
-    max-height: 0px;
-    margin: 0;
-    padding: 0;
-    /*padding-top: 1ex;*/
-}
 
-#unknown-list-display { /* affichage des inconnues pour saisie des lignes */
-    text-align: center;
-    background: white;
-    padding: .2ex;
-}
+    #line-entry { /* zone de saisie des lignes */
+        flex:1;
+    }
 
-#unknowns-entry { /* zone de saisie des inconnues */
-    flex: 1;
-}
+    .font-size-button {
+        color: white;
+        font-weight: bold;
+        padding: 1ex;
+        border-radius: 1ex;
+        cursor: pointer;
+    }
 
-/* ===============
-    A4. Animations
-================== */
 
-@keyframes vanish {
-    0% {opacity:1; background: red; color: white}
-    40% {opacity:1; background: red; color: white}
-    60% {opacity:1; background: black; color: white}
-    100% {opacity:0; background: black; color: white}
-}
+    #increase-size {
+        font-size: 125%;
+    }
+
+    #decrease-button {
+        font-size: 75%;
+    }
+
+    table#resolution-steps {
+        border-collapse:separate;
+        border-spacing:0 0;
+        background: white;
+    }
+
+    td.step-id {
+        text-align: right;
+        padding-left: 1ex;
+        padding-right: 1ex;
+        color: white;
+        background: darkorange;
+        cursor: s-resize;
+    }
+
+    td.step-sys {
+        padding: 1ex;
+    }
+
+    td.step-comment {
+        font-style: italic;
+        text-align: left;
+        padding-left: 1ex;
+        width: 100%;
+    }
+
+    tr.step-row:not(:first-of-type)>td {
+        border-top: 1px dotted darkorange;
+    }
+
+    tr.step-row {
+        font-size: inherit;
+        padding-right: 2ex;
+        width: 100%;
+        background: white;
+    }
+
+    .old-transit { /* transition pour les messages d'erreur */
+        box-sizing: border-box;
+        overflow: hidden;
+        transition: max-height .5s ease;
+        max-height: 0px;
+        margin: 0;
+        padding: 0;
+        /*padding-top: 1ex;*/
+    }
+
+    #unknown-list-display { /* affichage des inconnues pour saisie des lignes */
+        text-align: center;
+        background: white;
+        padding: .2ex;
+    }
+
+    #unknowns-entry { /* zone de saisie des inconnues */
+        flex: 1;
+    }
+
+    /* ===============
+        A4. Animations
+    ================== */
+
+    @keyframes vanish {
+        0% {opacity:1; background: red; color: white}
+        40% {opacity:1; background: red; color: white}
+        60% {opacity:1; background: black; color: white}
+        100% {opacity:0; background: black; color: white}
+    }
 }
 
 @media print {
@@ -570,6 +597,10 @@ tr.step-row {
     
     #main-div {
         flex-flow: column nowrap;
+    }
+
+    #title-div {
+        font-size: 3vw;
     }
     
     #solve-div {

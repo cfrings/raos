@@ -3,14 +3,31 @@
 // Raos v.0.1 deuxième jet
 // Code javascript du logiciel raos
 
-const version = "0.2.241128.001";
+const version = "0.2.241205.001";
 document.title = 'Raos ' + version;
 
 // Annonce
 console.log("Démarrage de Raos v." + version);
+                                                                                                                           
+/*
+HELPER FUNCTIONS
+
+-- pour la structure
+
+clear(node)                             Détruit le nœud et tous ses enfants.
+clearChildren(node)                     Détruit tous les enfants du nœud.
+
+setAttributes(element, object)          Définit de multiples attributs pour l'élément, définis par les attributs de l'objet fourni
+
+-- pour la mise en forme
+
+TeXifyPart(data)                        Met en forme une membre d'équation.
+TeXify(texte)                           Emballage des indices pour rendu correct en TeX.
+
+-- routines de validation
 
 
-// Utilitaires (helper functions)
+*/
 
 /*  fonction: 	clear(node)
     Détruit le nœud et tous ses enfants. 
@@ -40,7 +57,7 @@ function setAttributes(el, attrs) {
 };
 
 /*  fonction:   TeXifyPart(data)
-    Met en forme une membre d'équation */
+    Met en forme une membre d'équation. */
 function TeXifyPart(data) {
     let outString="";
     for (let j=0; j<_unknowns.length; j++) { // pour chaque inconnue
@@ -61,7 +78,7 @@ function TeXifyPart(data) {
     return outString;
 }
 
-/*  fonction: TeXify(texte)
+/*  fonction:   TeXify(texte)
     Emballage des indices pour rendu correct en TeX
         2       -> 2
         2x      -> 2x
@@ -77,13 +94,23 @@ function TeXify(variable) {
         ^       marque de début
         $       marque de fin
 	TODO : rappeler les noms admissibles
+    TODO : mieux composer la regexp
 */
 
 function validateUnknown(text) {
-    return /^[a-zA-Z][a-zA-Z']*(_(\{[a-zA-Z\d\+\-]*\}|[a-zA-Z\d]))?$/.test(text);
+    // TODO : ne marche pas comme prévu, doit autoriser c_n, y', z'', x_{n+1} etc
+    // return /^[a-zA-Z][a-zA-Z']*(_(\{[a-zA-Z\d\+\-]*\}|[a-zA-Z\d]))?$/.test(text);
+    return /^[a-zA-Z][a-zA-Z']*(_\{[a-zA-Z\d\+\-]*\}|[a-zA-Z\d])?$/.test(text);
 }
 
-// Variables essentielles
+/* 
+======================
+VARIABLES ESSENTIELLES
+======================
+
+TODO : voir si on regroupe tout ça dans un unique objet
+*/
+
 let _unknowns = [];
 let _lines = new Array();
 let _problem = null;
@@ -94,12 +121,19 @@ let _entryMode = true;
 
 let _fontScale = 100;
 
-// Référence aux éléments de la page
+var keyboardTarget = null;
 
-//  - structure
+/*
+=============
+ELEMENTS HTML
+=============
+*/
+
+/*
 const formDiv = document.getElementById("form-div");
 const linesDiv = document.getElementById("lines-div");
 const unknownsDiv = document.getElementById("unknowns-div");
+*/
 
 const solveDiv = document.getElementById("solve-div");
 const resolutionSteps = document.getElementById("resolution-steps");
@@ -118,40 +152,43 @@ const unknownsErrorContainer = document.getElementById("unknowns-error-container
 const opErrorContainer = document.getElementById("op-error-container");
 const substErrorContainer = document.getElementById("subst-error-container");
 const combErrorContainer = document.getElementById("comb-error-container");
+
 //  - éléments de saisie
-const unknownsEntry = document.getElementById("unknowns-entry");
-const lineEntry = document.getElementById("line-entry");
+const unknownsEntry = document.getElementById("unknowns-entry"); // TODO à supprimer ?
+const lineEntry = document.getElementById("line-entry"); // TODO à supprimer ?
 
-//  - boutons
-const manualSwitch = document.getElementById("manual-switch");
+//  - boutons (et éléments associés)
 
-const modeTouch = document.getElementById("mode-touch");
+//  -- boutons de la barre de titre
+const switchManualButton = document.getElementById("manual-switch");
+const switchMobileModeButton = document.getElementById("mode-switch");
+const decreaseSizeButton = document.getElementById("decrease-size");
+const increaseSizeButton = document.getElementById("increase-size");
+const switchFullscreenButton = document.getElementById("fullscreen");
+
+//  -- logos de passage en ou hors du mode plein écran
 const fullscreenOnLogo = document.getElementById("fullscreen-on");
 const fullscreenOffLogo = document.getElementById("fullscreen-off");
 
-const decreaseSize = document.getElementById("decrease-size");
-const increaseSize = document.getElementById("increase-size");
-const swapFullscreen = document.getElementById("fullscreen");
-
-const fastInputButton = document.getElementById("fast-input");
+const newSystemButton = document.getElementById("fast-input");
 
 const swapButton = document.getElementById("swap-button");
-const opButton = document.getElementById("op-button");
-const substButton = document.getElementById("subst-button");
-const combButton = document.getElementById("comb-button");
+const operationButton = document.getElementById("op-button");
+const substitutionButton = document.getElementById("subst-button");
+const combinationButton = document.getElementById("comb-button");
 
-const lineSubmit = document.getElementById("line-submit");
-const unknownsSubmit = document.getElementById("unknowns-submit");
+const lineSubmit = document.getElementById("line-submit"); // TODO à supprimer ?
+const unknownsSubmit = document.getElementById("unknowns-submit"); // TODO à supprimer ?
 
 const validateButton = document.getElementById("validate-button");
 
 // Éléments relatifs aux actions de résolution
 
+
 const swapContainer = document.getElementById("swap-container");
 const opContainer = document.getElementById("op-container");
 const combContainer = document.getElementById("comb-container");
 const substContainer = document.getElementById("subst-container");
-const opKeyboard = document.getElementById("op-kbd");
 
 const swapLine = document.getElementById("swap-line");
 const opLine = document.getElementById("op-line");
@@ -164,20 +201,22 @@ const substSubmit = document.getElementById("subst-submit");
 const combSubmit = document.getElementById("comb-submit");
 
 const opEntry = document.getElementById("op-entry");
-const eraseOpEntry = document.getElementById("erase-op-entry");
-const opEntryButton = document.getElementById("op-entry-button");
-const opKbdButtons = document.querySelectorAll('.op-kbd');
+const opAltEntry = document.getElementById("op-alt-entry");
+const eraseOpEntryButton = document.getElementById("erase-op-entry");
+const virtualKbdButtons = document.querySelectorAll(".op-kbd");
+const virtualKeyboard = document.getElementById("virtual-kbd");
+const opKeyboard = document.getElementById("op-kbd");
+const combKeyboard = document.getElementById("comb-kbd");
 
 const combCoefTable = document.getElementById("comb-coef-table");
+const combCoefEntries = [];
 
 //  - autres éléments
-const title = document.getElementById("title");
-const unknownListDisplay = document.getElementById("unknown-list-display");
+const title = document.getElementById("title"); // TODO à supprimer ?
+const unknownListDisplay = document.getElementById("unknown-list-display"); // TODO à supprimer ?
 
 // Initialisation des éléments de la page
 
-//  - affichage du numéro de version dans le titre
-// title.innerHTML += " v." + version
 
 //  - au démarrage, charger le mode d'emploi et le cacher
 // TODO : supprimer ? ouvrir dans unnouvel onglet ? le fait de l'avoir
@@ -186,25 +225,27 @@ manualDiv.innerHTML = '<iframe id="manual-iframe" src="mode_d_emploi/mode_d_empl
 manualDiv.style.display = "none";
 
 //  - initialisation de la bascule du mode d'emploi
-manualSwitch.innerHTML = "Mode d'emploi";
+
 let manualShow = false;
 
 
 // Affectation des callbacks
-manualSwitch.addEventListener("click", switchManual);
+switchManualButton.addEventListener("click", switchManual);
 
-modeTouch.addEventListener("click", setEntryMode);
+switchMobileModeButton.addEventListener("click", setEntryMode);
 
-decreaseSize.addEventListener("click", decreaseFontSize);
-increaseSize.addEventListener("click", increaseFontSize);
-swapFullscreen.addEventListener("click", swapFullscreenMode);
+decreaseSizeButton.addEventListener("click", decreaseFontSize);
+increaseSizeButton.addEventListener("click", increaseFontSize);
+switchFullscreenButton.addEventListener("click", switchFullscreenMode);
 
-fastInputButton.addEventListener("click", fastInput);
+newSystemButton.addEventListener("click", fastInput);
 
 swapButton.addEventListener("click", showSwapConfig);
-opButton.addEventListener("click", showOpConfig);
-substButton.addEventListener("click", showSubstConfig);
-combButton.addEventListener("click", showCombConfig);
+operationButton.addEventListener("click", showOpConfig);
+substitutionButton.addEventListener("click", showSubstConfig);
+combinationButton.addEventListener("click", showCombConfig);
+
+opEntry.addEventListener("click", selectKeyboardTargetEvent);
 
 /*
 TODO : penser à supprimer si ça ne sert pas
@@ -223,19 +264,47 @@ opSubmit.addEventListener("click", executeOp);
 substSubmit.addEventListener("click", executeSubst);
 combSubmit.addEventListener("click", executeComb);
 
-eraseOpEntry.addEventListener("click", (e) => {
+eraseOpEntryButton.addEventListener("click", (e) => {
     opEntry.value = "";
 })
-opEntryButton.addEventListener("click", getOpEntryValue);
-for (let i=0; i<opKbdButtons.length; i++) {
-	opKbdButtons[i].addEventListener("click", (e) => {
-        console.log("Button "+e.target.id);
-        if (e.target.dataset.value=="D") {
-            opEntry.value = opEntry.value.slice(0, -1);
+
+
+// - fonctions relatives à l'utilisation du clavier virtuel
+
+
+    
+
+function selectKeyboardTargetEvent(event) {
+    selectKeyboardTarget(event.target);
+    if (mobileMode) {
+        event.stopPropagation();
+    }
+}
+
+function selectKeyboardTarget(target) {
+    console.log("Selecting target", target);
+    let potentialTargets = document.querySelectorAll(".math-entry");
+    potentialTargets.forEach(elem => {
+        if (elem==target) {
+            target.dataset.selected="1";
         } else {
-            opEntry.value = opEntry.value + e.target.dataset.value;
+            elem.dataset.selected="0";
         }
     });
+    keyboardTarget = target;
+    target.focus();
+}
+
+function opKbdPress(event) {
+            if (event.currentTarget.dataset.value=="D") {
+                keyboardTarget.value = keyboardTarget.value.slice(0, -1);
+            } else {
+                keyboardTarget.value = keyboardTarget.value + event.currentTarget.dataset.value;
+            }
+}
+
+for (let i=0; i<virtualKbdButtons.length; i++) {
+	virtualKbdButtons[i].addEventListener("click", opKbdPress);
 }
 
 combLine.addEventListener("change", updateCombLabels);
@@ -273,7 +342,7 @@ function increaseFontSize(e) {
 var fullscreenMode = false;
 
 /* D'après https://www.w3schools.com/howto/howto_js_fullscreen.asp */
-function swapFullscreenMode(e) {
+function switchFullscreenMode(e) {
 	console.log("Requesting full screen.");
     let elem = document.documentElement;
 
@@ -333,7 +402,7 @@ function executeNewSystem() {
 }
 
 function setActionButtonDisabled(value) {
-	for (let b of [swapButton, opButton, substButton, combButton]) {
+	for (let b of [swapButton, operationButton, substitutionButton, combinationButton]) {
 		b.disabled = value;
 	}
 }
@@ -345,9 +414,7 @@ function switchManual(e) {
     /*
 	manualShow = true ^ manualShow;
     if (manualShow) {
-        manualSwitch.innerHTML = "Cacher le mode d'emploi";
-        manualDiv.style.display = "flex"; // pourquoi 'block' ne marche-t-il pas ?
-    } else {
+        switchManualButton
         manualSwitch.innerHTML = "Montrer le mode d'emploi";
         manualDiv.style.display = "none";
     }
@@ -475,6 +542,7 @@ function validateLineEntry() {
     let suppress = document.createElement("td");
     suppress.setAttribute("class", "line-suppr");
     let suppressButton = document.createElement("button");
+    // ???????????
     //suppressButton.innerHTML = "🞬";
     suppressButton.addEventListener("click", function (e) {removeSystemLine(id);});
     suppress.appendChild(suppressButton);
@@ -508,12 +576,8 @@ function removeSystemLine(id) {
     lineEntry.focus();
 }
 
-/*  fonction (callback):    validateSystem(evenement)
-    Décide si les lignes saisies sont suffisantes pour définir
-    un système et passe à la suite. */
 
 function setCombEntry(i, target) {
-
 	let line = document.getElementById("comb-entry-line-"+i);
     let subscript = document.getElementById("comb-end-sub-"+i);
     line.setAttribute("data-target", (i==target));
@@ -522,28 +586,37 @@ function setCombEntry(i, target) {
 
 var mobileMode=false;
 
-function setEntryMode(e) {
+function setEntryMode() {
     if (mobileMode) {
         console.log("Switching to computer mode.");
         mobileMode = false;
-        opKeyboard.classList.remove("hide");
+        // affiche le clavier
+        virtualKeyboard.classList.add("hide");
     } else {
         console.log("Switching to mobile mode.");
         mobileMode = true;
-        opKeyboard.classList.remove("hide");
+        // cache le clavier
+        virtualKeyboard.classList.remove("hide");
     }
+    document.querySelectorAll(".math-entry").forEach(e => {e.dataset.mobile = mobileMode; e.readOnly=mobileMode});
+    //force le réaffichage, y compris du clavier virtuel, si nécessaire
     collapseConfigs(activeOperationMode);
+    keyboardTarget.focus();
 }
 
+// §§§§§§§§§§§§§
 function getCombEntryValue(e) {
+    keyboardTarget = e;
+    /*
     let target = e.target.id.slice(12);
     let value = prompt("");
     if (value) {
         document.getElementById("comb-entry-"+target).value = value;
         e.target.innerHTML=value;
-    }
+    }*/
 }
 
+// §§§§§§§§§§§§§
 function getOpEntryValue(e) {
     let value = prompt("");
     if (value) {
@@ -552,21 +625,19 @@ function getOpEntryValue(e) {
     }
 }
 
+// §§§§§§§§§§§§§§§§§§§§§§§§
 function setEntryModeRoutine(touch) {
+    console.log("SHOULD NOT BE CALLED!");
     let entries = document.getElementsByClassName("comb-entry");
-    let buttons = document.getElementsByClassName("comb-entry-button");
+    let buttons = document.getElementsByClassName("comb-alt-entry");
     for (let i=0; i<_nLines; i++) {
-        entries[i].style.display = touch ? "none" : "inline";
-        buttons[i].style.display = touch ? "inline" : "none";
         if (touch) {
             buttons[i].innerHTML = entries[i].value; 
         }
     }
-    opEntry.style.display = touch ? "none" : "inline";
-    opEntryButton.style.display = touch ? "inline" : "none";
-    if (touch) opEntryButton.innerHTML=opEntry.value;
+    if (touch) opAltEntry.innerHTML=opEntry.value;
 
-    modeTouch.setAttribute("data-state", touch ? "1" : "0");
+    switchMobileModeButton.setAttribute("data-state", touch ? "1" : "0");
     //modeKeyboard.setAttribute("data-state", touch ? "0" : "1");
     _entryMode = touch;
 }
@@ -593,28 +664,26 @@ function setupResolutionEnvironment() {
 
     // vidange du tableau de coefficients
     clearChildren(combCoefTable);
-
+    //reconstruction du tableau des coefficients
     for (let i=0; i<_nLines; i++) {
         let coefLine = document.createElement("tr");
         coefLine.setAttribute("id", "comb-entry-line-"+i);
 		coefLine.setAttribute("class", "comb-entry-line");
+        
         coefLine.innerHTML = 
         	"<td>&ell;<sub>"+(i+1)+"</sub>&nbsp;&larr;&nbsp;&ell;<sub>"
         	+(i+1)+"</sub>&nbsp;</td>"
         	+"<td id='comb-end-"+i+"' class='comb-end'>"
         	+"&plus;&nbsp;<input type='text' id='comb-entry-"+i
-        	+"' size='6' class='comb-entry math-entry'/>"
-            +"<button id='comb-button-"+i+"' class='comb-entry-button'>\u00A0"
-            +"</button>&nbsp;&times&nbsp;&ell;"
+        	+"' class='comb-entry math-entry' data-selected=0/>"
+            +"&nbsp;&times&nbsp;&ell;"
         	+"<sub id='comb-end-sub-"+i+"'>1</sub></td>";
 
         combCoefTable.appendChild(coefLine);
-        document.getElementById("comb-button-"+i).addEventListener("click", getCombEntryValue);
 
         setCombEntry(i, 0);
-
-
     }
+    document.querySelectorAll('.comb-entry').forEach(e => e.addEventListener("click", selectKeyboardTargetEvent));
     setActionButtonDisabled(false);
 
 }
@@ -655,10 +724,15 @@ function validateSystem(e) {
 
 }
 
+/*
+EXECUTION DES ACTIONS
+*/
+
 /*  fonction(callback): executeSwap(evenement)
     Réalise l'échange des membres de la ligne sélectionnée */
 
 function executeSwap(e) {
+    // récupère la ligne sélectionnée, convertie en nombre
     let lNo = 1 * swapLine.value;
     let step = _problem.cloneLastStep(STYPE.SWAP, lNo+1);
     let line = step.system.lines[lNo];
@@ -687,15 +761,11 @@ function switchOpButton(op) {
     opButtons.active = op;
 }
 
-
-function opKbdPress(e) {
-}
-
 switchOpButton("+");
 
 for (var i=0; i<4; i++) {
     const c = "+-*/"[i];
-    var d = c;
+    var d = c; // TODO ça sert à quelque chose, ça ?
     opButtons[c].addEventListener("click", function(e) {switchOpButton(c);});
 }
 
@@ -763,6 +833,7 @@ function executeOp(e) {
         _problem.showLastStep();
     }
     collapseConfigs(-1);
+    opEntry.value = "";
 }
 
 /* executeSubst */
@@ -812,11 +883,22 @@ function executeSubst(e) {
     collapseConfigs(-1);
 }
 
+// §§§§§§ pourquoi setcombentry 
+// Reprendre : arreter de multiplier les querys ? homogébéiser : query ou elementbyid
 function updateCombLabels(e) {
 	let target = combLine.value;
 	for (let i=0; i<_nLines; i++) {
 		setCombEntry(i, target);
 	}
+    if (document.getElementById("comb-entry-" + target) == keyboardTarget) {
+        if (target=="0") {
+            selectKeyboardTarget(document.querySelector("#comb-entry-1"));
+        } else {
+            selectKeyboardTarget(document.querySelector("#comb-entry-0"));
+        }
+    }
+    keyboardTarget.focus();
+
 }
 
 function executeComb(e) {
@@ -869,6 +951,9 @@ function executeComb(e) {
 	}
 	_problem.showLastStep();
     collapseConfigs(-1);
+    for (let i=0; i<_nLines; i++) {
+        document.getElementById("comb-entry-"+i).value = "";
+    }
 }
 
 
@@ -890,6 +975,10 @@ function collapseConfigs(code=-1) {
     activeOperationMode = code;
 }
 
+/*
+INVOCATION DES ACTIONS
+*/
+
 function showSwapConfig() {
     collapseConfigs(0);
 }
@@ -897,17 +986,26 @@ function showSwapConfig() {
 function showOpConfig() {
     console.log("Entering operation mode.");
     enableKeyboardUnknowns(true);
+    moveKeyboardTo(opKeyboard);
     collapseConfigs(1);
+    selectKeyboardTarget(opEntry);
 }
 
 function showSubstConfig() {
     collapseConfigs(2);
 }
 
+//!!!!
 function showCombConfig() {
     console.log("Entering substitution mode.");
     enableKeyboardUnknowns(false);
+    moveKeyboardTo(combKeyboard);
     collapseConfigs(3);
+    if (combLine.value==0) {
+        selectKeyboardTarget(document.querySelector("#comb-entry-1"));
+    } else {
+        selectKeyboardTarget(document.querySelector("#comb-entry-0"));
+    }
 }
 
 // affichage des erreurs
@@ -917,7 +1015,15 @@ function moveErrorDivTo(target) { // déplacement du conteneur au bon endroit
         errorMessage.parentNode.removeChild(errorMessage);
     }
     target.appendChild(errorMessage);
-    errorMessage.parentNode.style.display = "none";
+}
+
+function moveKeyboardTo(target) {
+    if (virtualKeyboard.parentNode) {
+    	virtualKeyboard.parentNode.style.display = "none";
+        virtualKeyboard.parentNode.removeChild(virtualKeyboard);
+    }
+    target.appendChild(virtualKeyboard);
+    virtualKeyboard.parentNode.style.display = "block";
 }
 
 let timeoutId = 0;
@@ -1157,6 +1263,7 @@ function subScriptRoutine(n) {
     if (n==0) {
             return "";
     } else {
+        // TODO : pourquoi 'true' en deuxième argument ?
         return subScriptRoutine(Math.floor(n/10), true) + unicodeSubScripts[n % 10];
     }
 }
@@ -1236,10 +1343,7 @@ function fastInput(e) {
 			button.id = "unknown-" + name;
 			button.innerHTML = "\\("+name+"\\)";
             button.dataset.value = name;
-            button.addEventListener("click", (e) => {
-                console.log(e);
-                opEntry.value = opEntry.value + e.currentTarget.dataset.value; 
-            })
+            button.addEventListener("click", opKbdPress);
 			let item = document.createElement("td");
 			item.appendChild(button);
 			opKbdRows[i%4].appendChild(item);
@@ -1251,6 +1355,7 @@ function fastInput(e) {
 	setupResolutionEnvironment();
     setEntryModeRoutine(_entryMode);
 	_problem.showLastStep();
+    selectKeyboardTarget(opEntry);
 }
 
 function enableKeyboardUnknowns(mode) {
@@ -1259,6 +1364,8 @@ function enableKeyboardUnknowns(mode) {
     console.log(display);
     document.querySelectorAll(".op-kbd-var").forEach( n => n.style.display=display );
 }
+
+
 
 setActionButtonDisabled(true);
 setEntryModeRoutine(false);
