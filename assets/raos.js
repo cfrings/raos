@@ -160,6 +160,9 @@ const lineEntry = document.getElementById("line-entry"); // TODO à supprimer ?
 
 //  -- boutons de la barre de titre
 const switchManualButton = document.getElementById("manual-switch");
+const manualChoice = document.getElementById("manual-choice");
+const manualInFrame = document.getElementById("manual-in-frame");
+const manualInTab = document.getElementById("manual-in-tab");
 const switchMobileModeButton = document.getElementById("mode-switch");
 const decreaseSizeButton = document.getElementById("decrease-size");
 const increaseSizeButton = document.getElementById("increase-size");
@@ -229,6 +232,9 @@ let manualShow = false;
 
 // Affectation des callbacks
 switchManualButton.addEventListener("click", switchManual);
+manualInFrame.addEventListener("click", showManualFrame);
+manualInTab.addEventListener("click", showManualTab);
+manualChoice.addEventListener("click", e => manualChoice.style.display="none");
 
 switchMobileModeButton.addEventListener("click", setEntryMode);
 
@@ -410,19 +416,26 @@ function setActionButtonDisabled(value) {
 Bascule l'affichage du mode d'emploi */
 function switchManual(e) {
     console.log("Manual requested.");
-    if (mobileMode) {
-	    window.open("mode_d_emploi/index.html", '_blank').focus();
+    
+    if (manualShow) {
+        console.log("Hiding iframe.");
+        manualDiv.style.display = "none";
+        manualShow = false;
     } else {
-        if (manualShow) {
-            
-            console.log("Showing iframe.");
-            manualDiv.style.display = "none";
-        } else {
-            console.log("Hiding iframe.");
-            manualDiv.style.display = "block";
-        }
-        manualShow = !manualShow;
+        manualChoice.style.display = 'block';
     }
+}
+
+function showManualFrame(e) {
+    console.log("Showing iframe.");
+    manualDiv.style.display = "block";
+    manualShow = true;
+    manualChoice.style.display = 'none';
+}
+
+function showManualTab(e) {
+    window.open("mode_d_emploi/index.html", '_blank').focus();
+    manualChoice.style.display = 'none';
 }
 
 /* fonction(callback): validateKeyUnknownsEntry(evenement)
@@ -597,16 +610,12 @@ function setEntryMode() {
         switchMobileModeButton.dataset.state="0";
         // cache le clavier
         virtualKeyboard.classList.add("hide");
-        if (manualShow) {
-            manualDiv.style.display = "block";
-        }
     } else {
         console.log("Switching to mobile mode.");
         mobileMode = true;
         switchMobileModeButton.dataset.state="1";
         // affiche le clavier
         virtualKeyboard.classList.remove("hide");
-        manualDiv.style.display = "none";
     }
     document.querySelectorAll(".math-entry").forEach(e => {e.dataset.mobile = mobileMode; e.readOnly=mobileMode});
     //force le réaffichage, y compris du clavier virtuel, si nécessaire
