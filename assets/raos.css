@@ -5,13 +5,40 @@
     A1. Style général
 ===================== */
 
+:root {
+    --main-color:#F7AD19;
+    --darkest-secondary-color:#020233;
+    --dark-secondary-color:#111150;
+    --darker-secondary-color:#2F2F7A;
+    --secondary-color: #5A5AA5;
+    --light-secondary-color:#E6E6FA;
+    --lighter-secondary-color: #9494CF;
+    --dark-color:#F27F0C;
+    --light-color:#06c;
+}
+
 /* Réglages généraux de l'appli */
 * {
     font-size: inherit;
+    margin: 0pt;
+}
+
+#quick-start {
+    background-color: white;
+    padding: 2ex;
+    
+        box-sizing: border-box;
+}
+
+h1 {
+    font-size: 200%;
+}
+h2 {
+    font-size: 150%;
 }
 
 body {
-    background: #A1A1AF;
+    background-color: var(--darker-secondary-color);
     font-family: Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     height: auto;
 }
@@ -30,7 +57,14 @@ button {
     font-size: 100%;
     font-family: Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     /*height: auto;*/
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  transition: all 0.3s ease-out;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.5);
 }
+
+
 
 button:disabled {
     color: #DDD;
@@ -49,12 +83,13 @@ button:disabled {
         position: absolute;
         top: 0; right: 0; bottom: 0; left: 0;
         /* sans bordure, marges ni capitonnage */
-        border:0;
-        margin:0;
-        padding:0;
+        border:0pt;
+        margin:0pt;
+        padding:0pt;
         /* pour cette application, on utilise le modèle flex */
         display: flex;
         flex-direction: column;
+        overflow: hidden;
     }
 
     #main-div { /* Réglages du cadre principal */
@@ -63,12 +98,11 @@ button:disabled {
         min-height: 1%; /* semble nécessaire pour obtenir des ascenseurs propres à l'intérieur */
         align-items: stretch;
         height:100%;
-        padding: .5ex;
-        flex-wrap: wrap;
+        gap: 1ex;
+        padding: 1ex;
     }
 
     #main-div > * {
-        margin: .5ex;
         height:100%;
     }
 
@@ -90,13 +124,15 @@ button:disabled {
 
 
     #title-div { /* Barre titre (reçoit aussi lien vers manuel et un sélecteur) */
-        background: black;
+        background-color: black;
         color: white;
         padding: 1ex;
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: center;
+        gap: 1ex;
+
     }
 
     #title-left {
@@ -167,7 +203,7 @@ button:disabled {
     #solve-div {
         /*display: none;*/
         box-sizing: border-box;
-        background: lavender;
+        background-color: var(--light-secondary-color);
         overflow: auto;
         flex: 1 0 40%;
         padding: 1ex;
@@ -202,7 +238,7 @@ button:disabled {
     }
 
     #fast-input {
-        background-color: orange;
+        background-color: var(--dark-color);
         color: white;
         font-weight: bolder;
     }
@@ -210,12 +246,16 @@ button:disabled {
     .action-button {
         margin-top: 1ex;
         text-overflow: ellipsis;
+        display: flex;
+        flex-flow: column nowrap;
     }
+
 
     .action-logo {
         display: none;
         font-weight: bolder;
         font-size: 5vw;
+        overflow: hidden;
     }
         
     /* ACTIONS DE RÉSOLUTION */
@@ -225,25 +265,27 @@ button:disabled {
         border-top: none;
     }
 
+    /* TODO : classe inutilisée ? */
     #action-box {
-        background: #003;
+        background-color: #003;
         width: 100%;
         padding: .2ex;
         padding-top: 0;
         margin-top: 1ex;
+        font-size: 600%;
     }
 
     .action-settings {
         box-sizing: border-box;
-        background: white;
+        background-color: white;
         margin: 0ex 0ex;
         padding: 1ex;
-        border: 2px solid #003;
+        border: 2px solid var(--darkest-secondary-color);
         border-top: 0px;
     }
 
     .action-choice {
-        background: #003;
+        background-color: var(--darkest-secondary-color);
         color: white;
         padding: .6ex 1ex;
         margin: 0 0;
@@ -260,7 +302,7 @@ button:disabled {
         display: inline-block;
         width:2em;
         text-align: center;
-        font-size:110%;
+        font-size:120%;
         font-weight:bold;
         border: 1px solid lavender;
         border-radius: 1ex;
@@ -268,13 +310,13 @@ button:disabled {
     }
 
     .op-choice[data-selected="true"] {
-        background: lavender;
+        background-color: lavender;
         color: black;
         border-color: black;
     }
 
     .op-choice[data-selected="false"] {
-        background: black;
+        background-color: black;
         color:white;
         border-color: lavender;
     }
@@ -283,7 +325,7 @@ button:disabled {
         display: none;
     }
 
-    #op-kbd-layout {
+    #virtual-kbd-layout {
         display: flex;
         justify-content: center;
     }
@@ -295,26 +337,25 @@ button:disabled {
         border-radius: 1em;
     }
 
-    .op-kbd {
-        border-radius: 2vw;
+    .virtual-kbd {
+        width: 10vw;
+        height:10vw;
+        font-size: 6vw;
         background-color: white;
-        width: 8vw;
-        height: 6vw;
-        font-size: 4vw;
+        border-radius: 1vw;
     }
         
-    .op-kbd-num {
-        background-color: black;
+    .virtual-kbd-num {
+        background-color: var(--dark-color);
         color: white;
     }
         
-    .op-kbd-special {
-        background-color: gray;
+    .virtual-kbd-special {
+        background-color: var(--light-color);
     }
         
-    .op-kbd-var {
-        background-color: DarkSalmon;
-        color: white;
+    .virtual-kbd-var {
+        background-color: var(--lighter-secondary-color);
     }
 
     .comb-entry-line[data-target="true"] {
@@ -334,21 +375,20 @@ button:disabled {
         display: none;
     }
 
-    .mode-selector {
+    #mode-switch {
         cursor: pointer;
         height: auto;
         padding: 1ex;
         border-radius: 1ex;
-        background:red;
     }
 
-    .mode-selector[data-state="0"] {
-        background: black;
+    #mode-switch[data-state="0"] {
+        background-color: black;
     }
 
 
-    .mode-selector[data-state="1"] {
-        background: orange;
+    #mode-switch[data-state="1"] {
+        background-color: orange;
     }
 
     .math-entry {
@@ -356,11 +396,11 @@ button:disabled {
     }
 
     .math-entry[data-mobile=true][data-selected="1"] {
-        background: lightgoldenrodyellow;
+        background-color: lightgoldenrodyellow;
     }
     
     .math-entry[data-mobile=true][data-selected="0"] {
-        background: white;
+        background-color: white;
     }
 
     .alt-entry {
@@ -434,7 +474,7 @@ button:disabled {
     }
 
     .error { /* messages d'erreurs de saisie */
-        background: red;
+        background-color: red;
         color: white;
         padding: 1ex;
     }
@@ -447,7 +487,7 @@ button:disabled {
 
     .form-section > h1 { /* titre des sections du formulaire de saisie */
         padding: .3ex .7ex;
-        background: black;
+        background-color: pink;
         color: white;
         font-size: 100%;
         font-weight: bold;
@@ -480,7 +520,7 @@ button:disabled {
     table#resolution-steps {
         border-collapse:separate;
         border-spacing:0 0;
-        background: white;
+        background-color: white;
     }
 
     td.step-id {
@@ -488,7 +528,7 @@ button:disabled {
         padding-left: 1ex;
         padding-right: 1ex;
         color: white;
-        background: darkorange;
+        background-color: darkorange;
         cursor: s-resize;
     }
 
@@ -511,7 +551,7 @@ button:disabled {
         font-size: inherit;
         padding-right: 2ex;
         width: 100%;
-        background: white;
+        background-color: white;
     }
 
     .old-transit { /* transition pour les messages d'erreur */
@@ -526,7 +566,7 @@ button:disabled {
 
     #unknown-list-display { /* affichage des inconnues pour saisie des lignes */
         text-align: center;
-        background: white;
+        background-color: white;
         padding: .2ex;
     }
 
@@ -539,10 +579,10 @@ button:disabled {
     ================== */
 
     @keyframes vanish {
-        0% {opacity:1; background: red; color: white}
-        40% {opacity:1; background: red; color: white}
-        60% {opacity:1; background: black; color: white}
-        100% {opacity:0; background: black; color: white}
+        0% {opacity:1; background-color: red; color: white}
+        40% {opacity:1; background-color: red; color: white}
+        60% {opacity:1; background-color: black; color: white}
+        100% {opacity:0; background-color: black; color: white}
     }
 }
 
@@ -550,7 +590,7 @@ button:disabled {
     #manual-switch, 
     #manual-div, 
     .font-size-button, 
-    .mode-selector,
+    #mode-switch,
     #action-box,
     .action-settings {
         display: none !important;
@@ -564,20 +604,24 @@ button:disabled {
 @media (hover) {
     
     .font-size-button:hover {
-        background: darkorange;
+        background-color: darkorange;
     }
         
     .title-button:hover {
-        background: darkorange;
+        background-color: darkorange;
     }
     
     #manual-switch:hover {
-        background: darkorange;
+        background-color: darkorange;
     }
 
 }
 
 @media (max-aspect-ratio: 3/4) {
+
+    button, input, select {
+        min-height: 5vw;
+    }
 
     html {
         font-size: 60%;
@@ -585,14 +629,25 @@ button:disabled {
     
     #menu-div {
         flex-flow: row nowrap;
+        gap: 1vw;
+        width: 100%;
+        text-overflow: ellipsis;
     }
 
-    #menu-div > * {
-        flex: 1 1 0pt;
+    .action-button {
+        flex: 1 1 0px;
+        width: 18vw;
     }
 
     .action-logo {
         display: block;
+    }
+    
+    .action-text{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width:100%;
+        white-space: nowrap;
     }
     
     #main-div {

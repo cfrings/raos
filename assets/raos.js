@@ -121,7 +121,6 @@ let _entryMode = true;
 
 let _fontScale = 100;
 
-var keyboardTarget = null;
 
 /*
 =============
@@ -134,7 +133,7 @@ const formDiv = document.getElementById("form-div");
 const linesDiv = document.getElementById("lines-div");
 const unknownsDiv = document.getElementById("unknowns-div");
 */
-
+const quickStart = document.getElementById("quick-start");
 const solveDiv = document.getElementById("solve-div");
 const resolutionSteps = document.getElementById("resolution-steps");
 
@@ -203,7 +202,7 @@ const combSubmit = document.getElementById("comb-submit");
 const opEntry = document.getElementById("op-entry");
 const opAltEntry = document.getElementById("op-alt-entry");
 const eraseOpEntryButton = document.getElementById("erase-op-entry");
-const virtualKbdButtons = document.querySelectorAll(".op-kbd");
+const virtualKbdButtons = document.querySelectorAll(".virtual-kbd");
 const virtualKeyboard = document.getElementById("virtual-kbd");
 const opKeyboard = document.getElementById("op-kbd");
 const combKeyboard = document.getElementById("comb-kbd");
@@ -217,11 +216,10 @@ const unknownListDisplay = document.getElementById("unknown-list-display"); // T
 
 // Initialisation des éléments de la page
 
+var keyboardTarget = opEntry;
 
 //  - au démarrage, charger le mode d'emploi et le cacher
-// TODO : supprimer ? ouvrir dans unnouvel onglet ? le fait de l'avoir
-// dans la même fenêtre permet de suivre le tuto.
-manualDiv.innerHTML = '<iframe id="manual-iframe" src="mode_d_emploi/mode_d_emploi.html" width="100%" height="100%" />'
+manualDiv.innerHTML = '<iframe id="manual-iframe" src="mode_d_emploi/index.html" style="width:100%; height:100%;" />'
 manualDiv.style.display = "none";
 
 //  - initialisation de la bascule du mode d'emploi
@@ -296,11 +294,12 @@ function selectKeyboardTarget(target) {
 }
 
 function opKbdPress(event) {
-            if (event.currentTarget.dataset.value=="D") {
-                keyboardTarget.value = keyboardTarget.value.slice(0, -1);
-            } else {
-                keyboardTarget.value = keyboardTarget.value + event.currentTarget.dataset.value;
-            }
+    if (event.currentTarget.dataset.value=="D") {
+        keyboardTarget.value = keyboardTarget.value.slice(0, -1);
+    } else {
+        keyboardTarget.value = keyboardTarget.value + event.currentTarget.dataset.value;
+    }
+    keyboardTarget.focus();
 }
 
 for (let i=0; i<virtualKbdButtons.length; i++) {
@@ -410,15 +409,20 @@ function setActionButtonDisabled(value) {
 /* fonction(callback): switchManual(evenement)
 Bascule l'affichage du mode d'emploi */
 function switchManual(e) {
-	window.open("mode_d_emploi/index.html", '_blank').focus();
-    /*
-	manualShow = true ^ manualShow;
-    if (manualShow) {
-        switchManualButton
-        manualSwitch.innerHTML = "Montrer le mode d'emploi";
-        manualDiv.style.display = "none";
+    console.log("Manual requested.");
+    if (mobileMode) {
+	    window.open("mode_d_emploi/index.html", '_blank').focus();
+    } else {
+        if (manualShow) {
+            
+            console.log("Showing iframe.");
+            manualDiv.style.display = "none";
+        } else {
+            console.log("Hiding iframe.");
+            manualDiv.style.display = "block";
+        }
+        manualShow = !manualShow;
     }
-    */
 }
 
 /* fonction(callback): validateKeyUnknownsEntry(evenement)
@@ -590,13 +594,19 @@ function setEntryMode() {
     if (mobileMode) {
         console.log("Switching to computer mode.");
         mobileMode = false;
-        // affiche le clavier
+        switchMobileModeButton.dataset.state="0";
+        // cache le clavier
         virtualKeyboard.classList.add("hide");
+        if (manualShow) {
+            manualDiv.style.display = "block";
+        }
     } else {
         console.log("Switching to mobile mode.");
         mobileMode = true;
-        // cache le clavier
+        switchMobileModeButton.dataset.state="1";
+        // affiche le clavier
         virtualKeyboard.classList.remove("hide");
+        manualDiv.style.display = "none";
     }
     document.querySelectorAll(".math-entry").forEach(e => {e.dataset.mobile = mobileMode; e.readOnly=mobileMode});
     //force le réaffichage, y compris du clavier virtuel, si nécessaire
@@ -1272,6 +1282,7 @@ const newShort = "Saisissez le système ci-dessous, en séparant les lignes d'un
 
 function fastInput(e) {
     collapseConfigs();
+    quickStart.style.display = "none";
 	let input = prompt(newShort);
 	if (input===null) {
 		return;
@@ -1320,16 +1331,16 @@ function fastInput(e) {
 
 	_problem = new Problem(system);
 
-	let opKbdRows = [];
+	let virtualKbdRows = [];
 	
 	for (let j=0; j<4; j++) {
-		opKbdRows.push(document.getElementById("op-kbd-row-" + j));
+		virtualKbdRows.push(document.getElementById("virtual-kbd-row-" + j));
 	}
 
 	console.log(_unknowns);
 
     // suppression des boutons "inconnues" du clavier virtuel
-    document.querySelectorAll(".op-kbd-var").forEach( n => n.remove() );
+    document.querySelectorAll(".virtual-kbd-var").forEach( n => n.remove() );
 
     // creation des boutons "inconnues" du clavier virtuel
 	let i=0;
@@ -1338,15 +1349,15 @@ function fastInput(e) {
 		if (name != "") {
 			console.log("creating key for unknown '" + name + "'.");
 			let button = document.createElement("button");
-			button.classList.add("op-kbd");
-			button.classList.add("op-kbd-var");
+			button.classList.add("virtual-kbd");
+			button.classList.add("virtual-kbd-var");
 			button.id = "unknown-" + name;
 			button.innerHTML = "\\("+name+"\\)";
             button.dataset.value = name;
             button.addEventListener("click", opKbdPress);
 			let item = document.createElement("td");
 			item.appendChild(button);
-			opKbdRows[i%4].appendChild(item);
+			virtualKbdRows[i%4].appendChild(item);
 			MathJax.Hub.Queue(["Typeset", MathJax.Hub, "unknown-" + name]);
 			i++;
 		}
@@ -1362,7 +1373,7 @@ function enableKeyboardUnknowns(mode) {
     console.log("Enabling unknowns buttons : ", mode);
     let display = mode ? "block" : "none";
     console.log(display);
-    document.querySelectorAll(".op-kbd-var").forEach( n => n.style.display=display );
+    document.querySelectorAll(".virtual-kbd-var").forEach( n => n.style.display=display );
 }
 
 

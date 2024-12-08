@@ -30,15 +30,33 @@
             </div> <!-- /title-div -->
             <div id="main-div" class="h-flex"> <!-- cadre principal de l'application -->
                 <div id="menu-div"> <!-- barre de boutons latérale -->
-                        <button id="fast-input" class="main-button">Nouveau système</button>
-                        <button id="op-button" class="action-button"><div class="action-logo">OPR</div>Opération</button>
-                        <button id="subst-button" class="action-button"><div class="action-logo">SUB</div>Substitution</button>
-                        <button id="comb-button" class="action-button"><div class="action-logo">COM</div>Combinaison</button>
-                        <button id="swap-button" class="action-button"><div class="action-logo">ECH</div>Échange de membres</button>
+                        <button id="fast-input" class="action-button main-button"><div class="action-logo">SYS</div><div class="action-text">Nouveau système</div></button>
+                        <button id="op-button" class="action-button"><div class="action-logo">OPR</div><div class="action-text">Opération</div></button>
+                        <button id="subst-button" class="action-button"><div class="action-logo">SUB</div><div class="action-text">Substitution</div></button>
+                        <button id="comb-button" class="action-button"><div class="action-logo">COM</div><div class="action-text">Combinaison</div></button>
+                        <button id="swap-button" class="action-button"><div class="action-logo">ECH</div><div class="action-text">Échange de membres</div></button>
                 </div> <!-- /menu-div -->
 
                     
                     <div id="solve-div" class="v-container"> <!-- cadre recevant la résolution du système -->
+                        <div id="quick-start">
+                        <h1>Démarrage rapide</h1>
+                        <h2>Ce que Raos fait et ce qu'il ne fait pas</h2>
+                        <p>Raos est un <b>assistant</b> de résolution de systèmes. Il n'effectue pas la résolution de façon autonome. Il appartient à l'utilisateur de préciser les différentes étapes de résolution à effectuer.</p>
+                        <p> Raos est un <b>outil d'apprentissage</b> qui décharge l'utilisateur des calculs, lui permettant ainsi de se concentrer sur la <b>démarche de résolution</b>.</p> 
+                        </ul>
+                        <h2>Raos sur téléphone</h2>
+                        <p>Raos a été développé sur ordinateur de bureau, avec clavier et écran, mais un <b>mode pour téléphone mobile</b> (ou tablette) est proposé (avant dernier logo de la barre de titre).</p>
+                        <p> Dans ce mode, la saisie des paramètres des actions se fait à l'aide d'un clavier virtuel spécifique et dédié, plutôt que par le clavier virtuel du téléphone.
+                        <h2>Démarrage</h2>
+                        <p>La saisie d'un système se fait après appui sur le bouton "Nouveau système" (ou "SYS" en mode téléphone). Dans la fenêtre de dialogue, écrire les lignes les unes après les autres, séparées par des points-virgule. Ainsi, pour le système
+                        \[\left\{\begin{array}{rcl}x+2y&=&1\\3x-y&=&4\end{array}\right.\] on saisit
+                        <code>x+2y=1 ; 3x-y=4</code>.
+                        <h2>Mode d'emploi</h2>
+                        <p>Un mode d'emploi est disponible, avec tutoriel détaillé et exemples. En mode ordinateur, il s'ouvre dans un cadre de la fenêtre principale. En mode téléphone, il s'ouvre dans un nouvel onglet du navigateur.   </p>
+
+
+                        </div>
                         <table id ="resolution-steps"> <!-- affichage des étapes de résolution -->
                         </table> <!-- /resolution-steps -->
 
@@ -142,36 +160,36 @@
     		            </div> <!-- /swap-container -->
                         <div id="virtual-kbd-container">
                         <div id="virtual-kbd" class="hide">
-                            <div  id="op-kbd-layout">
+                            <div  id="virtual-kbd-layout">
                                 <table id="virtual-kbd-table">
-                                    <tr id="op-kbd-row-0">
-                                        <td><button id="op-key-7"  class="op-kbd op-kbd-num" data-value="7">7</button></td>
-                                        <td><button id="op-key-8"  class="op-kbd op-kbd-num" data-value="8">8</button></td>
-                                        <td><button id="op-key-9"  class="op-kbd op-kbd-num" data-value="9">9</button></td>
+                                    <tr id="virtual-kbd-row-0">
+                                        <td><button id="op-key-7"  class="virtual-kbd virtual-kbd-num" data-value="7">7</button></td>
+                                        <td><button id="op-key-8"  class="virtual-kbd virtual-kbd-num" data-value="8">8</button></td>
+                                        <td><button id="op-key-9"  class="virtual-kbd virtual-kbd-num" data-value="9">9</button></td>
                                         
-                                        <td><button id="op-key-a"  class="op-kbd op-kbd-op" data-value="+">+</button></td>
+                                        <td><button id="op-key-a"  class="virtual-kbd virtual-kbd-op" data-value="+">+</button></td>
                                     </tr>
-                                    <tr id="op-kbd-row-1">
-                                        <td><button id="op-key-4"  class="op-kbd op-kbd-num" data-value="4">4</button></td>
-                                        <td><button id="op-key-5"  class="op-kbd op-kbd-num" data-value="5">5</button></td>
-                                        <td><button id="op-key-6"  class="op-kbd op-kbd-num" data-value="6">6</button></td>
+                                    <tr id="virtual-kbd-row-1">
+                                        <td><button id="op-key-4"  class="virtual-kbd virtual-kbd-num" data-value="4">4</button></td>
+                                        <td><button id="op-key-5"  class="virtual-kbd virtual-kbd-num" data-value="5">5</button></td>
+                                        <td><button id="op-key-6"  class="virtual-kbd virtual-kbd-num" data-value="6">6</button></td>
                                         
-                                        <td><button id="op-key-s"  class="op-kbd op-kbd-op" data-value="-">−</button></td>
+                                        <td><button id="op-key-s"  class="virtual-kbd virtual-kbd-op" data-value="-">−</button></td>
                                     </tr>
-                                    <tr id="op-kbd-row-2">
-                                        <td><button id="op-key-1"  class="op-kbd op-kbd-num" data-value="1">1</button></td>
-                                        <td><button id="op-key-2"  class="op-kbd op-kbd-num" data-value="2">2</button></td>
-                                        <td><button id="op-key-3"  class="op-kbd op-kbd-num" data-value="3">3</button></td>
+                                    <tr id="virtual-kbd-row-2">
+                                        <td><button id="op-key-1"  class="virtual-kbd virtual-kbd-num" data-value="1">1</button></td>
+                                        <td><button id="op-key-2"  class="virtual-kbd virtual-kbd-num" data-value="2">2</button></td>
+                                        <td><button id="op-key-3"  class="virtual-kbd virtual-kbd-num" data-value="3">3</button></td>
                                         
-                                        <td><button id="op-key-m"  class="op-kbd op-kbd-op" data-value="*">×</button></td>
+                                        <td><button id="op-key-m"  class="virtual-kbd virtual-kbd-op" data-value="*">×</button></td>
                                     </tr>
-                                    <tr id="op-kbd-row-3">
-                                        <td><button id="op-key-D"  class="op-kbd op-kbd-special" data-value="D">⌫</button></td>
+                                    <tr id="virtual-kbd-row-3">
+                                        <td><button id="op-key-D"  class="virtual-kbd virtual-kbd-special" data-value="D">←</button></td>
                                         <!-- ␡ -->
-                                        <td><button id="op-key-0"  class="op-kbd op-kbd-num" data-value="0">0</button></td>
-                                        <td><button id="op-key-c"  class="op-kbd op-kbd-special" data-value=",">,</button></td>
+                                        <td><button id="op-key-0"  class="virtual-kbd virtual-kbd-num" data-value="0">0</button></td>
+                                        <td><button id="op-key-c"  class="virtual-kbd virtual-kbd-special" data-value=",">,</button></td>
                                         
-                                        <td><button id="op-key-d"  class="op-kbd op-kbd-op" data-value="/">÷</button></td>
+                                        <td><button id="op-key-d"  class="virtual-kbd virtual-kbd-op" data-value="/">÷</button></td>
                                     </tr>
                                 </table>
                             </div>
@@ -183,7 +201,7 @@
                     Pourquoi ça ne pose pas de problème pour l'autre version ? -->
 
                     <div id="manual-div">
-                        <!--iframe id="manual-iframe" src="mode_d_emploi/mode_d_emploi.html" width="100%" height="100%" />-->
+                        <!--iframe id="manual-iframe" src="mode_d_emploi/index.html" width="100%" height="100%" />-->
                     </div> <!-- /manual-frame-div -->
             </div> <!-- /main-div -->
 
