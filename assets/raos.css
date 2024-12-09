@@ -43,6 +43,11 @@ h2 {
 
 p {margin: 2ex;}
 
+
+html {
+font-size: 12pt;
+}
+
 body {
     background-color: var(--darker-secondary-color);
     font-family: Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -660,7 +665,7 @@ justify-content: space-around;
     }
 
     html {
-        font-size: 60%;
+        font-size: 10pt;
     }
     
     #menu-div {
