@@ -332,7 +332,7 @@ document.body.addEventListener("resize", function(e) {alert("resize"); document.
 
 function decreaseFontSize(e) {
     _fontScale /= 1.1;
-    document.body.style["font-size"] = (_fontScale | 0) + "%";
+    solveDiv.style["font-size"] = (_fontScale | 0) + "%";
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, solveDiv]);
     // document.querySelector(".step-sys").forEach(function(e) {MathJax.Hub.Queue(["Typeset", MathJax.Hub, e);})
 }
@@ -340,7 +340,7 @@ function decreaseFontSize(e) {
 
 function increaseFontSize(e) {
     _fontScale *= 1.1;
-    document.body.style["font-size"] = (_fontScale | 0) + "%";
+    solveDiv.style["font-size"] = (_fontScale | 0) + "%";
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, solveDiv]);
 }
 
