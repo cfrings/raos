@@ -5,6 +5,11 @@
     A1. Style général
 ===================== */
 
+@font-face {
+    font-family: "manrope";
+    src: url("manrope.ttf");
+}
+
 :root {
     --main-color:#F7AD19;
     --darkest-secondary-color:#020233;
@@ -45,6 +50,7 @@ p {margin: 2ex;}
 
 
 html {
+	font-face: manrope;
 font-size: 12pt;
 }
 
