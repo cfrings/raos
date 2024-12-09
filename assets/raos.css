@@ -26,20 +26,20 @@
 #quick-start {
     background-color: white;
     padding: 2ex;
-    
-        box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 h1 {
     font-size: 200%;
 }
+
 h2 {
     font-size: 150%;
 				background-color: black;
 				color: white;
 }
 
-p {margin-bottom: 1ex;}
+p {margin: 2ex;}
 
 body {
     background-color: var(--darker-secondary-color);
