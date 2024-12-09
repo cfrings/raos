@@ -5,10 +5,8 @@
     A1. Style général
 ===================== */
 
-@font-face {
-    font-family: "Manrope";
-    src: url("Manrope.ttf");
-}
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 
 :root {
     --main-color:#F7AD19;
