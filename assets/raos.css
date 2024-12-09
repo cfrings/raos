@@ -95,6 +95,12 @@ button:disabled {
 }
 
 
+#manual-button-container {
+display: flex;
+flex-flow: row nowrap;
+justify-content: space-around;
+}
+
 @media screen {
     /* ===========================================
         A2. Éléments structurants de l'application
