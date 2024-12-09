@@ -50,13 +50,12 @@ p {margin: 2ex;}
 
 
 html {
-	font-face: manrope;
 font-size: 12pt;
 }
 
 body {
     background-color: var(--darker-secondary-color);
-    font-family: Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: manrope, Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     height: auto;
 }
 
