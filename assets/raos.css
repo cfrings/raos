@@ -6,7 +6,7 @@
 ===================== */
 
 @font-face {
-    font-family: "manrope";
+    font-family: "Manrope";
     src: url("Manrope.ttf");
 }
 
@@ -55,7 +55,7 @@ font-size: 12pt;
 
 body {
     background-color: var(--darker-secondary-color);
-    font-family: manrope, Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: Manrope, Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     height: auto;
 }
 
