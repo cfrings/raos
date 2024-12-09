@@ -37,6 +37,8 @@ h2 {
     font-size: 150%;
 				background-color: black;
 				color: white;
+				padding: 1ex;
+    margin-top: 2ex;
 }
 
 p {margin: 2ex;}
