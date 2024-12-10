@@ -159,7 +159,7 @@ justify-content: space-around;
         flex-flow: column nowrap;
         align-items: stretch;
         /* flex-wrap: nowrap; */
-        flex: 0 0 10ex;
+        flex: 0 0 0ex;
         /* min-height:0; */
         /* align-items: stretch; */ 
         /*overflow:auto;*/
