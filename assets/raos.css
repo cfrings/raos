@@ -6,7 +6,6 @@
 ===================== */
 
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
     --main-color:#F7AD19;
@@ -69,7 +68,7 @@ select {
 
 button {
     font-size: 100%;
-    font-family: Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: Montserrat, Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     /*height: auto;*/
   border: 1px solid rgba(0,0,0,0.15);
   border-radius: 4px;
