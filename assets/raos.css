@@ -692,6 +692,7 @@ justify-content: space-around;
         text-overflow: ellipsis;
         width:100%;
         white-space: nowrap;
+	    font-size: 3vw;
     }
     
     #main-div {
