@@ -676,7 +676,7 @@ justify-content: space-around;
         gap: 1vw;
         width: 100%;
         text-overflow: ellipsis;
-        flex: 1 0 0px;
+        flex-grow: 0;
     }
 
     .action-button {
