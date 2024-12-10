@@ -52,7 +52,7 @@ font-size: 12pt;
 }
 
 body {
-    background-color: var(--darker-secondary-color);
+    background-color: #333;
     font-family: Montserrat, Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     height: auto;
 }
