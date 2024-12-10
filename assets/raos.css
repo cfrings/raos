@@ -675,7 +675,7 @@ justify-content: space-around;
         flex-flow: row nowrap;
         gap: 1vw;
         width: 100%;
-        text-overflow: ellipsis;
+	    justify-content: space-between;
         flex-grow: 0;
     }
 
