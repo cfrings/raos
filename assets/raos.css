@@ -705,9 +705,12 @@ justify-content: space-around;
     
     #solve-div {
         width: 100%;
+	flex: 1 1 75%;
     }
     
     #manual-div {
+	    flex: 0 0 25%;
+	    resize: vertical;
         width: 100%;
 	    resize: vertical;
     }	
