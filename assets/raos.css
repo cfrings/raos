@@ -7,7 +7,7 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
     --main-color:#F7AD19;
     --darkest-secondary-color:#020233;
@@ -53,7 +53,7 @@ font-size: 12pt;
 
 body {
     background-color: var(--darker-secondary-color);
-    font-family: Manrope, Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: Montserrat, Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     height: auto;
 }
 
