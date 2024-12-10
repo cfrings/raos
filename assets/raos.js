@@ -1291,7 +1291,7 @@ const newShort = "Saisissez le système ci-dessous, en séparant les lignes d'un
 
 function fastInput(e) {
     collapseConfigs();
-    quickStart.style.display = "none";
+    // quickStart.style.display = "none";
 	let input = prompt(newShort);
 	if (input===null) {
 		return;
