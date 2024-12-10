@@ -254,6 +254,7 @@ justify-content: space-around;
     }
 
     #manual-div {
+	    resize: horizontal;
         box-sizing: border-box;
         flex: 1 0 minmax(40vw, 35%) ;
         border: 1pt solid black;
@@ -708,6 +709,7 @@ justify-content: space-around;
     
     #manual-div {
         width: 100%;
+	    resize: vertical;
     }	
     
     .main-button, .action-button {
