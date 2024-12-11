@@ -2,7 +2,7 @@
 
 ## Description
 
-/Raos/ est un *assistant* de résolution de systèmes de plusieurs équations à plusieurs inconnues.
+//Raos// est un *assistant* de résolution de systèmes de plusieurs équations à plusieurs inconnues.
 
 À ce titre, /Raos/ effectue les opérations de résolution commandées par l'utilisateur, à savoir :
  * les opérations usuelles sur les lignes,
@@ -20,6 +20,11 @@ se concentrer
 /Raos/ a initialement été développé pour utilisation sur un ordinateur de bureau.
 
 En 
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
 
 +-----------------------+---------------------+-----------------------------+
 |                       | version ordinateur  | version téléphone/tablette  |
