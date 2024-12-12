@@ -48,12 +48,14 @@ p {margin: 2ex;}
 
 html {
 font-size: 12pt;
+	overscroll-behavior: none;
 }
 
 body {
     background-color: #666;
     font-family: Montserrat, Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     height: auto;
+	overscroll-behavior: none;
 }
 
 kbd {
@@ -261,7 +263,7 @@ justify-content: space-around;
 				flex: 1 1 0;
 				
 				justify-content: space-between;
-				gap:.2cm;
+				gap:0cm;
 				align-items: stretch;
 				
 	}
