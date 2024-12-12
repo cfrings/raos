@@ -17,7 +17,7 @@
 				padding: 1cm;
 				overflow: hidden;
 				justify-content: space-between;
-				gap: 1cm;
+				gap:.2cm;
 				align-items: stretch;
 				overflow-x: scroll;
 			}
@@ -48,6 +48,7 @@
 			
 			#pane-scrollbar {
 				writing-mode: vertical-lr;
+				direction: rtl;
 				height: 100%;
 			}
 			
@@ -170,7 +171,7 @@
 				} else if (paneScrollbar.value > 75) {
 					paneScrollbar.value=75;
 				}
-				modifyablePane.style["flex"] = "0 0 " + (100-paneScrollbar.value) + "%";
+				modifyablePane.style["flex"] = "0 0 " + paneScrollbar.value + "%";
 			});
 
 		</script>
