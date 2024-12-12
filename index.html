@@ -36,8 +36,8 @@
                         <button id="comb-button" class="action-button"><div class="action-logo">COM</div><div class="action-text">Combinaison</div></button>
                         <button id="swap-button" class="action-button"><div class="action-logo">ECH</div><div class="action-text">Échange de membres</div></button>
                 </div> <!-- /menu-div -->
-
-                    
+				<div id="scroll-div">
+                <div id="content-div">
                     <div id="solve-div" class="v-container"> <!-- cadre recevant la résolution du système -->
                         <table id ="resolution-steps"> <!-- affichage des étapes de résolution -->
                         </table> <!-- /resolution-steps -->
@@ -185,6 +185,9 @@
                     <div id="manual-div">
                         <!--iframe id="manual-iframe" src="mode_d_emploi/index.html" width="100%" height="100%" />-->
                     </div> <!-- /manual-frame-div -->
+				</div> <!-- /scroll-div -->
+				<input type="range" id="pane-scrollbar" min="0" max="100" value="50">
+				</div> <!-- /content-div -->
             </div> <!-- /main-div -->
 
             <!-- Message d'accueil évanescent -->
