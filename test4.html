@@ -1,0 +1,178 @@
+<html>
+	<head>
+		<style type="text/css">
+			* {
+				box-sizing: border-box;
+			}
+			
+			body {
+				display: flex;
+				flex-flow: row nowrap;
+				position: absolute;
+				top: 0pt;
+				bottom: 0pt;
+				left: 0pt;
+				right: 0pt;
+				background-color: red;
+				padding: 1cm;
+				overflow: hidden;
+				justify-content: space-between;
+				gap: 1cm;
+				align-items: stretch;
+				overflow-x: scroll;
+			}
+			
+			#filler {
+				background-color: green;
+				display: flex;
+				flex-flow: column nowrap;
+				height: 100%;
+				justify-content: space-between;
+				gap: 1cm;
+				flex: 1 1 0;
+			}
+			
+			#first {
+				background-color: yellow;
+				flex: 1 1 0;
+				width: 100%;
+				padding: 1cm;
+			}
+			
+			#second {
+				background-color: blue;
+				flex: 0 0 25%;
+				width: 100%;
+				padding: 1cm;
+			}
+			
+			#pane-scrollbar {
+				writing-mode: vertical-lr;
+				height: 100%;
+			}
+			
+			/* https://danielstern.ca/range.css/?ref=css-tricks#/ */
+			input[type=range] {
+				height: 100%; 
+				margin: 0px 0;
+				background-color: transparent;
+				-webkit-appearance: none;
+			}
+			
+			input[type=range]:focus {
+				outline: none;
+			}
+			
+			input[type=range]::-webkit-slider-runnable-track {
+				background: #a4c8a9;
+				border: 0.2px solid #010101;
+				height: 100%;
+				width: 20px;
+				cursor: pointer;
+			}
+			
+			input[type=range]::-webkit-slider-thumb {
+				margin-top: -0.2px;
+				width: 20px;
+				height: 20px;
+				background: #7570c3;
+				border: 1px solid #000000;
+				cursor: pointer;
+				-webkit-appearance: none;
+			}
+			
+			input[type=range]:focus::-webkit-slider-runnable-track {
+				background: #edf4ee;
+			}
+			
+			input[type=range]::-moz-range-track {
+				background: #a4c8a9;
+				border: 0.2px solid #010101;
+				height: 100%;
+				width: 20px;
+				cursor: pointer;
+			}
+			
+			input[type=range]::-moz-range-thumb {
+				width: 20px;
+				height: 20px;
+				background: #7570c3;
+				border: 1px solid #000000;
+				cursor: pointer;
+			}
+			
+			input[type=range]::-ms-track {
+				background: transparent;
+				border-color: transparent;
+				border-width: 0px 0;
+				color: transparent;
+				height: 100%;
+				width: 20px;
+				cursor: pointer;
+			}
+			
+			input[type=range]::-ms-fill-lower {
+				background: #5d9a65;
+				border: 0.2px solid #010101;
+			}
+			
+			input[type=range]::-ms-fill-upper {
+				background: #a4c8a9;
+				border: 0.2px solid #010101;
+			}
+			
+			input[type=range]::-ms-thumb {
+				width: 20px;
+				height: 20px;
+				background: #7570c3;
+				border: 1px solid #000000;
+				cursor: pointer;
+				margin-top: 0px;
+				/*Needed to keep the Edge thumb centred*/
+			}
+			
+			input[type=range]:focus::-ms-fill-lower {
+				background: #a4c8a9;
+			}
+			
+			input[type=range]:focus::-ms-fill-upper {
+				background: #edf4ee;
+			}
+			
+			/*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+			how to remove the virtical space around the range input in IE*/
+			@supports (-ms-ime-align:auto) {
+			/* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+			input[type=range] {
+				margin: 0;
+			/*Edge starts the margin from the thumb, not the track as other browsers do*/
+			}
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="filler">
+			<div id="first">
+			</div>
+			<div id="second">
+			</div>
+		</div>
+		<input type="range" id="pane-scrollbar" min="0" max="100" value="25">
+		<script>
+			const modifyablePane = document.getElementById('second');
+			const paneScrollbar = document.getElementById('pane-scrollbar');
+
+			// Handle scrolling when the range input changes
+			paneScrollbar.addEventListener('input', () => {
+				if (paneScrollbar.value < 25) {
+					paneScrollbar.value = 25;
+				} else if (paneScrollbar.value > 75) {
+					paneScrollbar.value=75;
+				}
+				modifyablePane.style["flex"] = "0 0 " + (100-paneScrollbar.value) + "%";
+			});
+
+		</script>
+	</body>
+</html>
