@@ -230,6 +230,30 @@ manualDiv.style.display = "none";
 let manualShow = false;
 
 
+
+
+
+
+const paneScrollbar = document.getElementById('pane-scrollbar');
+
+// Handle scrolling when the range input changes
+paneScrollbar.addEventListener('input', () => {
+	if (paneScrollbar.value < 25) {
+		paneScrollbar.value = 25;
+	} else if (paneScrollbar.value > 75) {
+		paneScrollbar.value=75;
+	}
+	manualDiv.style["flex"] = "0 0 " + paneScrollbar.value + "%";
+});
+
+
+
+
+
+
+
+
+
 // Affectation des callbacks
 switchManualButton.addEventListener("click", switchManual);
 manualInFrame.addEventListener("click", showManualFrame);
