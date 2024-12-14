@@ -160,6 +160,7 @@ const lineEntry = document.getElementById("line-entry"); // TODO à supprimer ?
 
 //  -- boutons de la barre de titre
 const switchManualButton = document.getElementById("manual-switch");
+const manualResizeButton = document.getElementById("manual-resize");
 const manualChoice = document.getElementById("manual-choice");
 const manualInFrame = document.getElementById("manual-in-frame");
 const manualInTab = document.getElementById("manual-in-tab");
@@ -168,11 +169,14 @@ const decreaseSizeButton = document.getElementById("decrease-size");
 const increaseSizeButton = document.getElementById("increase-size");
 const switchFullscreenButton = document.getElementById("fullscreen");
 
-//  -- logos de passage en ou hors du mode plein écran
-const fullscreenOnLogo = document.getElementById("fullscreen-on");
-const fullscreenOffLogo = document.getElementById("fullscreen-off");
 
 const newSystemButton = document.getElementById("fast-input");
+const newSystemModal = document.getElementById("new-system");
+const newSystemInput = document.getElementById("new-system-input");
+const newSystemError = document.getElementById("new-system-error");
+const validateSystemButton = document.getElementById("validate-system-input");
+const cancelSystemButton = document.getElementById("cancel-system-input");
+
 
 const swapButton = document.getElementById("swap-button");
 const operationButton = document.getElementById("op-button");
@@ -259,6 +263,9 @@ switchManualButton.addEventListener("click", switchManual);
 manualInFrame.addEventListener("click", showManualFrame);
 manualInTab.addEventListener("click", showManualTab);
 manualChoice.addEventListener("click", e => manualChoice.style.display="none");
+newSystemModal.addEventListener("click", e => newSystemModal.classList.add("hide"));
+document.getElementById("new-system-content").addEventListener("click", e => {console.log("Bummer!"); e.stopPropagation();});
+manualResizeButton.addEventListener("click", toggleResizeScrollbar);
 
 switchMobileModeButton.addEventListener("click", setEntryMode);
 
@@ -266,7 +273,116 @@ decreaseSizeButton.addEventListener("click", decreaseFontSize);
 increaseSizeButton.addEventListener("click", increaseFontSize);
 switchFullscreenButton.addEventListener("click", switchFullscreenMode);
 
-newSystemButton.addEventListener("click", fastInput);
+newSystemButton.addEventListener("click", showNewSystemModal);
+validateSystemButton.addEventListener("click", validateNewSystem);
+cancelSystemButton.addEventListener("click", cancelNewSystem);
+
+function cancelNewSystem(e) {
+    newSystemInput.value = "";
+    newSystemModal.classList.add("hide");
+    newSystemError.classList.add("hide");
+}
+
+function showNewSystemModal(e) {
+    console.log("Showing system input modal.");
+    newSystemModal.classList.remove("hide");
+}
+
+function validateNewSystem(e) {
+    let input = newSystemInput.value;
+    if (input===null) {
+		return;
+	}
+	let unknowns = [];
+	let data = [];
+	try {
+		let inputArray = input.split(";");
+		if (inputArray.length==0) {
+			throw("saisie vide");
+		}
+		if (inputArray.length==1) {
+			throw("une seule ligne");
+		}
+		for (let i=0; i<inputArray.length; i++) {
+			data.push(parseLinEq(parse(tokenize(inputArray[i]))));	
+		}
+        console.log("Done tokenizing.");
+		for (let i=0; i<data.length; i++) {
+			let line = data[i];
+			if (line.length != 2) {
+				throw("ligne "+(i+1)+" mal formée : trop ou trop peu de signes '='");
+			}
+			for (let j=0; j<2; j++) {
+				let part = line[j];
+				for (let k=0; k<part.length; k++) {
+					if (part[k].base != "" && !includes(unknowns, part[k].base)) {
+						unknowns.push(part[k].base);
+					} 
+				}
+			}
+		}
+	} catch(e) {
+        newSystemError.innerHTML = "La saisie n'est pas correcte ("+e+").";
+        newSystemError.classList.remove("hide");
+		return;
+    }
+
+    console.log("Proceeding.");
+
+    newSystemModal.classList.add("hide");
+    newSystemError.classList.add("hide");
+
+    collapseConfigs();
+
+	_unknowns = unknowns;
+	_unknowns.push("");
+	_nLines = data.length;
+
+	let system = new System();
+	for (let i=0; i<data.length; i++) {
+		let line = new Line(new Part(data[i][0]), new Part(data[i][1]));
+		system.addLine(line);
+	}
+
+	_problem = new Problem(system);
+
+	let virtualKbdRows = [];
+	
+	for (let j=0; j<4; j++) {
+		virtualKbdRows.push(document.getElementById("virtual-kbd-row-" + j));
+	}
+
+	console.log(_unknowns);
+
+    // suppression des boutons "inconnues" du clavier virtuel
+    document.querySelectorAll(".virtual-kbd-var").forEach( n => n.remove() );
+
+    // creation des boutons "inconnues" du clavier virtuel
+	let i=0;
+	for (let j=0; j<_unknowns.length; j++) {
+		let name = _unknowns[j];
+		if (name != "") {
+			console.log("creating key for unknown '" + name + "'.");
+			let button = document.createElement("button");
+			button.classList.add("virtual-kbd");
+			button.classList.add("virtual-kbd-var");
+			button.id = "unknown-" + name;
+			button.innerHTML = "\\("+name+"\\)";
+            button.dataset.value = name;
+            button.addEventListener("click", opKbdPress);
+			let item = document.createElement("td");
+			item.appendChild(button);
+			virtualKbdRows[i%4].appendChild(item);
+			MathJax.Hub.Queue(["Typeset", MathJax.Hub, "unknown-" + name]);
+			i++;
+		}
+	}
+	
+	setupResolutionEnvironment();
+    setEntryModeRoutine(_entryMode);
+	_problem.showLastStep();
+    selectKeyboardTarget(opEntry);
+}
 
 swapButton.addEventListener("click", showSwapConfig);
 operationButton.addEventListener("click", showOpConfig);
@@ -384,8 +500,7 @@ function switchFullscreenMode(e) {
             elem.msRequestFullscreen();
         }
         console.log("Switching to fullscreen mode.");
-        fullscreenOnLogo.style.display = "none";
-        fullscreenOffLogo.style.display = "block";
+        switchFullscreenButton.dataset.state = "1";
     } else {  
         if (document.exitFullscreen) {
             document.exitFullscreen();
@@ -395,8 +510,7 @@ function switchFullscreenMode(e) {
             document.msExitFullscreen();
         }
         console.log("Switching out of fullscreen mode.");
-        fullscreenOnLogo.style.display = "block";
-        fullscreenOffLogo.style.display = "none";
+        switchFullscreenButton.dataset.state = "0";
     }
 }
 
@@ -445,21 +559,41 @@ function switchManual(e) {
         console.log("Hiding iframe.");
         manualDiv.style.display = "none";
         manualShow = false;
+        switchManualButton.dataset.state = "0";
+        manualResizeButton.classList.add("hide");
+
     } else {
-        manualChoice.style.display = 'block';
+        manualChoice.classList.remove("hide");
     }
 }
 
 function showManualFrame(e) {
     console.log("Showing iframe.");
-    manualDiv.style.display = "block";
+    manualDiv.classList.remove("hide");
     manualShow = true;
-    manualChoice.style.display = 'none';
+    switchManualButton.dataset.state = "1";
+    manualChoice.classList.add("hide");
+    manualResizeButton.classList.remove("hide");
+    
 }
 
 function showManualTab(e) {
     window.open("mode_d_emploi/index.html", '_blank').focus();
-    manualChoice.style.display = 'none';
+    manualChoice.classList.add("hide");
+}
+
+var resizeScrollbarVisible = false;
+
+function toggleResizeScrollbar(e) {
+    if (resizeScrollbarVisible) {
+        paneScrollbar.classList.add("hide");
+        manualResizeButton.dataset.state = 0;
+        resizeScrollbarVisible = false;
+    } else {
+        paneScrollbar.classList.remove("hide");
+        manualResizeButton.dataset.state = 1;
+        resizeScrollbarVisible = true;
+    }
 }
 
 /* fonction(callback): validateKeyUnknownsEntry(evenement)
@@ -1001,10 +1135,13 @@ function executeComb(e) {
 
 
 function collapseOneConfig(div, show) {
-	div.style.display = show ? "block" : "none";
+	// div.style.display = show ? "block" : "none";
 	if (show) {
+        div.classList.remove("hide");
 		div.scrollIntoView();
-	}
+	} else {
+        div.classList.add("hide");
+    }
 }
 
 var activeOperationMode = null;
@@ -1216,7 +1353,7 @@ function Step(system, type, data, id) {
         switch (this.type) {
             case STYPE.INITIAL:
                 comment_td.innerHTML = "Système initial.";
-                tr.className += " initial";
+                tr.className += " initial"; // TODO classList.add n'est pas mieux ?
                 break;
             case STYPE.SWAP:
                 comment_td.innerHTML = "Échange des deux membres de la ligne &ell;<sub>" + this.data + "</sub>.";
@@ -1313,10 +1450,10 @@ function subScriptRoutine(n) {
 
 const newShort = "Saisissez le système ci-dessous, en séparant les lignes d'un point-virgule."
 
-function fastInput(e) {
+
+function fastInput(input) {
     collapseConfigs();
     // quickStart.style.display = "none";
-	let input = prompt(newShort);
 	if (input===null) {
 		return;
 	}
@@ -1413,3 +1550,10 @@ function enableKeyboardUnknowns(mode) {
 
 setActionButtonDisabled(true);
 setEntryModeRoutine(false);
+
+const urlParams = new URLSearchParams(window.location.search);
+const urlData = urlParams.get('sys');
+
+if (urlData) {
+    fastInput(urlData);
+}

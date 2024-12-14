@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 html {
     background: white;
 }
@@ -5,10 +8,10 @@ html {
 body{
     margin: 0 auto;
     background: white;
-    font-family: Calibri, Ubuntu, Roboto, sans-serif;
+    font-family: Montserrat, Calibri, Ubuntu, Roboto, sans-serif;
     font-size: 10pt;
-    line-height: 1.1;
-    max-width: 80ex;
+    line-height: 1;
+    max-width: 400px;
     border: 5px solid white;
 }
 
@@ -97,7 +100,7 @@ dl.commands > dd {
     margin:0;
     margin-left: 2ex;
     border-left: 1.7pt dotted #345678;
-    padding-left : .2ex;
+    padding-left : 1ex;
 }
 
 dl.parameters {
@@ -179,7 +182,7 @@ kbd {
 
 p {
     padding: 0;
-    margin: 0 1ex;
+    margin: 2ex 0;
 }
 
 ul {

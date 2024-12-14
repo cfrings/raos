@@ -1,12 +1,37 @@
 /* Raos.css v2
-    feuille de style pour le logiciel raos */
+    feuille de style pour le logiciel raos 
+    
+    1. Police de caractères
+    2. Variables css du document
+    3. Eléments généraux
+    4. Fenêtres modales
 
-/* ==================
-    A1. Style général
-===================== */
+*/
 
+
+
+
+/*
+╔══════════════════════════════════════════════════════════╗
+║║
+╚══════════════════════════════════════════════════════════╝
+*/
+
+/*
+╔══════════════════════════════════════════════════════════╗
+║ 1. Police de caratcères                                  ║
+╚══════════════════════════════════════════════════════════╝
+*/
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/*
+╔══════════════════════════════════════════════════════════╗
+║ 2. Variables du document                                 ║
+╚══════════════════════════════════════════════════════════╝
+*/
+
 :root {
     --main-color:#F7AD19;
     --darkest-secondary-color:#020233;
@@ -19,10 +44,19 @@
     --light-color:#06c;
 }
 
+
+/*
+╔══════════════════════════════════════════════════════════╗
+║ 3. Eléments généraux                                     ║
+╚══════════════════════════════════════════════════════════╝
+*/
 /* Réglages généraux de l'appli */
+
+
 * {
-    font-size: inherit;
+    font-size: inherit; /* ? */
     margin: 0pt;
+    /* boxsizing ? */
 }
 
 #quick-start {
@@ -30,20 +64,6 @@
     padding: 2ex;
     box-sizing: border-box;
 }
-
-h1 {
-    font-size: 200%;
-}
-
-h2 {
-    font-size: 150%;
-				background-color: black;
-				color: white;
-				padding: 1ex;
-    margin-top: 2ex;
-}
-
-p {margin: 2ex;}
 
 
 html {
@@ -54,11 +74,11 @@ font-size: 12pt;
 body {
     background-color: #666;
     font-family: Montserrat, Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    height: auto;
-	overscroll-behavior: none;
+    height: auto; /* pas 100% ? */
+	overscroll-behavior: none; /* suppression du rechargement lors du swipe down sur un téléphone */
 }
 
-kbd {
+kbd { /* obsolete ? */
     border: 1px solid currentColor;
     padding: 0.2ex .5ex;
     border-radius: 1ex;
@@ -74,19 +94,22 @@ button {
     /*height: auto;*/
   border: 1px solid rgba(0,0,0,0.15);
   border-radius: 4px;
-  transition: all 0.3s ease-out;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.5);
 }
-
-
 
 button:disabled {
     color: #DDD;
 }
 
+
+/*
+╔══════════════════════════════════════════════════════════╗
+║ 4. Fenêtres modales                                      ║
+╚══════════════════════════════════════════════════════════╝
+*/
+
 .modal {
-  display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -103,81 +126,146 @@ button:disabled {
 .modal-content {
   background-color: var(--darkest-secondary-color);
   color: white;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 10vw auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
 
+/* déplacer ? */
 #manual-button-container {
 display: flex;
 flex-flow: row nowrap;
 justify-content: space-around;
 }
 
-@media screen {
-    /* ===========================================
-        A2. Éléments structurants de l'application
-    ============================================== */
+#new-system-content {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 3ex;
+}
 
 
-    #screen-filler { /* Élémént principal assurant le plein écran */
-        /* position absolue à 0 de chacun des bords */
-        box-sizing: border-box;
-        position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
-        /* sans bordure, marges ni capitonnage */
-        border:0pt;
-        margin:0pt;
-        padding:0pt;
-        /* pour cette application, on utilise le modèle flex */
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-    }
+/*
+╔══════════════════════════════════════════════════════════╗
+║ 5. Structure de l'application                            ║
+╚══════════════════════════════════════════════════════════╝
+html                                                              
+│                                                                 
+└─► body                                                          
+    │                                                             
+    ├─► screen-filler                                             
+    │   │                                                         
+    │   ├─► title-div                                             
+    │   │   │                                                     
+    │   │   ├─► title-left                                        
+    │   │   │   │                                                 
+    │   │   │   ├─► title                                         
+    │   │   │   │   │                                             
+    │   │   │   │   ├─► title-logo                                
+    │   │   │   │   │                                             
+    │   │   │   │   └─► title-text                                
+    │   │   │   │                                                 
+    │   │   │   ├─► manual-switch                                 
+    │   │   │   │                                                 
+    │   │   │   └─► manual-resize                                 
+    │   │   │                                                     
+    │   │   └─► title-right                                       
+    │   │       │                                                 
+    │   │       ├─► decrease-size                                 
+    │   │       │                                                 
+    │   │       ├─► increase-size                                 
+    │   │       │                                                 
+    │   │       ├─► mode-switch                                   
+    │   │       │                                                 
+    │   │       └─► fullscreen                                    
+    │   │                                                         
+    │   └─► main-div                                              
+    │       │                                                     
+    │       ├─► menu-div                                          
+    │       │                                                     
+    │       │       (.action-button))                             
+    │       │                                                     
+    │       └─► scroll-div                                        
+    │           │                                                 
+    │           ├─► content-div                                   
+    │           │   │                                             
+    │           │   ├─► solve-div                                 
+    │           │   │   │                                         
+    │           │   │   ├─► resolution-steps (table)              
+    │           │   │   │                                         
+    │           │   │   ├─► (.action-container))                  
+    │           │   │   │                                         
+    │           │   │   └─► virtual-keyboard-container            
+    │           │   │       │                                     
+    │           │   │       └─► virtual-keyboard                  
+    │           │   │           │                                 
+    │           │   │           └─► virtual-keyboard-layout       
+    │           │   │               │                             
+    │           │   │               └─► virtual-keyboard-table    
+    │           │   │                   │                         
+    │           │   │                   ├─► (.virtual-kbd)        
+    │           │   │                   │                         
+    │           │   │                   ├─► (.virtual-kbd-num)    
+    │           │   │                   │                         
+    │           │   │                   ├─► (.virtual-kbd-special)
+    │           │   │                   │                         
+    │           │   │                   └─► (.virtual-kbd-var)    
+    │           │   │                                             
+    │           │   └─► manual-div                                
+    │           │       │                                         
+    │           │       └─► manual-iframe                         
+    │           │                                                 
+    │           └─► pane-scrollbar (input)                        
+    │                                                             
+    │ FENETRES MODALES                                            
+    │                                                             
+    ├─► manual-choice                                             
+    │                                                             
+    └─► new-system                                                
+*/
 
-    #main-div { /* Réglages du cadre principal */
-        display: flex;
-        flex-flow: row nowrap;
-        min-height: 1%; /* semble nécessaire pour obtenir des ascenseurs propres à l'intérieur */
-        align-items: stretch;
-        height:100%;
-        gap: 1ex;
-        padding: 1ex;
-    }
 
-    #main-div > * {
-        height:100%;
-    }
+/*
+╔══════════════════════════════════════════════════════════╗
+║ 5.a. La structure principale                             ║
+╚══════════════════════════════════════════════════════════╝
+*/
 
-    .hide {
-        display: none;
-    }
-
-    #menu-div { /* menu principal */
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: stretch;
-        /* flex-wrap: nowrap; */
-        flex: 0 0 0ex;
-        /* min-height:0; */
-        /* align-items: stretch; */ 
-        /*overflow:auto;*/
-        /*height: auto;*/
-    }
+#screen-filler { /* Élémént principal assurant le plein écran */
+    /* position absolue à 0 de chacun des bords */
+    box-sizing: border-box; /* nécessaire ? ne vaut-il mieux faire un réglage général ? */
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    /* sans bordure, marges ni capitonnage */
+    border:0pt;
+    margin:0pt;
+    padding:0pt;
+    /* pour cette application, on utilise le modèle flex */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
 
 
-    #title-div { /* Barre titre (reçoit aussi lien vers manuel et un sélecteur) */
+
+
+
+/*
+╔══════════════════════════════════════════════════════════╗
+║ 5.b. Tout ce qui concerne le titre                       ║
+╚══════════════════════════════════════════════════════════╝
+*/
+
+  #title-div { 
         background-color: black;
         color: white;
-        padding: 1ex;
+        padding: 2px 10px 5px; /* reformuler en vw, vh ? */
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: center;
-        gap: 1ex;
-
+        gap: 5px; /* reformuler en vw, vh ? */
     }
 
     #title-left {
@@ -185,7 +273,8 @@ justify-content: space-around;
         display: flex;
         flex-flow: row nowrap;
         justify-content: flex-start;
-        align-items: center;
+        align-items: stretch;
+        gap: 2px; /* reformuler en vw, vh ? */
     }
 
     #title-right {
@@ -194,66 +283,149 @@ justify-content: space-around;
         flex-flow: row wrap;
         justify-content: flex-end;
         align-items: stretch;
+        gap: 2px;
     }
 
-    #title-right > div + div {
-        margin-left: 1ex;
-    }
-
-    #title-left > div + div {
-        margin-left: 1ex;
-    }
-
-    #title { /* titre de l'application */
+    #title { 
         font-weight: bold;
         text-align: left;
         font-size: 250%;
+        margin-right: 1ex;
     }
 
-
     #title-logo{
-        display: inline;
+        display: inline-block;
+        margin-right: 1vw;
         height: .9em; 
         vertical-align: middle;
     }
 
     #title-text{
         display: inline;
-        height:1em; 
+        height: 1em; 
         vertical-align: middle;
     }
 
-
     .title-button {
-        display: flex;
+        display: flex; /* flex pour centrer verticalement le contenu */
         align-items: center;
         cursor: pointer;
         height: auto;
-        padding: 1ex;
-        border-radius: 1ex;
+        padding: .2ex 1ex; /* reformuler en vw, vh ? */
+        border-radius: 1ex; /* reformuler en vw, vh ? */
     }
 
     .title-button-image {
         height: 2em;
     }
 
-    #fullscreen{
-        color: white;
+    #manual-switch {
+        cursor: help;
     }
 
-    .stretcher { /* élément extensible pour remplir les flex */
-        flex-grow: 1;
+    #decrease-size {
+        cursor: zoom-out;
     }
-	
+
+    #increase-size {
+        cursor: zoom-in;
+
+    }
+
+    #fullscreen {
+        cursor: move;
+    }
+
+    #manual-resize {
+    }
+
+    #mode-switch {
+        cursor: pointer;
+        height: auto;
+        padding: 1ex;
+        border-radius: 1ex;
+    }
+
+    .switch[data-state="0"] {
+        background-color: black;
+    }
+
+    .switch[data-state="1"] {
+        background-color: var(--dark-color);
+    }
+
+
+/*
+╔══════════════════════════════════════════════════════════╗
+║ 5.b. Cadre principal                                     ║
+╚══════════════════════════════════════════════════════════╝
+*/
+
+#main-div { /* Réglages du cadre principal */
+    display: flex;
+    flex-flow: row nowrap;
+    /*min-height: 1%; /* semble nécessaire pour obtenir des ascenseurs propres à l'intérieur */ /* vraiment vrai ? */
+    align-items: stretch;
+    height:100%;
+    gap: 1ex;/* reformuler en vw, vh ? */
+    padding: 1ex;/* reformuler en vw, vh ? */
+}
+
+/* utile ? Il ne semble pas */
+#main-div > * {
+    /* height:100%; ? */
+}
+
+/*
+╔══════════════════════════════════════════════════════════╗
+║ 5.c. Tout ce qui concerne le menu des actions            ║
+╚══════════════════════════════════════════════════════════╝
+*/
+
+    #menu-div { 
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: stretch;
+        flex: 0 0 0ex;
+    }
+    
+    #fast-input {
+        background-color: var(--dark-color);
+        color: white;
+        font-weight: bolder;
+        margin-bottom: 1ex;
+    }
+
+    .action-button {
+        margin-top: 1ex;
+        text-overflow: ellipsis;
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+
+    .action-logo {
+        font-weight: bolder;
+        font-size: 5vw;
+        overflow: hidden;
+    }
+        
+ 
+/*
+╔══════════════════════════════════════════════════════════╗
+║ 5.c. Le contenu principal : systèmes et actions           ║
+╚══════════════════════════════════════════════════════════╝
+*/       
+
 	#content-div {
 		
 				display: flex;
 				flex-flow: column nowrap;
 				flex: 1 1 0;
-				
 				justify-content: space-between;
 				gap:.2cm;
 				align-items: stretch;
+                overflow: auto;
 	}
 	
 	#scroll-div {
@@ -265,22 +437,26 @@ justify-content: space-around;
 				justify-content: space-between;
 				gap:0cm;
 				align-items: stretch;
-				
-	}
+    }
 
 
-
-
+/*
+╔══════════════════════════════════════════════════════════╗
+║ Réglage de l'ascenseur pour redimensionner le manuel.            ║
+╚══════════════════════════════════════════════════════════╝
+*/
 #pane-scrollbar {
 				writing-mode: vertical-lr;
 				direction: rtl;
-				height: 100%;
+				height: auto; /* auto, pas 100%... problème de référence ? */
+                flex: 0 0 0;
+                box-sizing: border-box;
 			}
 			
 			/* https://danielstern.ca/range.css/?ref=css-tricks#/ */
 			input[type=range] {
-				height: 100%; 
-				margin: 0px 0;
+				height: 80%; 
+				margin: 0;
 				background-color: transparent;
 				-webkit-appearance: none;
 			}
@@ -290,19 +466,19 @@ justify-content: space-around;
 			}
 			
 			input[type=range]::-webkit-slider-runnable-track {
-				background: #a4c8a9;
-				border: 0.2px solid #010101;
+				background: var(--secondary-color);
+				border-width: 0pt;
 				height: 100%;
 				width: 20px;
-				cursor: pointer;
+				cursor: row-resize;
 			}
 			
 			input[type=range]::-webkit-slider-thumb {
 				margin-top: -0.2px;
 				width: 20px;
 				height: 20px;
-				background: #7570c3;
-				border: 1px solid #000000;
+				background: var(--dark-color);
+				border-width: 0pt;
 				cursor: pointer;
 				-webkit-appearance: none;
 			}
@@ -312,8 +488,8 @@ justify-content: space-around;
 			}
 			
 			input[type=range]::-moz-range-track {
-				background: #a4c8a9;
-				border: 0.2px solid #010101;
+				background: var(--secondary-color);
+				border-width: 0pt;
 				height: 100%;
 				width: 20px;
 				cursor: pointer;
@@ -322,8 +498,8 @@ justify-content: space-around;
 			input[type=range]::-moz-range-thumb {
 				width: 20px;
 				height: 20px;
-				background: #7570c3;
-				border: 1px solid #000000;
+				background: var(--dark-color);
+				border-width: 0pt;
 				cursor: pointer;
 			}
 			
@@ -339,26 +515,26 @@ justify-content: space-around;
 			
 			input[type=range]::-ms-fill-lower {
 				background: #5d9a65;
-				border: 0.2px solid #010101;
+				border-width: 0pt;
 			}
 			
 			input[type=range]::-ms-fill-upper {
-				background: #a4c8a9;
-				border: 0.2px solid #010101;
+				background: var(--secondary-color);
+				border-width: 0pt;
 			}
 			
 			input[type=range]::-ms-thumb {
 				width: 20px;
 				height: 20px;
-				background: #7570c3;
-				border: 1px solid #000000;
+				background: var(--dark-color);
+				border-width: 0pt;
 				cursor: pointer;
 				margin-top: 0px;
 				/*Needed to keep the Edge thumb centred*/
 			}
 			
 			input[type=range]:focus::-ms-fill-lower {
-				background: #a4c8a9;
+				background: var(--light-secondary-color);
 			}
 			
 			input[type=range]:focus::-ms-fill-upper {
@@ -380,24 +556,74 @@ justify-content: space-around;
 
 
 
+/*
+╔══════════════════════════════════════════════════════════╗
+║ Affichage des systèmes ║
+╚══════════════════════════════════════════════════════════╝
+*/
 
     #solve-div {
-        /*display: none;*/
         box-sizing: border-box;
         background-color: var(--light-secondary-color);
         overflow: auto;
-        flex: 1 0 40%;
+        flex: 1 1 0;
         padding: 1ex;
-        /*height:auto;*/
     }
 
+    /* système initial, pas à sa place !!! ? */
+    .initial * { 
+        border-top: none;
+    }
+    table#resolution-steps {
+        border-collapse:separate;
+        border-spacing:0 0;
+        background-color: white;
+    }
+
+    td.step-id {
+        text-align: right;
+        padding-left: 1ex;
+        padding-right: 1ex;
+        color: white;
+        background-color: var(--dark-color);
+        cursor: s-resize;
+    }
+
+    td.step-sys {
+        padding: 1ex;
+    }
+
+    td.step-comment {
+        font-style: italic;
+        text-align: left;
+        padding-left: 1ex;
+        width: 100%;
+    }
+
+    tr.step-row:not(:first-of-type)>td {
+        border-top: 1px dotted var(--dark-color);
+    }
+
+    tr.step-row {
+        font-size: inherit;
+        padding-right: 2ex;
+        width: 100%;
+        background-color: white;
+    }
+
+/*
+╔══════════════════════════════════════════════════════════╗
+║ Affichage du manuel ║
+╚══════════════════════════════════════════════════════════╝
+*/
     #manual-div {
 	    resize: horizontal;
         box-sizing: border-box;
-        flex: 1 0 minmax(40vw, 35%) ;
+        flex: 0 0 400px;
         border: 1pt solid black;
-    /*    height: 100%;
-        display:none; */
+        height: 100%;
+        display:none; 
+        scrollbar-gutter: stable both-edges;
     }
 
     #manual-iframe {
@@ -408,57 +634,15 @@ justify-content: space-around;
         height:auto;
     }
 
-    #manual-switch {
-        cursor: pointer;
-        padding: 1ex;
-        border-radius: 1ex;
-        width: 5em;
-    }
-        
-    .main-button {
-        margin-bottom: 1ex;
-    }
 
-    #fast-input {
-        background-color: var(--dark-color);
-        color: white;
-        font-weight: bolder;
-    }
-
-    .action-button {
-        margin-top: 1ex;
-        text-overflow: ellipsis;
-        display: flex;
-        flex-flow: column nowrap;
-    }
-
-
-    .action-logo {
-        display: none;
-        font-weight: bolder;
-        font-size: 5vw;
-        overflow: hidden;
-    }
-        
-    /* ACTIONS DE RÉSOLUTION */
-
-
-    .initial * {
-        border-top: none;
-    }
-
-    /* TODO : classe inutilisée ? */
-    #action-box {
-        background-color: #003;
-        width: 100%;
-        padding: .2ex;
-        padding-top: 0;
-        margin-top: 1ex;
-        font-size: 600%;
-    }
+/*
+╔══════════════════════════════════════════════════════════╗
+║ Actions de résolution ║
+╚══════════════════════════════════════════════════════════╝
+*/
 
     .action-settings {
-        box-sizing: border-box;
+        box-sizing: border-box; /* superflu ? */
         background-color: white;
         margin: 0ex 0ex;
         padding: 1ex;
@@ -477,7 +661,17 @@ justify-content: space-around;
     }
 
     .action-container {
-        display: none;
+    }
+    
+
+    .form-section > h1 { /* titre des sections du formulaire de saisie */
+        padding: .3ex .7ex;
+        background-color: pink;
+        color: white;
+        font-size: 100%;
+        font-weight: bold;
+        box-sizing: border-box;
+        flex: 1;
     }
 
     .op-choice {
@@ -503,8 +697,42 @@ justify-content: space-around;
         border-color: lavender;
     }
 
-    #virtual-kbd-container {
+
+
+    .comb-entry-line[data-target="true"] {
+        color:gray;
+    }
+
+    .comb-entry-line[data-target="true"] .comb-end {
         display: none;
+    }
+
+    .comb-entry-line[data-target="false"] {
+        color:black;
+    }
+
+
+    .math-entry {
+        border: 1px solid black;
+    }
+
+    .math-entry[data-mobile=true][data-selected="1"] { /* changer true et false en 1 et 0 ? */
+        background-color: lightgoldenrodyellow;
+    }
+    
+    .math-entry[data-mobile=true][data-selected="0"] {
+        background-color: white;
+    }
+
+    
+        
+/*
+╔══════════════════════════════════════════════════════════╗
+║ Claviers virtuels ║
+╚══════════════════════════════════════════════════════════╝
+*/
+
+    #virtual-kbd-container {
     }
 
     #virtual-kbd-layout {
@@ -513,9 +741,7 @@ justify-content: space-around;
     }
 
     #virtual-kbd-table {
-        background-color: rgba(255, 192, 122, 1);
         padding: 1em;
-        margin: 1em;
         border-radius: 1em;
     }
 
@@ -540,119 +766,15 @@ justify-content: space-around;
         background-color: var(--lighter-secondary-color);
     }
 
-    .comb-entry-line[data-target="true"] {
-        color:gray;
-    }
-
-    .comb-entry-line[data-target="true"] .comb-end {
-        display: none;
-    }
-
-    .comb-entry-line[data-target="false"] {
-        color:black;
-    }
 
 
-    #fullscreen-off  {
-        display: none;
-    }
-
-    #mode-switch {
-        cursor: pointer;
-        height: auto;
-        padding: 1ex;
-        border-radius: 1ex;
-    }
-
-    #mode-switch[data-state="0"] {
-        background-color: black;
-    }
-
-
-    #mode-switch[data-state="1"] {
-        background-color: orange;
-    }
-
-    .math-entry {
-        border: 1px solid black;
-    }
-
-    .math-entry[data-mobile=true][data-selected="1"] {
-        background-color: lightgoldenrodyellow;
-    }
-    
-    .math-entry[data-mobile=true][data-selected="0"] {
-        background-color: white;
-    }
-
-    .alt-entry {
-        display: inline-block;
-        width: 10em;
-        height: 100%;
-        vertical-align: middle;
-        padding: 0 1ex;
-        border: 1px solid black;
-        border-radius: 1ex;
-    }
-
-    
-    .entry-unselected {
-        background-color: white;
-        color: black;
-    }
-
-    .entry-selected {
-        background-color: orangered;
-        color: white;
-        border-width: 1px solid white;
-    }
-        
-
-
-    /* ==============================================
-        A3. Conteneurs génériques (flex et ordinaire)
-    ================================================= */
-
-    .h-flex {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-middle;
-    }
-
-    .h-flex > * {
-    }
-
-    .v-container {
-    }
-
-    .v-container > * {
-        width: 100%;
-    }
-
-    .v-flex {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .v-flex > * {
-        width: 100%;
-    }
-
-
-        
-
-
-    /* ==============================
-        A4. Éléments de l'application
-    ================================= */
-
+/*
+╔══════════════════════════════════════════════════════════╗
+║ Autres éléments ║
+╚══════════════════════════════════════════════════════════╝
+*/
     .action-submit {
         width: 100%;
-    }
-
-    .comment { /* commentaires du formulaire de saisie */
-        color: #444;
-        font-style: italic;
     }
 
     .error { /* messages d'erreurs de saisie */
@@ -662,144 +784,56 @@ justify-content: space-around;
     }
 
     .error-container {
-        margin-top = 0 !important;
+        margin-top: 0 !important;
         padding: 0;
         display: none;
     }
 
-    .form-section > h1 { /* titre des sections du formulaire de saisie */
-        padding: .3ex .7ex;
-        background-color: pink;
-        color: white;
-        font-size: 100%;
-        font-weight: bold;
-        box-sizing: border-box;
-        flex: 1;
-    }
 
-
-    #line-entry { /* zone de saisie des lignes */
-        flex:1;
-    }
-
-    .font-size-button {
-        color: white;
-        font-weight: bold;
-        padding: 1ex;
-        border-radius: 1ex;
-        cursor: pointer;
-    }
-
-
-    #increase-size {
-        font-size: 125%;
-    }
-
-    #decrease-button {
-        font-size: 75%;
-    }
-
-    table#resolution-steps {
-        border-collapse:separate;
-        border-spacing:0 0;
-        background-color: white;
-    }
-
-    td.step-id {
-        text-align: right;
-        padding-left: 1ex;
-        padding-right: 1ex;
-        color: white;
-        background-color: darkorange;
-        cursor: s-resize;
-    }
-
-    td.step-sys {
-        padding: 1ex;
-    }
-
-    td.step-comment {
-        font-style: italic;
-        text-align: left;
-        padding-left: 1ex;
-        width: 100%;
-    }
-
-    tr.step-row:not(:first-of-type)>td {
-        border-top: 1px dotted darkorange;
-    }
-
-    tr.step-row {
-        font-size: inherit;
-        padding-right: 2ex;
-        width: 100%;
-        background-color: white;
-    }
-
-    .old-transit { /* transition pour les messages d'erreur */
-        box-sizing: border-box;
-        overflow: hidden;
-        transition: max-height .5s ease;
-        max-height: 0px;
-        margin: 0;
-        padding: 0;
-        /*padding-top: 1ex;*/
-    }
-
-    #unknown-list-display { /* affichage des inconnues pour saisie des lignes */
-        text-align: center;
-        background-color: white;
-        padding: .2ex;
-    }
-
-    #unknowns-entry { /* zone de saisie des inconnues */
-        flex: 1;
-    }
-
-    /* ===============
-        A4. Animations
-    ================== */
-
-    @keyframes vanish {
-        0% {opacity:1; background-color: red; color: white}
-        40% {opacity:1; background-color: red; color: white}
-        60% {opacity:1; background-color: black; color: white}
-        100% {opacity:0; background-color: black; color: white}
-    }
-}
+/*
+╔══════════════════════════════════════════════════════════╗
+║ Configuration pour l'impression                  ║
+╚══════════════════════════════════════════════════════════╝
+*/
 
 @media print {
-    #manual-switch, 
-    #manual-div, 
-    .font-size-button, 
-    #mode-switch,
-    #action-box,
-    .action-settings {
+    
+    .no-print {
         display: none !important;
     }
 
-    #menu-div, #form-div, #full-screen-message {
-        display: none !important; 
-    }
 }
+
+
+/*
+╔══════════════════════════════════════════════════════════╗
+║ Configuration pour système qui autorise le survol                  ║
+╚══════════════════════════════════════════════════════════╝
+*/
 
 @media (hover) {
     
     .font-size-button:hover {
-        background-color: darkorange;
+        background-color: var(--dark-color);
     }
         
     .title-button:hover {
-        background-color: darkorange;
+        background-color: var(--dark-color);
     }
     
     #manual-switch:hover {
-        background-color: darkorange;
+        background-color: var(--dark-color);
     }
 
 }
 
-@media (max-aspect-ratio: 3/4) {
+/*
+╔══════════════════════════════════════════════════════════╗
+║ Configuration pour affichage vertical                  ║
+╚══════════════════════════════════════════════════════════╝
+*/
+
+@media (max-aspect-ratio: 1/1) {
 
     button, input, select {
         min-height: 5vw;
@@ -847,7 +881,7 @@ justify-content: space-around;
     }
     
     #manual-div {
-	    flex: 0 0 25%;
+	    flex: 0 0 50%;
 	    resize: vertical;
         width: 100%;
 	    resize: vertical;
@@ -857,4 +891,22 @@ justify-content: space-around;
         margin-bottom: 0pt;
         margin-top: 0pt;
     }
+}
+
+
+/*
+╔══════════════════════════════════════════════════════════╗
+║ Configuration pour affichage horizontal                  ║
+╚══════════════════════════════════════════════════════════╝
+*/
+
+
+@media (min-aspect-ratio: 1/1) {
+}
+
+
+
+/* pas à sa place ? */
+.hide {
+    display: none;
 }
