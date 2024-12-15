@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="fr_FR"/>
 
         <meta name="viewport" content="width=device-width">
-        <script src="assets/MathJax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+        <script src="assets/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
      
         
         <link rel="stylesheet" href="assets/raos.css" />
@@ -30,7 +30,7 @@
                 </div>
             </div> <!-- /title-div -->
             <div id="main-div"> <!-- cadre principal de l'application -->
-                <div id="menu-div" class="no-print"> <!-- barre de boutons latérale -->
+                <div id="menu-div" class="no-print"> <!-- barre de buttons latérale -->
                         <button id="fast-input" class="action-button"><div class="action-logo">SYS</div><div class="action-text">Nouveau système</div></button>
                         <button id="op-button" class="action-button"><div class="action-logo">OPR</div><div class="action-text">Opération</div></button>
                         <button id="subst-button" class="action-button"><div class="action-logo">SUB</div><div class="action-text">Substitution</div></button>
@@ -49,11 +49,11 @@
                                 <div id="op-settings" class="action-settings">
                                     <table class="action-form">
                                         <tr>
-                                            <td>Ligne à modifier :</td>
+                                            <td>Ligne à modifier&nbsp;:</td>
                                             <td><select id="op-line"></select></td>
                                         </tr>
                                         <tr>
-                                            <td>Opération à effectuer :</td>
+                                            <td>Opération à effectuer&nbsp;:</td>
                                             <td>
                                                 <span id="op-add" class="op-choice">+</span>
                                                 <span id="op-sub" class="op-choice">&minus;</span>
@@ -62,7 +62,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Quantité à utiliser :</td>
+                                            <td>Quantité à utiliser&nbsp;:</td>
                                             <td>
                                                 <input type="text" id="op-entry" class="math-entry" data-selected="true"/>
                                             </td>
@@ -88,7 +88,7 @@
                                 <div id="subst-settings" class="action-settings">
                                     <table class="action-form">
                                         <tr>
-                                            <td>Ligne à utiliser pour la substitution :</td>
+                                            <td>Ligne à utiliser pour la substitution&nbsp;:</td>
                                             <td id=><select id="subst-line"></select></td>
                                         </tr>
                                         <tr>
@@ -106,11 +106,11 @@
                                 <div id="comb-settings" class="action-settings">
                                     <table class="action-form">
                                         <tr>
-                                            <td>Ligne à utiliser pour la combinaison :</td>
+                                            <td>Ligne à utiliser pour la combinaison&nbsp;:</td>
                                             <td><select id="comb-line"></select></td>
                                         </tr>
                                         <tr>
-                                            <td>Coefficients pour la combinaison linéaire (0 par défaut) :</td>
+                                            <td>Coefficients pour la combinaison linéaire (0 par défaut)&nbsp;:</td>
                                         </tr>
 
                                         <tr><td colspan=2><table id="comb-coef-table"></table></td></tr>
@@ -130,7 +130,7 @@
                                 <div id="swap-settings" class="action-settings">
                                     <table class="action-form">
                                         <tr>
-                                            <td>Ligne à modifier :</td>
+                                            <td>Ligne à modifier&nbsp;:</td>
                                             <td><select id="swap-line"></select></td>
                                         </tr>
                                         <tr>
@@ -180,10 +180,10 @@
                             </div>
                         </div> <!-- /solve-div -->
 
-                        <!-- TODO : changer les noms des touches du clavier (pas op-...)
+                        <!-- TODO&nbsp;: changer les noms des touches du clavier (pas op-...)
                         Voir s'il n'y a pas des conteneurs superflus -->
 
-                        <!-- TODO : pas moyen de charger le script après l'iframe.
+                        <!-- TODO&nbsp;: pas moyen de charger le script après l'iframe.
                         C'est emmerdant. Peut-être delayer le chargement de l'aide.
                         Pourquoi ça ne pose pas de problème pour l'autre version ? -->
 
@@ -200,17 +200,17 @@
 
         <div id="manual-choice" class="modal no-print hide">
             <div id="manual-choice-content" class="modal-content">
-                <p><b>Ouvrir le mode d'emploi...</b></p>
+                <h1>Ouvrir le mode d'emploi...</h1>
                 <div id="manual-button-container">
                     <div id="manual-in-frame">
-                        <div>
-                            <i>dans la fenêtre principale</i>
-                        </div>
+                        <button>
+                            dans la fenêtre principale
+                        </button>
                     </div>
                     <div id="manual-in-tab">
-                        <div>
-                            <i>dans un nouvel onglet</i>
-                        </div>
+                        <button>
+                            dans un nouvel onglet
+                        </button>
                     </div>
                 </div>
             </div>
@@ -218,8 +218,14 @@
             
         <div id="new-system" class="modal no-print hide">
             <div id="new-system-content" class="modal-content">
-                <p>Saisissez le système ci-dessous, en séparant les lignes d'un point-virgule.</p>
-                <input type="text" id="new-system-input" />
+            <div>
+                <h1>Saisissez le système ci-dessous, en séparant les lignes d'un point-virgule.</h1>
+                <p><i>Par exemple, pour créer le système
+                \[\left\{\begin{array}{rcl}2a+3b+c&=&2\\-a+\frac 13b-3c&=&-\frac 32\end{array}\right.,\]
+                saisir </p></i>
+            </div><pre>2a+3b+c=2;
+-a+1/3b-3c=-3/2</pre>
+                <textarea id="new-system-input" rows="6"></textarea>
                 <button id="validate-system-input">Valider</button>
                 <button id="cancel-system-input">Annuler</button>
                 <div id="new-system-error" class="transit error-container"></div>

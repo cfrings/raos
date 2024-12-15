@@ -68,12 +68,13 @@
 
 html {
 font-size: 12pt;
-	overscroll-behavior: none;
+	overscroll-behavior: none; /* suppression du rechargement lors du swipe down sur un téléphone */
 }
 
 body {
     background-color: #666;
     font-family: Montserrat, Calibri, Roboto, Ubuntu, "Deja Vu Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-variant: slashed-zero;
     height: auto; /* pas 100% ? */
 	overscroll-behavior: none; /* suppression du rechargement lors du swipe down sur un téléphone */
 }
@@ -85,7 +86,7 @@ kbd { /* obsolete ? */
 }
 
 select {
-    font-size: 100%;
+    font-size: 200%;
 }
 
 button {
@@ -124,26 +125,33 @@ button:disabled {
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: var(--darkest-secondary-color);
-  color: white;
-  margin: 10vw auto; /* 15% from the top and centered */
-  padding: 20px;
-  width: 80%; /* Could be more or less, depending on screen size */
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2ex;
+    background-color: var(--darkest-secondary-color);
+    color: white;
+    margin: 5ex auto; 
+    padding: 4ex;
+    width: 80%; /* Could be more or less, depending on screen size */
 }
 
 
 /* déplacer ? */
 #manual-button-container {
-display: flex;
-flex-flow: row nowrap;
-justify-content: space-around;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    gap: 2ex;
 }
 
 #new-system-content {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 3ex;
+    align-items: center;
 }
+
+#new-system-input {
+    width: 100%;
+}
+
 
 
 /*
@@ -154,9 +162,9 @@ html
 │                                                                 
 └─► body                                                          
     │                                                             
-    ├─► screen-filler                                             
+    ├─► screen-filler (flex vertical)                                         
     │   │                                                         
-    │   ├─► title-div                                             
+    │   ├─► title-div (flex horizontal)                                            
     │   │   │                                                     
     │   │   ├─► title-left                                        
     │   │   │   │                                                 
@@ -180,15 +188,15 @@ html
     │   │       │                                                 
     │   │       └─► fullscreen                                    
     │   │                                                         
-    │   └─► main-div                                              
+    │   └─► main-div (flex, variable)                                             
     │       │                                                     
-    │       ├─► menu-div                                          
+    │       ├─► menu-div (flex, variable)                                         
     │       │                                                     
-    │       │       (.action-button))                             
+    │       │       (.action-button)                             
     │       │                                                     
-    │       └─► scroll-div                                        
+    │       └─► scroll-div (flex horizontal)                                       
     │           │                                                 
-    │           ├─► content-div                                   
+    │           ├─► content-div (flex, variable)                                   
     │           │   │                                             
     │           │   ├─► solve-div                                 
     │           │   │   │                                         
@@ -225,6 +233,149 @@ html
     └─► new-system                                                
 */
 
+/*
+╔══════════════════════════════════════════════════════════╗
+║ Configuration pour affichage vertical                  ║
+╚══════════════════════════════════════════════════════════╝
+*/
+
+@media (max-aspect-ratio: 1/1) {
+
+    button, input, select {
+        min-height: 6vw;
+    }
+
+    #title-div {
+        font-size: 2.4vw;
+    }
+
+    #main-div { 
+        flex-flow: column nowrap;
+        gap: 1vw;
+        padding: 1vw;
+    }
+
+    #menu-div {
+        flex-flow: row nowrap;
+        gap: 1vw;
+        width: 100%;
+	    justify-content: space-between;
+        flex-grow: 0;
+    }
+
+    .action-button {
+        /*width: 18vw;*/
+        flex: 1 1 0;
+    }
+
+    .action-logo {
+        display: block;
+    }
+    
+    .action-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width:100%;
+        white-space: nowrap;
+	    font-size: 2vw;
+    }
+    
+    
+    #content-div {
+        
+				flex-flow: column nowrap;
+    }
+
+    #solve-div {
+    	padding: 1vw;
+    }
+    
+    #manual-div {
+	    flex: 0 0 50%;
+        width: 100%;
+    }	
+    
+    .virtual-kbd {
+        width: 10vw;
+        height:10vw;
+        font-size: 6vw;
+        background-color: white;
+        border-radius: 1vw;
+    }
+}
+
+
+/*
+╔══════════════════════════════════════════════════════════╗
+║ Configuration pour affichage horizontal                  ║
+╚══════════════════════════════════════════════════════════╝
+*/
+
+
+@media (min-aspect-ratio: 1/1) {
+
+    button, input, select {
+        min-height: 6vh;
+    }
+    
+    #title-div {
+        font-size: 2.4vh;
+    }
+    
+    #main-div { 
+        flex-flow: row nowrap;
+        gap: 1vh;
+        padding: 1vh;
+    }
+    
+    #menu-div {
+        flex-flow: column nowrap;
+        gap: 1vh;
+        width: 100%;
+	    justify-content: flex-start;
+        flex: 0 0 6vh;
+    }
+
+    .action-button {
+        font-variant: all-caps;
+    }
+
+    #fast-input {
+        margin-bottom: 3vh;
+    }
+
+    .action-logo {
+        display: none;
+    }
+    
+    #content-div {
+        
+				flex-flow: row nowrap;
+    }
+
+    #solve-div {
+    	padding: 1vh;
+    }
+
+    #manual-resize {
+        display: none;
+    }
+
+    #pane-scrollbar {
+        display: none;
+    }
+
+    
+    .virtual-kbd {
+        width: 10vh;
+        height:10vh;
+        font-size: 6vh;
+        background-color: white;
+        border-radius: 1vh;
+    }
+}
+
+
 
 /*
 ╔══════════════════════════════════════════════════════════╗
@@ -257,102 +408,104 @@ html
 ╚══════════════════════════════════════════════════════════╝
 */
 
-  #title-div { 
-        background-color: black;
-        color: white;
-        padding: 2px 10px 5px; /* reformuler en vw, vh ? */
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: 5px; /* reformuler en vw, vh ? */
-    }
 
-    #title-left {
-        flex-grow: 1;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: flex-start;
-        align-items: stretch;
-        gap: 2px; /* reformuler en vw, vh ? */
-    }
 
-    #title-right {
-        flex-shrink: 1;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-end;
-        align-items: stretch;
-        gap: 2px;
-    }
+#title-div { 
+    background-color: black;
+    color: white;
+    padding: 2px 10px 5px; /* reformuler en vw, vh ? */
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px; /* reformuler en vw, vh ? */
+}
 
-    #title { 
-        font-weight: bold;
-        text-align: left;
-        font-size: 250%;
-        margin-right: 1ex;
-    }
+#title-left {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 2px; /* reformuler en vw, vh ? */
+}
 
-    #title-logo{
-        display: inline-block;
-        margin-right: 1vw;
-        height: .9em; 
-        vertical-align: middle;
-    }
+#title-right {
+    flex-shrink: 1;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: stretch;
+    gap: 2px;
+}
 
-    #title-text{
-        display: inline;
-        height: 1em; 
-        vertical-align: middle;
-    }
+#title { 
+    font-weight: bold;
+    text-align: left;
+    font-size: 250%;
+    margin-right: 1ex;
+}
 
-    .title-button {
-        display: flex; /* flex pour centrer verticalement le contenu */
-        align-items: center;
-        cursor: pointer;
-        height: auto;
-        padding: .2ex 1ex; /* reformuler en vw, vh ? */
-        border-radius: 1ex; /* reformuler en vw, vh ? */
-    }
+#title-logo{
+    display: inline-block;
+    margin-right: 1vw;
+    height: .9em; 
+    vertical-align: middle;
+}
 
-    .title-button-image {
-        height: 2em;
-    }
+#title-text{
+    display: inline;
+    height: 1em; 
+    vertical-align: middle;
+}
 
-    #manual-switch {
-        cursor: help;
-    }
+.title-button {
+    display: flex; /* flex pour centrer verticalement le contenu */
+    align-items: center;
+    cursor: pointer;
+    height: auto;
+    padding: .2ex 1ex; /* reformuler en vw, vh ? */
+    border-radius: 1ex; /* reformuler en vw, vh ? */
+}
 
-    #decrease-size {
-        cursor: zoom-out;
-    }
+.title-button-image {
+    height: 2em;
+}
 
-    #increase-size {
-        cursor: zoom-in;
+#manual-switch {
+    cursor: help;
+}
 
-    }
+#decrease-size {
+    cursor: zoom-out;
+}
 
-    #fullscreen {
-        cursor: move;
-    }
+#increase-size {
+    cursor: zoom-in;
 
-    #manual-resize {
-    }
+}
 
-    #mode-switch {
-        cursor: pointer;
-        height: auto;
-        padding: 1ex;
-        border-radius: 1ex;
-    }
+#fullscreen {
+    cursor: move;
+}
 
-    .switch[data-state="0"] {
-        background-color: black;
-    }
+#manual-resize {
+}
 
-    .switch[data-state="1"] {
-        background-color: var(--dark-color);
-    }
+#mode-switch {
+    cursor: pointer;
+    height: auto;
+    padding: 1ex;
+    border-radius: 1ex;
+}
+
+.switch[data-state="0"] {
+    background-color: black;
+}
+
+.switch[data-state="1"] {
+    background-color: var(--dark-color);
+}
 
 
 /*
@@ -363,18 +516,10 @@ html
 
 #main-div { /* Réglages du cadre principal */
     display: flex;
-    flex-flow: row nowrap;
-    /*min-height: 1%; /* semble nécessaire pour obtenir des ascenseurs propres à l'intérieur */ /* vraiment vrai ? */
+    flex: 1 1 0;
     align-items: stretch;
-    height:100%;
-    gap: 1ex;/* reformuler en vw, vh ? */
-    padding: 1ex;/* reformuler en vw, vh ? */
 }
 
-/* utile ? Il ne semble pas */
-#main-div > * {
-    /* height:100%; ? */
-}
 
 /*
 ╔══════════════════════════════════════════════════════════╗
@@ -384,29 +529,33 @@ html
 
     #menu-div { 
         display: flex;
-        flex-flow: column nowrap;
         align-items: stretch;
-        flex: 0 0 0ex;
+        flex: 0 0 0;
     }
     
     #fast-input {
         background-color: var(--dark-color);
         color: white;
         font-weight: bolder;
-        margin-bottom: 1ex;
     }
 
     .action-button {
-        margin-top: 1ex;
+        font-weight: bold;
+        margin: 0pt;
+        overflow: hidden;
+        align-items: stretch;
         text-overflow: ellipsis;
         display: flex;
         flex-flow: column nowrap;
     }
 
+    .action-text {
+        margin: auto;
+    }
 
     .action-logo {
         font-weight: bolder;
-        font-size: 5vw;
+        font-size: 4vw;
         overflow: hidden;
     }
         
@@ -420,7 +569,6 @@ html
 	#content-div {
 		
 				display: flex;
-				flex-flow: column nowrap;
 				flex: 1 1 0;
 				justify-content: space-between;
 				gap:.2cm;
@@ -563,11 +711,10 @@ html
 */
 
     #solve-div {
-        box-sizing: border-box;
+        /* box-sizing: border-box; */
         background-color: var(--light-secondary-color);
         overflow: auto;
         flex: 1 1 0;
-        padding: 1ex;
     }
 
     /* système initial, pas à sa place !!! ? */
@@ -581,13 +728,13 @@ html
     }
 
     td.step-id {
+        background-color: var(--dark-color);
         text-align: right;
         padding-left: 1ex;
         padding-right: 1ex;
         color: white;
-        background-color: var(--dark-color);
-        cursor: s-resize;
     }
+
 
     td.step-sys {
         padding: 1ex;
@@ -622,7 +769,6 @@ html
         flex: 0 0 400px;
         border: 1pt solid black;
         height: 100%;
-        display:none; 
         scrollbar-gutter: stable both-edges;
     }
 
@@ -745,21 +891,14 @@ html
         border-radius: 1em;
     }
 
-    .virtual-kbd {
-        width: 10vw;
-        height:10vw;
-        font-size: 6vw;
-        background-color: white;
-        border-radius: 1vw;
-    }
         
     .virtual-kbd-num {
-        background-color: var(--dark-color);
+        background-color: var(--darkest-secondary-color);
         color: white;
     }
         
     .virtual-kbd-special {
-        background-color: var(--light-color);
+        background-color: var(--light-secondary-color);
     }
         
     .virtual-kbd-var {
@@ -825,88 +964,29 @@ html
         background-color: var(--dark-color);
     }
 
+    
+    td.step-id:hover {
+        background-image: url("ciseaux-blancs.svg");
+        background-position: bottom;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
 }
 
 /*
 ╔══════════════════════════════════════════════════════════╗
-║ Configuration pour affichage vertical                  ║
+║ Utilitaire pour cacher                  ║
 ╚══════════════════════════════════════════════════════════╝
 */
-
-@media (max-aspect-ratio: 1/1) {
-
-    button, input, select {
-        min-height: 5vw;
-    }
-
-    html {
-        font-size: 10pt;
-    }
-    
-    #menu-div {
-        flex-flow: row nowrap;
-        gap: 1vw;
-        width: 100%;
-	    justify-content: space-between;
-        flex-grow: 0;
-    }
-
-    .action-button {
-        width: 18vw;
-    }
-
-    .action-logo {
-        display: block;
-    }
-    
-    .action-text{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width:100%;
-        white-space: nowrap;
-	    font-size: 3vw;
-    }
-    
-    #main-div {
-        flex-flow: column nowrap;
-    }
-
-    #title-div {
-        font-size: 3vw;
-    }
-    
-    #solve-div {
-        width: 100%;
-	flex: 1 1 75%;
-    }
-    
-    #manual-div {
-	    flex: 0 0 50%;
-	    resize: vertical;
-        width: 100%;
-	    resize: vertical;
-    }	
-    
-    .main-button, .action-button {
-        margin-bottom: 0pt;
-        margin-top: 0pt;
-    }
-}
-
-
-/*
-╔══════════════════════════════════════════════════════════╗
-║ Configuration pour affichage horizontal                  ║
-╚══════════════════════════════════════════════════════════╝
-*/
-
-
-@media (min-aspect-ratio: 1/1) {
-}
-
-
 
 /* pas à sa place ? */
 .hide {
     display: none;
 }
+
+h1 {
+    margin-bottom: 2ex;
+    font-size: 125%;
+}
+

@@ -227,7 +227,7 @@ var keyboardTarget = opEntry;
 
 //  - au démarrage, charger le mode d'emploi et le cacher
 manualDiv.innerHTML = '<iframe id="manual-iframe" src="mode_d_emploi/index.html" style="width:100%; height:100%;" />'
-manualDiv.style.display = "none";
+manualDiv.classList.add("hide");
 
 //  - initialisation de la bascule du mode d'emploi
 
@@ -262,7 +262,7 @@ paneScrollbar.addEventListener('input', () => {
 switchManualButton.addEventListener("click", switchManual);
 manualInFrame.addEventListener("click", showManualFrame);
 manualInTab.addEventListener("click", showManualTab);
-manualChoice.addEventListener("click", e => manualChoice.style.display="none");
+manualChoice.addEventListener("click", e => manualChoice.classList.add("hide"));
 newSystemModal.addEventListener("click", e => newSystemModal.classList.add("hide"));
 document.getElementById("new-system-content").addEventListener("click", e => {console.log("Bummer!"); e.stopPropagation();});
 manualResizeButton.addEventListener("click", toggleResizeScrollbar);
@@ -472,16 +472,16 @@ document.body.addEventListener("resize", function(e) {alert("resize"); document.
 
 function decreaseFontSize(e) {
     _fontScale /= 1.1;
-    solveDiv.style["font-size"] = (_fontScale | 0) + "%";
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, solveDiv]);
+    resolutionSteps.style["font-size"] = (_fontScale | 0) + "%";
+    //MathJax.Hub.Queue(["Typeset", MathJax.Hub, solveDiv]);
     // document.querySelector(".step-sys").forEach(function(e) {MathJax.Hub.Queue(["Typeset", MathJax.Hub, e);})
 }
 
 
 function increaseFontSize(e) {
     _fontScale *= 1.1;
-    solveDiv.style["font-size"] = (_fontScale | 0) + "%";
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, solveDiv]);
+    resolutionSteps.style["font-size"] = (_fontScale | 0) + "%";
+    //MathJax.Hub.Queue(["Typeset", MathJax.Hub, solveDiv]);
 }
 
 var fullscreenMode = false;
@@ -557,7 +557,7 @@ function switchManual(e) {
     
     if (manualShow) {
         console.log("Hiding iframe.");
-        manualDiv.style.display = "none";
+        manualDiv.classList.add("hide");
         manualShow = false;
         switchManualButton.dataset.state = "0";
         manualResizeButton.classList.add("hide");
@@ -1135,7 +1135,6 @@ function executeComb(e) {
 
 
 function collapseOneConfig(div, show) {
-	// div.style.display = show ? "block" : "none";
 	if (show) {
         div.classList.remove("hide");
 		div.scrollIntoView();
@@ -1191,7 +1190,8 @@ function showCombConfig() {
 // affichage des erreurs
 function moveErrorDivTo(target) { // déplacement du conteneur au bon endroit
     if (errorMessage.parentNode) {
-    	errorMessage.parentNode.style.display = "none";
+        errorMessage.parentNode.classList.add("hide");
+    	//errorMessage.parentNode.style.display = "none";
         errorMessage.parentNode.removeChild(errorMessage);
     }
     target.appendChild(errorMessage);
@@ -1199,11 +1199,12 @@ function moveErrorDivTo(target) { // déplacement du conteneur au bon endroit
 
 function moveKeyboardTo(target) {
     if (virtualKeyboard.parentNode) {
-    	virtualKeyboard.parentNode.style.display = "none";
+    	//virtualKeyboard.parentNode.style.display = "none";
+        virtualKeyboard.parentNode.classList.add("hide");
         virtualKeyboard.parentNode.removeChild(virtualKeyboard);
     }
     target.appendChild(virtualKeyboard);
-    virtualKeyboard.parentNode.style.display = "block";
+    virtualKeyboard.parentNode.classList.remove("hide");
 }
 
 let timeoutId = 0;
@@ -1214,10 +1215,10 @@ function raosError(message) { // affichage du message
     MathJax.Hub.Queue(["Typeset", MathJax.Hub,  errorMessage]);
     // On fait apparaitre le message d'erreur et on l'inscrit
     // pour disparition dans 6 secondes
-    errorMessage.parentNode.style.display = "block";
+    errorMessage.parentNode.classList.remove("hide");
     errorMessage.scrollIntoView();
     clearTimeout(timeoutId); // supprimer une erreur précédente pas encore disparue
-    timeoutId = setTimeout(function() {errorMessage.parentNode.style.display = "none";}, 4000);
+    timeoutId = setTimeout(function() {errorMessage.parentNode.classList.add("hide");}, 4000);
 }
 
 // Structure des données
@@ -1541,9 +1542,7 @@ function fastInput(input) {
 
 function enableKeyboardUnknowns(mode) {
     console.log("Enabling unknowns buttons : ", mode);
-    let display = mode ? "block" : "none";
-    console.log(display);
-    document.querySelectorAll(".virtual-kbd-var").forEach( n => n.style.display=display );
+    document.querySelectorAll(".virtual-kbd-var").forEach( n => mode ? n.classList.remove("hide") : n.classList.add("hide") );
 }
 
 
