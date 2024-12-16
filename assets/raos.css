@@ -86,7 +86,7 @@ kbd { /* obsolete ? */
 }
 
 select {
-    font-size: 200%;
+    font-size: 150%;
 }
 
 button {
@@ -246,7 +246,7 @@ html
     }
 
     #title-div {
-        font-size: 2.4vw;
+        font-size: 3vw;
     }
 
     #main-div { 
