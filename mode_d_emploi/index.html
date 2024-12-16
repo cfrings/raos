@@ -9,29 +9,28 @@
 <body>
 <h1>Rubriques d'aide</h1>
         <ul>
-        <li>Ce document :
+        <li>Présentation
         <ul>
         <li><a href="#description">Description</a></li>
         <li><a href="#accessibilite">Accessibilité</a></li>
-        <li><a href="#references">Créer des liens vers un système</a></li>
-        <li><a href="#contact">Contact</a></li>
+		<li><a href="#contact">Contact et feedback</a></li>
         </ul>
-        <li><a href="mde_ref.html">Référence</a></li>
-        <li><a href="mde_tuto.html">Tutoriels</a></li>
-        <li><a href="mde_ex_av.html">Exemples avancés</a></li>
+        <li><a href="#reference">Référence</a></li>
+        <li><a href="#tutoriel">Tutoriels</a></li>
+        <li><a href="#avances">Exemples avancés</a></li>
         </ul>
     </p>
 
 
 
-    <h1 id="description">Description</h1>
+    <h2 id="description">Description</h1>
 
     <p><b>Raos</b> est un <b>assistant</b> de résolution de systèmes affines.</p>
 
     <p><b>Raos</b> effectue les calculs exigés par les différentes étapes de résolution, mais n'effectue pas la résolution de façon autonome. <b>C'est à l'utilisateur de décider de la démarche à suivre</b> et de commander <b>Raos</b> d'en exécuter les étapes.</p> 
 
 
-    <h1 id="accessibilite">Accessibilité</h1>
+    <h2 id="accessibilite">Accessibilité</h1>
         <ul>
             <li><p><b>Pour passer en mode plein écran</b> : <kbd>F11</kbd>.</p></li>
             <li>
@@ -40,10 +39,635 @@
             </li>
         </ul>
 
-	<h1>Contact</h1>
+	<h2 id="contact">Contact</h1>
 	
 	Pour tout contact ou suggestion : <a href="mailto:christophe.frings@ac-orleans-tours.fr">christophe.frings@ac-orleans-tours.fr</a>.
+	
+	   <h1 id="reference">Référence</h1>
 
+<ol>
+    <li><a href="#creer">Créer un système</a></li>
+    <li><a href="#actions">Actions sur les systèmes</a>
+        <ul>
+            <li><a href="#operations">Opérations</a></li>
+            <li><a href="#substitution">Substitution</a></li>
+            <li><a href="#combinaison">Combinaison linéaire</a></li>
+            <li><a href="#echange">Échange des membres</a></li>
+        </ul>
+    </li>
+    <li><a href="#suppression">Suppression d'étapes</a></li>
+</ol>
+
+    <h2 id="creer">Créer un système</h2>
+
+    <dl class="commands">
+        <dt><button>Nouveau système</button></dt>
+        <dd><p>Ouvre une fenêtre de saisie surgissante.</p>
+        <p>Dans le champ de saisie de cette fenêtre, inscrire les lignes du système, <b>séparées par des points-virgules.</b></p>
+
+        <p><b>Exemple.</b> Saisir <span class="input">3x+y=1; 2x-3y=7</span> crée le système initial \[\left\lbrace\begin{array}{rcl}3x+y&=&1 \\ 2x-3y&=&7\end{array}\right.\]</p>
+        </dd>
+    </dl>
+
+    <h2 id="actions">Actions sur les sytèmes</h2>
+    <dl class="commands">
+        <dt id="operations"><button>Opération</button></dt>
+        <dd><p>Effectuer, sur une seule ligne, l'opération spécifiée.</p>
+            <p>Les quatre opérations arithmétiques classiques sont disponibles : addition, soustraction, multiplication, division.</p>
+            <p><b>Paramètres</b>:
+                <dl class="parameters">
+                    <dt>Ligne à utiliser : </dt>
+                    <dd>la ligne à laquelle l'opération sera appliquée.</dd>
+                    <dt>Opération à effectuer</dt><dd>sélectionner l'un des boutons <span class="op">&plus;</span>, <span class="op">&minus;</span>, <span class="op">&times;</span> ou <span class="op">&divide;</span>.</dd>
+                    <dt>Quantité à utiliser</dt><dd>
+                        <ul>
+                            <li>pour multiplication et division : expression numérique uniquement ;</li>
+                            <li>pour addition et soustraction : expression algébrique utilisant uniquement les inconnues du système.</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </p>
+        </dd>
+        <dt id="substitution"><button>Substitution</button></dt>
+        <dd>
+            <p>Utiliser une ligne pour substituer une expression à une inconnue dans toutes les autres lignes. <b>Note :</b> <i>la substitution est effectuée complètement, les étapes intermédiaires (développement, simplification) ne sont pas montrées.</i></p>
+            
+            <p><b>Paramètres</b>
+                <dl class="parameters">
+                    <dt>Ligne à utiliser pour la substitution</dt>
+                    <dd>Choisir une ligne de la forme <i>inconnue = expression</i>. L'action est impossible si le membre de gauche de la ligne choisie n'est pas une inconnue.
+                    </dd>
+                </dl>
+            </p>
+
+            <p>
+                <b>Exemples.</b>
+                <ul>
+                    <li>
+                        <span class="data">a=3b-c+2</span> permet la substitution de <span class="data">3b-c+2</span> à <span class="data">a</span>,
+                    </li>
+                    <li>
+                        <span class="data">-4a=3b-c+2</span> <b>ne permet pas</b> de substitution et provoque une erreur.
+                    </li>
+                </ul>
+            </p>
+        </dd>
+
+        <dt id="combinaison"><button>Combinaison</button></dt>
+        <dd>
+            <p>
+                Combine une ligne du système à toutes les autres lignes du système. <b>Note :</b> <i>la combinaison linéaire est effectuée immédiatement, les étapes intermédiaires ne sont pas montrées.</i>
+            </p> 
+            <p>
+                <dl class="parameters">
+                    <dt>Ligne à utiliser pour la combinaison :</dt>
+                    <dd>La ligne choisie sera combinée à toute autre ligne du système.
+                    </dd>
+                    <dt>Coefficients pour la combinaison linéaire</dt>
+                    <dd>
+                        Pour chaque ligne autre que celle sélectionnée, spécifier le coefficent à utiliser pour la combinaison linéaire. La combinaison linéaire n'est pas effectuée lorsque le coefficient n'est pas précisé ou est nul.
+                    </dd>
+                </dl>
+            </p>
+        </dd>
+
+        <dt id="echange"><button>Échange de membres</button></dt>
+        <dd><p>Échange les deux membres de la ligne sélectionnée.</p>
+            <dl class="parameters">
+                <dt>Ligne à modifier</dt>
+                <dd>La ligne dont on veut échanger les membres.</dd>
+            </dl>
+            <p><b>Exemple.</b> Pour le système \[\left\lbrace\begin{array}{rcl|l}2x&=&3y-1&\ell_1\\x&=&2y+4&\ell_1\end{array}\right.\]
+            échanger les membres de la ligne \(\ell_1\) le transforme en le système \[\left\lbrace\begin{array}{rcl|l}3y-1&=&2x&\ell_1\\x&=&2y+4&\ell_1\end{array}\right.\]</p>
+        </dd>
+    </dl>
+
+    <h2 id="suppression">Suppression d'étapes de la résolution</h2>
+    <p>En cliquant <b>sur le numéro</b> d'une étape, toutes les étapes <b>après</b> celle cliquée sont supprimées (après validation).</p>
+
+
+    <h1 id="tutoriel">Tutoriels</h1>
+
+    <p>Dans les tutoriels, cliquer sur une <span class="input">zone de contenu</span> pour en copier le contenu directement dans le presse-papier afin de l'utiliser dans l'application.</p>
+
+    <p>
+        <ul>
+            <li><a href="#tuto1">Résolution par substitution (2 inconnues)</a></li>
+            <li><a href="#tuto2">Résolution par substitution (3 inconnues)</a></li>
+            <li><a href="#tuto3">Résolution par combinaison linéaire (2 inconnues)</a></li>
+            <li><a href="#tuto4">Résolution par combinaison linéaire (3 inconnues)</a></li>
+        </ul>
+    </p>
+
+
+    <h2 id="tuto1">Résolution par substitution (2 inconnues)</h2>
+
+    <p>Résolution du système <span class="input">4a-3b=-1; 2a-b=3</span> 
+        \[1.\quad\left\{\begin{array}{rcl|l}
+        4a-3b & = & -1 &\ell_1\\
+        2a-b & = & 3 &\ell_2\\
+        \end{array}\right.\]</p>
+
+    <p><b>Stratégie</b> : isoler \(b\) dans le membre de gauche de la ligne \(\ell_2\) puis effectuer la substitution dans \(\ell_1\).</p>
+
+    <ol class="l1">
+        <li> Soustraire \(2a\) à la ligne \(\ell_2\)&nbsp;: 
+            <ul>
+                <li> <button>Opération</button> </li>
+                <li> Ligne à modifier : \(\ell_2\) </li>
+                <li> Opération à effectuer : <span class="op">&minus;</span></li>
+                <li> Quantité à utiliser : <span class="input">2a</span></li>
+                <li> <button>Effectuer</button>
+            </ul>
+            \[2.\quad \left\{\begin{array}{rcl|l}
+            4a-3b & = & -1 & \ell_{1}\\
+            -b & = & -2a+3 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>Multiplier la ligne \(\ell_2\) par \(-1\) pour en changer les signes&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_2\)</li>
+                <li>Opération à effectuer : <span class="op">&times;</span></li>
+                <li>Quantité à utiliser : <span class="input">-1</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[3.\quad
+            \left\{\begin{array}{rcl|l}
+            4a-3b & = & -1 & \ell_{1}\\
+            b & = & 2a-3 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>
+            L'inconnue \(b\) est maintenant isolée dans le membre de gauche de la ligne \(\ell_2\), nous pouvons effectuer la substitution dans la ligne \(\ell_1\)&nbsp;:
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_2\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[4.\quad\left\{\begin{array}{rcl|l}
+            -2a+9 & = & -1 & \ell_{1}\\
+            b & = & 2a-3 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+
+        <li>Dans la ligne \(\ell_1\) ne figure plus que l'inconnue \(a\). Résolvons&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_1\)</li>
+                <li>Opération à effectuer : <span class="op">&minus;</span></li>
+                <li>Quantité à utiliser : <span class="input">9</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            Puis
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_1\)</li>
+                <li>Opération à effectuer : <span class="op">&divide;</span></li>
+                <li>Quantité à utiliser : <span class="input">-2</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[6.\quad \left\{\begin{array}{rcl|l}
+            a & = & 5 & \ell_{1}\\
+            b & = & 2a-3 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+
+        <li>Nous avons établi que \(a=5\). Substituons cette valeur à \(a\) dans la ligne \(\ell_2\)&nbsp;:
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_1\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[7.\quad\left\{\begin{array}{rcl|l}
+            a & = & 5 & \ell_{1}\\
+            b & = & 7 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+
+    </ol>
+
+    Nous pouvons conclure que le système possède une unique solution : \(\mathscr S=\{(5;7)\}\).
+
+    <h2 id="tuto2">Résolution par combinaison linéaire</h2>
+
+
+    <p>Résolution du système <span class="input">4a-3b=-1; 2a-b=3</span> 
+        \[1.\quad\left\{\begin{array}{rcl|l}
+        4a-3b & = & -1 &\ell_1\\
+        2a-b & = & 3 &\ell_2\\
+        \end{array}\right.\]</p>
+
+    <p><b>Stratégie</b> : éliminer \(b\) dans la ligne \(\ell_1\) en combinant cette ligne avec \(\ell_2\).</p>
+
+    <ol class="l1">
+        <li>Effectuer la combinaison linéaire \(\ell_1\leftarrow\ell_1-3\ell_2\)&nbsp;:
+            <ul>
+                <li><button>Combinaison</button></li>
+                <li>Ligne à utiliser pour la combinaison&nbsp;: \(\ell_2\)</li>
+                <li>Coefficients&nbsp;: \(\ell_1\leftarrow+\)<span class="input">-3</span>\(\times\ell_2\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[2.\quad \left\{\begin{array}{rcl|l}
+            -2a & = & -10 & \ell_{1}\leftarrow\ell_{1}-3\ell_{2}\\
+            2a-b & = & 3 & \ell_{2}\leftarrow\ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>L'inconnue \(a\) est seule dans la ligne \(\ell_1\), nous pouvons la déterminer&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_1\)</li>
+                <li>Opération à effectuer : <span class="op">&divide;</span></li>
+                <li>Quantité à utiliser : <span class="input">-2</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[3.\quad\left\{\begin{array}{rcl|l}
+            a & = & 5 & \ell_{1}\\
+            2a-b & = & 3 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+
+        <li>Nous avons établi que \(a=5\). Substituons cette valeur à \(a\) dans la ligne \(\ell_2\)&nbsp;:
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_1\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[4.\quad\left\{\begin{array}{rcl|l}
+            a & = & 5 & \ell_{1}\\
+            -b+10 & = & 3 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>L'inconnue \(b\) reste seule dans la ligne \(\ell_2\), nous pouvons résoudre&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_2\)</li>
+                <li>Opération à effectuer : <span class="op">&minus;</span></li>
+                <li>Quantité à utiliser : <span class="input">10</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            Puis
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_2\)</li>
+                <li>Opération à effectuer : <span class="op">&times;</span></li>
+                <li>Quantité à utiliser : <span class="input">-1</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[6.\quad\left\{\begin{array}{rcl|l}
+            a & = & 5 & \ell_{1}\\
+            b & = & 7 & \ell_{2}\\
+            \end{array}\right.\]
+    </ol>
+    Nous pouvons conclure que le système possède une unique solution : \(\mathscr S=\{(5;7)\}\).
+	
+	    <h2 id="tuto3">Résolution par substitution</h2>
+
+   <p>Résolution du système <span class="input">4x+y-z=0; -2x+3y+3z=2; x-3y-2z=1</span> 
+        \[1.\quad\left\{\begin{array}{rcl|l}
+        4x+y-z & = & 0 & \ell_{1}\\
+        -2x+3y+3z & = & 2 & \ell_{2}\\
+        x-3y-2z & = & 1 & \ell_{3}\\
+        \end{array}\right.\]</p>
+
+    <ol class="l1">
+        <li> Du fait de son coefficient simple, \(x\) se prête à être isolé dans la ligne \(\ell_3\).<br>
+            Additionner \(3y+2z\) à la ligne \(\ell_3\)&nbsp;: 
+            <ul>
+                <li> <button>Opération</button> </li>
+                <li> Ligne à modifier : \(\ell_3\) </li>
+                <li> Opération à effectuer : <span class="op">&plus;</span></li>
+                <li> Quantité à utiliser : <span class="input">3y+2z</span></li>
+                <li> <button>Effectuer</button>
+            </ul>
+            \[2.\quad \left\{\begin{array}{rcl|l}
+            4x+y-z & = & 0 & \ell_{1}\\
+            -2x+3y+3z & = & 2 & \ell_{2}\\
+            x & = & 3y+2z+1 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+        <li>Nous pouvons maintenant remplacer \(x\) par l'expression obtenue&nbsp;:
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_3\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[3.\quad\left\{\begin{array}{rcl|l}
+            13y+7z+4 & = & 0 & \ell_{1}\\
+            -3y-z-2 & = & 2 & \ell_{2}\\
+            x & = & 3y+2z+1 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+
+        <li>Dans la ligne \(\ell_2\), l'inconnue \(z\) possède un coefficient simple (\(-1\)). Nous allons l'isoler à son tour en deux étapes.<br>
+            Ajouter <span class="input">3y+2</span>&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_2\)</li>
+                <li>Opération à effectuer : <span class="op">&plus;</span></li>
+                <li>Quantité à utiliser : <span class="input">3y+2</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            Puis multiplier par \(-1\)&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_2\)</li>
+                <li>Opération à effectuer : <span class="op">&times;</span></li>
+                <li>Quantité à utiliser : <span class="input">-1</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[5.\quad \left\{\begin{array}{rcl|l}
+            13y+7z+4 & = & 0 & \ell_{1}\\
+            z & = & -3y-4 & \ell_{2}\\
+            x & = & 3y+2z+1 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+
+        <li>Substituons maintenant à \(z\) l'expression obtenue dans cette ligne \(\ell_2\)&nbsp;:
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_2\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[6.\quad\left\{\begin{array}{rcl|l}
+            -8y-24 & = & 0 & \ell_{1}\\
+            z & = & -3y-4 & \ell_{2}\\
+            x & = & -3y-7 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+        <li>La ligne \(\ell_1\) permet de déterminer la valeur de l'inconnue \(y\) en deux étapes. Commançons par additionner \(24\)&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_1\)</li>
+                <li>Opération à effectuer : <span class="op">&plus;</span></li>
+                <li>Quantité à utiliser : <span class="input">24</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+        Puis divisons par \(-8\)&nbsp;:
+            <ul>
+                <li><button>Opération</button></li>
+                <li>Ligne à modifier : \(\ell_1\)</li>
+                <li>Opération à effectuer : <span class="op">&divide;</span></li>
+                <li>Quantité à utiliser : <span class="input">-8</span></li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[8.\quad \left\{\begin{array}{rcl|l}
+            y & = & -3 & \ell_{1}\\
+            z & = & -3y-4 & \ell_{2}\\
+            x & = & -3y-7 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+        <li>Finalement, substituons à \(y\) la valeur \(-3\) obtenue dans la ligne \(\ell_1\)&nbsp;:
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_1\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[9.\quad\left\{\begin{array}{rcl|l}
+            y & = & -3 & \ell_{1}\\
+            z & = & 5 & \ell_{2}\\
+            x & = & 2 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+    </ol>
+
+    Le système possède donc une unique solution&nbsp;: \(\mathscr S=\{(2; -3; 5)\}\).
+
+
+
+    <h2 id="tuto4">Résolution par combinaison linéaire</h2>
+
+   <p>Résolution du système <span class="input">4x+y-z=0; -2x+3y+3z=2; x-3y-2z=1</span> 
+        \[1.\quad\left\{\begin{array}{rcl|l}
+        4x+y-z & = & 0 & \ell_{1}\\
+        -2x+3y+3z & = & 2 & \ell_{2}\\
+        x-3y-2z & = & 1 & \ell_{3}\\
+        \end{array}\right.\]</p>
+
+    <ol class="l1">
+        <li> Choisissons l'inconnue \(z\) de la ligne \(\ell_1\) pour éliminer \(z\) dans les autres lignes par combinaison linéaire&nbsp;:<br> 
+            <ul>
+                <li> <button>Combinaison</button> </li>
+                <li> Ligne à utiliser pour la combinaison : \(\ell_1\) </li>
+                <li> Coefficients : <br>
+                \(\ell_2\leftarrow\ell_2+\)<span class="input">3</span>\(\times\ell_1\)<br>
+                \(\ell_3\leftarrow\ell_3+\)<span class="input">-2</span>\(\times\ell_1\)<br>
+                <li> <button>Effectuer</button>
+            </ul>
+            \[2.\quad\left\{\begin{array}{rcl|l}
+            4x+y-z & = & 0 & \ell_{1}\leftarrow\ell_{1}\\
+            10x+6y & = & 2 & \ell_{2}\leftarrow\ell_{2}+3\ell_{1}\\
+            -7x-5y & = & 1 & \ell_{3}\leftarrow\ell_{3}-2\ell_{1}\\
+            \end{array}\right.\]
+        </li>
+        <li>Les lignes \(\ell_2\) et \(\ell_3\) ne contiennent plus que les inconnues \(x\) et \(y\). Pour pouvoir éliminer \(x\) par combinaison linéaire, commençons par diviser la ligne \(\ell_2\) par <span class="input">10</span>&nbsp;:
+            <ul>
+                    <li><button>Opération</button></li>
+                    <li>Ligne à modifier : \(\ell_2\)</li>
+                    <li>Opération à effectuer : <span class="op">&divide;</span></li>
+                    <li>Quantité à utiliser : <span class="input">10</span></li>
+                    <li><button>Effectuer</button></li>
+            </ul>  
+            \[3.\quad \left\{\begin{array}{rcl|l}
+            4x+y-z & = & 0 & \ell_{1}\\
+            x+\frac{3}{5}y & = & \frac{1}{5} & \ell_{2}\\
+            -7x-5y & = & 1 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+        <li>Combinons maintenant la ligne \(\ell_2\) à la ligne \(\ell_3\)&nbsp;:
+        <ul>
+                <li> <button>Combinaison</button> </li>
+                <li> Ligne à utiliser pour la combinaison : \(\ell_2\) </li>
+                <li> Coefficients : <br>
+                \(\ell_1\leftarrow\ell_1+\)<span class="input">0</span>\(\times\ell_2\)<br>
+                \(\ell_2\leftarrow\ell_2\)<br>
+                \(\ell_3\leftarrow\ell_3+\)<span class="input">7</span>\(\times\ell_1\)</li>
+                <li> <button>Effectuer</button></li>
+            </ul>
+            \[4.\quad\left\{\begin{array}{rcl|l}
+            4x+y-z & = & 0 & \ell_{1}\leftarrow\ell_{1}\\
+            x+\frac{3}{5}y & = & \frac{1}{5} & \ell_{2}\leftarrow\ell_{2}\\
+            -\frac{4}{5}y & = & \frac{12}{5} & \ell_{3}\leftarrow\ell_{3}+7\ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>La ligne \(\ell_3\) donne maintenant la valeur de \(y\)&nbsp;:
+            <ul>
+                    <li><button>Opération</button></li>
+                    <li>Ligne à modifier : \(\ell_3\)</li>
+                    <li>Opération à effectuer : <span class="op">&divide;</span></li>
+                    <li>Quantité à utiliser : <span class="input">-4/5</span></li>
+                    <li><button>Effectuer</button></li>
+            </ul>
+            \[5.\quad\left\{\begin{array}{rcl|l}
+            4x+y-z & = & 0 & \ell_{1}\\
+            x+\frac{3}{5}y & = & \frac{1}{5} & \ell_{2}\\
+            y & = & -3 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+        <li>On substitue cette valeur à \(y\) dans les autres lignes&nbsp;:
+
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_3\)</li>
+                <li><button>Effectuer</button></li>
+            </ul>
+            \[6.\quad\left\{\begin{array}{rcl|l}
+            4x-z-3 & = & 0 & \ell_{1}\\
+            x-\frac{9}{5} & = & \frac{1}{5} & \ell_{2}\\
+            y & = & -3 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+        <li>Finalement, par quelques opérations et substitutions, on détermine les valeurs de \(x\) et \(z\)&nbsp;:
+            <ul>
+                    <li><button>Opération</button></li>
+                    <li>Ligne à modifier : \(\ell_2\)</li>
+                    <li>Opération à effectuer : <span class="op">&plus;</span></li>
+                    <li>Quantité à utiliser : <span class="input">9/5</span></li>
+                    <li><button>Effectuer</button></li>
+            </ul>
+            \[7.\quad \left\{\begin{array}{rcl|l}
+            4x-z-3 & = & 0 & \ell_{1}\\
+            x & = & 2 & \ell_{2}\\
+            y & = & -3 & \ell_{3}\\
+            \end{array}\right.\]
+            suivi de
+            <ul>
+                <li><button>Substitution</button></li>
+                <li>Ligne à utiliser pour la substitution : \(\ell_2\)</li>
+                <li><button>Effectuer</button></li>
+            </ul> 
+            \[8.\quad \left\{\begin{array}{rcl|l}
+            -z+5 & = & 0 & \ell_{1}\\
+            x & = & 2 & \ell_{2}\\
+            y & = & -3 & \ell_{3}\\
+            \end{array}\right.\]
+            puis de
+            <ul>
+                    <li><button>Opération</button></li>
+                    <li>Ligne à modifier : \(\ell_2\)</li>
+                    <li>Opération à effectuer : <span class="op">&minus;</span></li>
+                    <li>Quantité à utiliser : <span class="input">5</span></li>
+                    <li><button>Effectuer</button></li>
+            </ul>
+            et finalement
+            \[9.\quad \left\{\begin{array}{rcl|l}
+            -z & = & -5 & \ell_{1}\\
+            x & = & 2 & \ell_{2}\\
+            y & = & -3 & \ell_{3}\\
+            \end{array}\right.\]
+            <ul>
+                    <li><button>Opération</button></li>
+                    <li>Ligne à modifier : \(\ell_2\)</li>
+                    <li>Opération à effectuer : <span class="op">&times;</span></li>
+                    <li>Quantité à utiliser : <span class="input">-1</span></li>
+                    <li><button>Effectuer</button></li>
+            </ul> 
+            \[10.\quad \left\{\begin{array}{rcl|l}
+            z & = & 5 & \ell_{1}\\
+            x & = & 2 & \ell_{2}\\
+            y & = & -3 & \ell_{3}\\
+            \end{array}\right.\]
+        </li>
+    </ol>
+
+    Le système possède donc une unique solution&nbsp;: \(\mathscr S=\{(2; -3; 5)\}\).
+	
+	<h1 id="avance">Exemples avancés</h1>
+
+<ul>
+            <li><a href="#tuto-plan-plan">Détermination de la droite d'intersection de deux plans (Spécialité Mathématiques en Terminale)</a></li>
+            <li><a href="#tuto-plan-droite">Détermination du point d'intersection d'un plan et d'une droite paramétrée (Spécialité Mathématiques en Terminale)</a></li>
+            </ul>
+
+
+    <h2 id="tuto-plan-plan">Détermination de la droite d'intersection de deux plans (Spécialité Mathématiques en Terminale)</h2>
+
+    <p>On considère les plans \(P\) et \(P'\) d'équations respectives
+        \[P:x+y-2z-1=0\]\[P':3x+5y-4z-7=0.\]
+    On se propose de déterminer une paramétrisation de la droite d'intersection de \(P\) et \(P'\), si elle existe.</p>
+
+    <ul>
+        <li>Créer le système
+            \[\left\{\begin{array}{rcl|l}
+            x+y-2z-1 & = & 0 & \ell_{1}\\
+            3x+5y-4z-7 & = & 0 & \ell_{2}\\
+            \end{array}\right.\]
+            en saisissant
+        <span class="input">x+y-2z-1=0; 3x+5y-4z-7=0</span></li>
+
+        <li>On supprime \(x\) de la ligne \(\ell_2\) par la combinaison linéaire \(\ell_2\leftarrow\ell_2-3\ell_1\).
+            \[\left\{\begin{array}{rcl|l}
+            x+y-2z-1 & = & 0 & \ell_{1}\leftarrow\ell_{1}\\
+            2y+2z-4 & = & 0 & \ell_{2}\leftarrow\ell_{2}-3\ell_{1}\\
+            \end{array}\right.\]</li>
+        <li>On peut maintenant exprimer \(y\) en fonction de \(z\) dans la ligne \(\ell_2\) en appliquant successivement à \(\ell_2\)
+            <ul>
+                <li> la soustraction de \(2z-4\),</li>
+                <li> une division par \(2\).</li>
+            </ul>
+            \[\left\{\begin{array}{rcl|l}
+            x+y-2z-1 & = & 0 & \ell_{1}\\
+            y & = & -z+2 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>De même, dans la ligne \(\ell_1\), effectuer la soustraction de \(y-2z-1\) permet d'isoler \(x\) dans le membre de gauche&nbsp;:
+            \[\left\{\begin{array}{rcl|l}
+            x & = & -y+2z+1 & \ell_{1}\\
+            y & = & -z+2 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>Finalement, il reste à substituer à \(y\) l'expression obtenue dans la ligne \(\ell_2\)&nbsp;:
+            \[\left\{\begin{array}{rcl|l}
+            x & = & 3z-1 & \ell_{1}\\
+            y & = & -z+2 & \ell_{2}\\
+            \end{array}\right.\]
+        </li>
+        <li>On établit ainsi que \(P\) et \(P'\) sont bien sécants, et qu'une paramétrisation de leur droite d'intersection est
+            \[\left\{\begin{array}{rcl|l}
+            x & = & 3t-1 \\
+            y & = & -t+2 \\
+            z & = & t
+\end{array}\right.\qquad t\in\mathbb{R}.\]</li>
+</ul>
+
+</ul></li></ol>
+
+
+    <h2 id="tuto-plan-droite">Détermination du point d'intersection d'un plan et d'une droite paramétrée (Spécialité Mathématiques en Terminale)</h2>
+
+    <p>On considère la droite \(d\) et le plan \(P\) définis par
+    \[d:\left\{\begin{array}{rcl|l} x & = & -t+5 \\ y & = & 2t-3 \\ z & = & t+4 \end{array}\right.\]\[P : 5x+2y-z+1=0. \]</p>
+
+    <p>On se propose de déterminer les éventuels points d'intersection de \(d\) et \(P\).</p>
+
+    <p>Cela revient à résoudre le système \[\left\{\begin{array}{rcl|l}
+    x & = & -t+5 & \ell_{1}\\
+    y & = & 2t-3 & \ell_{2}\\
+    z & = & t+4 & \ell_{3}\\
+    5x+2y-z+1 & = & 0 & \ell_{4}\\
+    \end{array}\right.\]</p>
+
+
+
+    <ul>
+        <li>Créer le système ci-dessus en saisissant 
+    <p><span class="input">x=5-t; y=-3+2t; z=4+t; 5x+2y-z+1=0</span></p></li>
+    <li>Effectuer les substitutions de \(x\), \(y\) et \(z\) (lignes \(\ell_1\), \(\ell_2\) et \(\ell_3\)), on aboutit au système
+    \[\left\{\begin{array}{rcl|l}
+    x & = & -t+5 & \ell_{1}\\
+    y & = & 2t-3 & \ell_{2}\\
+    z & = & t+4 & \ell_{3}\\
+    -2t+16 & = & 0 & \ell_{4}\\
+    \end{array}\right.\]
+    </li>
+    <li>Résoudre l'équation en \(t\) de la ligne \(\ell_4\) en appliquant à la suite
+        <ul><li>une soustraction de \(16\)</li>
+            <li>une division par \(-2\)</li>
+        </ul>
+        à cette ligne.
+    </li>
+    <li>On obtient la valeur \(t=-8\). Substituer cette valeur à \(t\) grâce à la ligne \(\ell_4\) pour obtenir un unique point d'intersection&nbsp; \(M(-3;13;12)\).
+<div id="a-venir" style="display:none">
     <h1 id="references">Créer un lien vers Raos avec un système</h1>
 
     Il est possible de créer directement un lien vers Raos comprenant la définition d'un système.
@@ -60,6 +684,6 @@
     <textarea id="converter-input" rows="5"></textarea>
     <button id="converter-button">Convertir</button>
     <pre id="converter-output"></pre>
-
+    </div>
 </body>
 </html>
