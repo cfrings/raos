@@ -3,7 +3,7 @@
 // Raos v.0.1 deuxième jet
 // Code javascript du logiciel raos
 
-const version = "0.2.241205.001";
+const version = "0.2.241217.001";
 document.title = 'Raos ' + version;
 
 // Annonce
