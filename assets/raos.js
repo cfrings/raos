@@ -331,6 +331,8 @@ function validateNewSystem(e) {
 
     newSystemModal.classList.add("hide");
     newSystemError.classList.add("hide");
+	
+	newSystemInput.value = "";
 
     collapseConfigs();
 
