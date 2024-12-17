@@ -67,7 +67,7 @@
 
 
 html {
-font-size: 12pt;
+font-size: 10pt;
 	overscroll-behavior: none; /* suppression du rechargement lors du swipe down sur un téléphone */
 }
 
@@ -860,7 +860,7 @@ html
 
     .math-entry {
         border: 1px solid black;
-	    width: auto;
+	    width: 8ex;
     }
 
     .math-entry[data-mobile=true][data-selected="1"] { /* changer true et false en 1 et 0 ? */
