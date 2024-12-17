@@ -41,6 +41,7 @@ button{
     padding: .3ex 1ex;
     border-radius: 1ex;
     background: powderblue; 
+    background-blend-mode: multiply;
     cursor: copy;
     font-family: Consolas, "Courier New", monospace;
     transition: all 1s ease-in-out;
