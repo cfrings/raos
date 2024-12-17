@@ -128,7 +128,7 @@ h1 {
     font-weight: bold;
     background: black;
     color: white;
-    padding: .2ex 1.2ex;
+    padding: 1.2ex;
     margin: 0;
     margin-top: 2ex;
     counter-reset: h2;
@@ -152,7 +152,7 @@ h2 {
     font-weight: bold;
     color: white;
     background: darkorange;
-    padding: 0 1ex;
+    padding: 1ex;
     counter-increment: h2;
 }
 
