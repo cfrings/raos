@@ -289,6 +289,7 @@ function showNewSystemModal(e) {
 }
 
 function validateNewSystem(e) {
+	moveErrorDivTo(newSystemError);
     let input = newSystemInput.value;
     if (input===null) {
 		return;
@@ -322,8 +323,7 @@ function validateNewSystem(e) {
 			}
 		}
 	} catch(e) {
-        newSystemError.innerHTML = "La saisie n'est pas correcte ("+e+").";
-        newSystemError.classList.remove("hide");
+        raosError("La saisie n'est pas correcte ("+e+").");
 		return;
     }
 
