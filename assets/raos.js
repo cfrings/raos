@@ -225,14 +225,6 @@ const unknownListDisplay = document.getElementById("unknown-list-display"); // T
 
 var keyboardTarget = opEntry;
 
-//  - au démarrage, charger le mode d'emploi et le cacher
-manualDiv.innerHTML = '<iframe id="manual-iframe" src="mode_d_emploi/index.html" style="width:100%; height:100%;" />'
-manualDiv.classList.add("hide");
-
-//  - initialisation de la bascule du mode d'emploi
-
-let manualShow = false;
-
 
 
 
@@ -1558,3 +1550,13 @@ const urlData = urlParams.get('sys');
 if (urlData) {
     fastInput(urlData);
 }
+
+
+//  - au démarrage, charger le mode d'emploi et le cacher
+manualDiv.innerHTML = '<iframe id="manual-iframe" src="mode_d_emploi/index.html" style="width:100%; height:100%;" />'
+manualDiv.classList.add("hide");
+
+//  - initialisation de la bascule du mode d'emploi
+
+let manualShow = false;
+
