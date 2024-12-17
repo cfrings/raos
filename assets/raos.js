@@ -406,7 +406,9 @@ eraseOpEntryButton.addEventListener("click", (e) => {
     opEntry.value = "";
 })
 
-function typesetMathjax(elementlist, response) {
+function noresponse() {};
+
+function typesetMathjax(elementlist, response=noresponse) {
 	MathJax.typesetPromise(elementlist).then(() => {
 		response();
 		console.log("MathJax 3 has typeset the element " + elementlist);
