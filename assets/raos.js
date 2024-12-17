@@ -367,7 +367,7 @@ function validateNewSystem(e) {
 			let item = document.createElement("td");
 			item.appendChild(button);
 			virtualKbdRows[i%4].appendChild(item);
-			MathJax.Hub.Queue(["Typeset", MathJax.Hub, "unknown-" + name]);
+			oldtypesetMathjax([, "unknown-" + name]);
 			i++;
 		}
 	}
@@ -406,10 +406,16 @@ eraseOpEntryButton.addEventListener("click", (e) => {
     opEntry.value = "";
 })
 
-
+function typesetMathjax(elementlist) {
+	MathJax.typesetPromise(elementlist).then(() => {
+		console.log("MathJax 3 has typeset the element " + elementlist);
+	}).catch((err) => console.error("Error typesetting MathJax:", err));
+}
 // - fonctions relatives à l'utilisation du clavier virtuel
 
-
+function oldtypesetMathjax(elementlist) {
+	MathJax.Hub.Queue(["Typeset", MathJax.Hub].concat(elementlist));
+}
     
 
 function selectKeyboardTargetEvent(event) {
@@ -467,15 +473,15 @@ document.body.addEventListener("resize", function(e) {alert("resize"); document.
 function decreaseFontSize(e) {
     _fontScale /= 1.1;
     resolutionSteps.style["font-size"] = (_fontScale | 0) + "%";
-    //MathJax.Hub.Queue(["Typeset", MathJax.Hub, solveDiv]);
-    // document.querySelector(".step-sys").forEach(function(e) {MathJax.Hub.Queue(["Typeset", MathJax.Hub, e);})
+    //oldtypesetMathjax([, solveDiv]);
+    // document.querySelector(".step-sys").forEach(function(e) {oldtypesetMathjax([, e);})
 }
 
 
 function increaseFontSize(e) {
     _fontScale *= 1.1;
     resolutionSteps.style["font-size"] = (_fontScale | 0) + "%";
-    //MathJax.Hub.Queue(["Typeset", MathJax.Hub, solveDiv]);
+    //oldtypesetMathjax([, solveDiv]);
 }
 
 var fullscreenMode = false;
@@ -638,7 +644,7 @@ function validateUnknownsEntry(e) {
     lineEntry.focus();
 
     unknownListDisplay.innerHTML = listText;
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub,  unknownListDisplay]);
+    oldtypesetMathjax([,  unknownListDisplay]);
 }
 
 /* fonction(callback): validateKeyLineEntry(evenement)
@@ -678,7 +684,7 @@ function validateLineEntry() {
         raosError(e);
 
         // Peut-être y a-t-il des maths dans l'affichage
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub,  errorMessage]);
+        oldtypesetMathjax([,  errorMessage]);
 
         // Comme il y a eu erreur, on quitte dès à présent
         return;
@@ -726,7 +732,7 @@ function validateLineEntry() {
     lineInputTable.appendChild(line);
 
     // Et là il y a forcément des maths à rendre
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub,  left], ["Typeset", MathJax.Hub,  eq], ["Typeset", MathJax.Hub,  right]);
+    oldtypesetMathjax([,  left], ["Typeset", MathJax.Hub,  eq], ["Typeset", MathJax.Hub,  right]);
 
     // La saisie était valide, on nettoie le champ de saisie (et
     // on lui redonne l'antenne au passage).
@@ -1206,7 +1212,7 @@ let timeoutId = 0;
 function raosError(message) { // affichage du message
     console.log("Erreur : "+message);
     errorMessage.innerHTML = '<b>Erreur : </b> <i>' + message + '</i>';
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub,  errorMessage]);
+    oldtypesetMathjax([,  errorMessage]);
     // On fait apparaitre le message d'erreur et on l'inscrit
     // pour disparition dans 6 secondes
     errorMessage.parentNode.classList.remove("hide");
@@ -1381,7 +1387,7 @@ function Step(system, type, data, id) {
 
         resolutionSteps.append(tr);
 
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, tr], function() {tr.scrollIntoView();});
+        oldtypesetMathjax([, tr], function() {tr.scrollIntoView();});
     }
 }
 
@@ -1523,7 +1529,7 @@ function fastInput(input) {
 			let item = document.createElement("td");
 			item.appendChild(button);
 			virtualKbdRows[i%4].appendChild(item);
-			MathJax.Hub.Queue(["Typeset", MathJax.Hub, "unknown-" + name]);
+			oldtypesetMathjax([, "unknown-" + name]);
 			i++;
 		}
 	}
