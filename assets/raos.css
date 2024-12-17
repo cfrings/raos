@@ -860,6 +860,7 @@ html
 
     .math-entry {
         border: 1px solid black;
+	    width: auto;
     }
 
     .math-entry[data-mobile=true][data-selected="1"] { /* changer true et false en 1 et 0 ? */
