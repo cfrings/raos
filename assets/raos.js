@@ -367,7 +367,7 @@ function validateNewSystem(e) {
 			let item = document.createElement("td");
 			item.appendChild(button);
 			virtualKbdRows[i%4].appendChild(item);
-			typesetMathjax(["unknown-" + name]);
+			typesetMathjax([button]);
 			i++;
 		}
 	}
@@ -406,8 +406,9 @@ eraseOpEntryButton.addEventListener("click", (e) => {
     opEntry.value = "";
 })
 
-function typesetMathjax(elementlist) {
+function typesetMathjax(elementlist, response=()==>{}) {
 	MathJax.typesetPromise(elementlist).then(() => {
+		response();
 		console.log("MathJax 3 has typeset the element " + elementlist);
 	}).catch((err) => console.error("Error typesetting MathJax:", err));
 }
@@ -732,7 +733,7 @@ function validateLineEntry() {
     lineInputTable.appendChild(line);
 
     // Et là il y a forcément des maths à rendre
-    typesetMathjax([ left], ["Typeset", MathJax.Hub,  eq], ["Typeset", MathJax.Hub,  right]);
+    typesetMathjax([left,  eq, right]);
 
     // La saisie était valide, on nettoie le champ de saisie (et
     // on lui redonne l'antenne au passage).
@@ -1213,7 +1214,7 @@ let timeoutId = 0;
 function raosError(message) { // affichage du message
     console.log("Erreur : "+message);
     errorMessage.innerHTML = '<b>Erreur : </b> <i>' + message + '</i>';
-    typesetMathjax([ errorMessage]);
+    typesetMathjax([errorMessage]);
     // On fait apparaitre le message d'erreur et on l'inscrit
     // pour disparition dans 6 secondes
     errorMessage.parentNode.classList.remove("hide");
@@ -1388,6 +1389,7 @@ function Step(system, type, data, id) {
 
         resolutionSteps.append(tr);
 
+	// TODO URGENT : corriger la ligne ci-dessous !
         typesetMathjax([tr], function() {tr.scrollIntoView();});
     }
 }
@@ -1530,7 +1532,7 @@ function fastInput(input) {
 			let item = document.createElement("td");
 			item.appendChild(button);
 			virtualKbdRows[i%4].appendChild(item);
-			typesetMathjax(["unknown-" + name]);
+			typesetMathjax(button);
 			i++;
 		}
 	}
