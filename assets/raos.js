@@ -1195,6 +1195,7 @@ function moveErrorDivTo(target) { // déplacement du conteneur au bon endroit
         errorMessage.parentNode.removeChild(errorMessage);
     }
     target.appendChild(errorMessage);
+	target.classList.add("hide");
 }
 
 function moveKeyboardTo(target) {
