@@ -218,18 +218,21 @@
             
         <div id="new-system" class="modal no-print hide">
             <div id="new-system-content" class="modal-content">
-            <div>
-                <h1>Saisissez le système ci-dessous, en séparant les lignes d'un point-virgule.</h1>
-                <p><i>Par exemple, pour créer le système
-                \[\left\{\begin{array}{rcl}2a+3b+c&=&2\\-a+\frac 13b-3c&=&-\frac 32\end{array}\right.,\]
-                saisir </p></i>
-            </div><pre>2a+3b+c=2;
--a+1/3b-3c=-3/2</pre>
-                <textarea id="new-system-input" rows="6"></textarea>
-                <button id="validate-system-input">Valider</button>
-                <button id="cancel-system-input">Annuler</button>
-                <div id="new-system-error" class="transit error-container"></div>
-            </div>
+	            <div>
+	                <h1>Saisissez le système ci-dessous, en séparant les lignes d'un point-virgule.</h1>
+	                <textarea id="new-system-input" rows="6"></textarea>
+	                <button id="validate-system-input">Valider</button>
+	                <button id="cancel-system-input">Annuler</button>
+	                <div id="new-system-error" class="transit error-container"></div>
+	            </div>
+				<div> 
+	                <p><i>Par exemple, pour créer le système
+	                \[\left\{\begin{array}{rcl}2a+3b+c&=&2\\-a+\frac 13b-3c&=&-\frac 32\end{array}\right.,\]
+	                saisir </p></i>
+	            	<pre>2a+3b+c=2;
+	-a+1/3b-3c=-3/2</pre>
+				</div>
+			</div>		
         </div>
 
     </body>
