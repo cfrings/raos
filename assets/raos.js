@@ -367,7 +367,7 @@ function validateNewSystem(e) {
 			let item = document.createElement("td");
 			item.appendChild(button);
 			virtualKbdRows[i%4].appendChild(item);
-			oldtypesetMathjax([, "unknown-" + name]);
+			typesetMathjax(["unknown-" + name]);
 			i++;
 		}
 	}
@@ -473,15 +473,15 @@ document.body.addEventListener("resize", function(e) {alert("resize"); document.
 function decreaseFontSize(e) {
     _fontScale /= 1.1;
     resolutionSteps.style["font-size"] = (_fontScale | 0) + "%";
-    //oldtypesetMathjax([, solveDiv]);
-    // document.querySelector(".step-sys").forEach(function(e) {oldtypesetMathjax([, e);})
+    //typesetMathjax([solveDiv]);
+    // document.querySelector(".step-sys").forEach(function(e) {typesetMathjax([e);})
 }
 
 
 function increaseFontSize(e) {
     _fontScale *= 1.1;
     resolutionSteps.style["font-size"] = (_fontScale | 0) + "%";
-    //oldtypesetMathjax([, solveDiv]);
+    //typesetMathjax([solveDiv]);
 }
 
 var fullscreenMode = false;
@@ -644,7 +644,7 @@ function validateUnknownsEntry(e) {
     lineEntry.focus();
 
     unknownListDisplay.innerHTML = listText;
-    oldtypesetMathjax([,  unknownListDisplay]);
+    typesetMathjax([ unknownListDisplay]);
 }
 
 /* fonction(callback): validateKeyLineEntry(evenement)
@@ -684,7 +684,7 @@ function validateLineEntry() {
         raosError(e);
 
         // Peut-être y a-t-il des maths dans l'affichage
-        oldtypesetMathjax([,  errorMessage]);
+        typesetMathjax([ errorMessage]);
 
         // Comme il y a eu erreur, on quitte dès à présent
         return;
@@ -732,7 +732,7 @@ function validateLineEntry() {
     lineInputTable.appendChild(line);
 
     // Et là il y a forcément des maths à rendre
-    oldtypesetMathjax([,  left], ["Typeset", MathJax.Hub,  eq], ["Typeset", MathJax.Hub,  right]);
+    typesetMathjax([ left], ["Typeset", MathJax.Hub,  eq], ["Typeset", MathJax.Hub,  right]);
 
     // La saisie était valide, on nettoie le champ de saisie (et
     // on lui redonne l'antenne au passage).
@@ -1212,7 +1212,7 @@ let timeoutId = 0;
 function raosError(message) { // affichage du message
     console.log("Erreur : "+message);
     errorMessage.innerHTML = '<b>Erreur : </b> <i>' + message + '</i>';
-    oldtypesetMathjax([,  errorMessage]);
+    typesetMathjax([ errorMessage]);
     // On fait apparaitre le message d'erreur et on l'inscrit
     // pour disparition dans 6 secondes
     errorMessage.parentNode.classList.remove("hide");
@@ -1387,7 +1387,7 @@ function Step(system, type, data, id) {
 
         resolutionSteps.append(tr);
 
-        oldtypesetMathjax([, tr], function() {tr.scrollIntoView();});
+        typesetMathjax([tr], function() {tr.scrollIntoView();});
     }
 }
 
@@ -1529,7 +1529,7 @@ function fastInput(input) {
 			let item = document.createElement("td");
 			item.appendChild(button);
 			virtualKbdRows[i%4].appendChild(item);
-			oldtypesetMathjax([, "unknown-" + name]);
+			typesetMathjax(["unknown-" + name]);
 			i++;
 		}
 	}
