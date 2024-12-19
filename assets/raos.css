@@ -518,6 +518,7 @@ html
     display: flex;
     flex: 1 1 0;
     align-items: stretch;
+	overflow: hidden;
 }
 
 
