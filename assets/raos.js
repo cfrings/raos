@@ -50,6 +50,14 @@ function clearChildren(node) {
     }
 }
 
+function show(element) {
+	element.classList.remove("hide");
+}
+
+funcion hide(element) {
+	element.classList.add("hide");
+}
+
 /*  fonction: 	setAttributes(element, object)
     Définit de multiples attributs pour l'élément, définis par les attributs de l'objet fourni. */
 function setAttributes(el, attrs) {
@@ -254,8 +262,10 @@ paneScrollbar.addEventListener('input', () => {
 switchManualButton.addEventListener("click", switchManual);
 manualInFrame.addEventListener("click", showManualFrame);
 manualInTab.addEventListener("click", showManualTab);
-manualChoice.addEventListener("click", e => manualChoice.classList.add("hide"));
-newSystemModal.addEventListener("click", e => newSystemModal.classList.add("hide"));
+// manualChoice.addEventListener("click", e => manualChoice.classList.add("hide"));
+manualChoice.addEventListener("click", e => hide(manualChoice));
+// newSystemModal.addEventListener("click", e => newSystemModal.classList.add("hide"));
+newSystemModal.addEventListener("click", e => hide(newSystemModal));
 document.getElementById("new-system-content").addEventListener("click", e => {console.log("Bummer!"); e.stopPropagation();});
 manualResizeButton.addEventListener("click", toggleResizeScrollbar);
 
@@ -271,8 +281,10 @@ cancelSystemButton.addEventListener("click", cancelNewSystem);
 
 function cancelNewSystem(e) {
     newSystemInput.value = "";
-    newSystemModal.classList.add("hide");
-    newSystemError.classList.add("hide");
+    // newSystemModal.classList.add("hide");
+    // newSystemError.classList.add("hide");
+    hide(newSystemModal);
+    hide(newSystemError);
 }
 
 function showNewSystemModal(e) {
@@ -321,8 +333,10 @@ function validateNewSystem(e) {
 
     console.log("Proceeding.");
 
-    newSystemModal.classList.add("hide");
-    newSystemError.classList.add("hide");
+    // newSystemModal.classList.add("hide");
+    // newSystemError.classList.add("hide");
+    hide(newSystemModal);
+    hide(newSystemError);
 	
 	newSystemInput.value = "";
 
@@ -358,6 +372,8 @@ function validateNewSystem(e) {
 		if (name != "") {
 			console.log("creating key for unknown '" + name + "'.");
 			let button = document.createElement("button");
+			button.classList.add("virtual-kbd");
+			button.classList.add("virtual-kbd-var");
 			button.classList.add("virtual-kbd");
 			button.classList.add("virtual-kbd-var");
 			button.id = "unknown-" + name;
@@ -560,10 +576,12 @@ function switchManual(e) {
     
     if (manualShow) {
         console.log("Hiding iframe.");
-        manualDiv.classList.add("hide");
+        // manualDiv.classList.add("hide");
+	hide(manualDiv);
         manualShow = false;
         switchManualButton.dataset.state = "0";
-        manualResizeButton.classList.add("hide");
+        // manualResizeButton.classList.add("hide");
+	hide(manualResizeButton);
 
     } else {
         manualChoice.classList.remove("hide");
