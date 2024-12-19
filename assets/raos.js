@@ -54,7 +54,7 @@ function show(element) {
 	element.classList.remove("hide");
 }
 
-funcion hide(element) {
+function hide(element) {
 	element.classList.add("hide");
 }
 
