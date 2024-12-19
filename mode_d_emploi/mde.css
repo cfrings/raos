@@ -292,8 +292,9 @@ div#titre-accessibilite {
 .touch-logo {
     height: 1.5em;
     padding: .2ex;
-    border-radius: 1ex;
+    border-radius: .1ex;
     background: black;
+    color: white;
     vertical-align: middle;
 }
 
