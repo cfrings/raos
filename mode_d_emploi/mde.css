@@ -3,6 +3,7 @@
 
 html {
     background: white;
+    width: 100%;
 }
 
 body{
@@ -291,8 +292,8 @@ div#titre-accessibilite {
 
 .touch-logo {
     height: 1.5em;
-    padding: .2ex;
-    border-radius: .1ex;
+    padding: .3ex;
+    border-radius: .3ex;
     background: black;
     color: white;
     vertical-align: middle;
