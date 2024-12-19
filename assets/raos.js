@@ -582,6 +582,7 @@ function switchManual(e) {
         switchManualButton.dataset.state = "0";
         // manualResizeButton.classList.add("hide");
 	hide(manualResizeButton);
+	    hide(paneScrollbar);
 
     } else {
         manualChoice.classList.remove("hide");
